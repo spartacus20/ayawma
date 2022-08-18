@@ -1,27 +1,72 @@
+
 .NAVBAR{
     display: flex;
-
+    position: fixed;
+    z-index: 99;
+    margin: auto;
     background-color: #22181C;
     border: 1px solid black; 
-    height: 8%;
+    height: 10%;
     width: 100%;
 
 
 }
-
+/* Parte de la izquierda.  */
 .left{
+    
+    display: flex;
     color: white;
     width: 20%;
-    border: 1px solid white; 
+  
 
 }
 
 .icon1{
-    
-    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
     height: 100%;
     margin-left: 2px;
-    margin-top: 10px
+    
+}
+
+
+
+.icon1:hover{
+    color: #ED4551;
+}
+
+
+
+.BussinessName{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0px; 
+    width: 80%;
+    height: 100%;
+   
+}
+.BussinessName>a{
+    font-family: 'Rubik Burned', cursive;
+    font-size: 2rem;
+    text-decoration: none;
+    color:white;
+}
+
+.BussinessName>a:hover{
+    
+    color: #ED4551;
+
+}
+
+
+/* Estilos de la NavMenu */
+
+li{
+   list-style: none;
 }
 
 .nav-menu{
@@ -42,15 +87,167 @@
     width: 100%;
 }
 
+.nav-icon{
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin-top: 50px;
+    margin-left: 10px; 
+    
+}
+
+.nav-icon>a{
+    font-family: 'Rubik Burned', cursive;
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+    
+    font-size: 2rem;
+}
+
+.nav-icon>a:hover{
+    color: #ED4551;
+    font-size: 2.2rem;
+}
+
+.nav-icon:hover{
+    color: #ED4551;
+    font-size: 2.2rem;
+}
+.nav-text{
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+.nav-text>a{
+    
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: white;
+}
+
+.nav-text:hover{
+    color: #ED4551;
+    font-size: 1.4rem;    
+}
+.nav-text>a:hover{
+    color: #ED4551;
+    font-size: 1.4rem;    
+}
+
+
+
+
+
+/* Parte del medio */
+
 
 .middle{
-    border: 1px solid white; 
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid white; 
     width: 50%;
 
 }
 
+/* Barra de busqueda */
+
+.SearchBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+
+}
+
+.SearchIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4AFCF0;
+    width: 8%;
+    height: 54%;
+}
+
+.bar{
+    border: 1px solid #4AFCF0;
+    background-color: #4AFCF0;
+    font-size: 1.5rem;
+    height: 50%;
+    width: 70%;
+}
+
+.bar:focus{
+    outline: 0;
+}
+
+
+
+/* Parte de la derecha  */
 .right{
     width: 30%;
-    border: 1px solid white; 
+    display: flex;
+    
+     
     
 }
+
+.Usericon{
+    margin-left: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 10%;
+    color:white; 
+}   
+.Usericon.active{
+    margin-left: 10px;
+}
+.Usericon.active:hover{
+    color: white; ;
+}
+.Usericon:hover{
+    color: #ED4551;
+}
+
+.UserInfo{
+    margin-top: 0px;
+    width: 20%;
+    color: white;
+    right: -500px; 
+    position: fixed
+
+}
+.UserInfo>a{
+
+     font-size: 1.5rem;
+     margin-left: 10px;
+     color: white; 
+     text-decoration: none;
+}
+.UserInfo>a:hover{
+    color: #ED4551;  
+}
+.UserInfo.active{
+    right: 130px;
+}
+
+.UserCart{
+    color: white; 
+    margin-left: 350px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.UserCart:hover{ 
+    color: #ED4551;
+}
+
+/* Responsive */
