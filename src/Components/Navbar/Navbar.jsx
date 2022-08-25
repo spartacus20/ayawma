@@ -14,7 +14,7 @@ function Navbar() {
   const showUserInfo = () => setUser(!isUser);
 
   return (
-    <div className="NAVBAR">
+    <header className="NAVBAR">
       <div className="left">
         <div className="icon1"> <RiBarChartHorizontalFill size={40}  onClick={showSidebar}/> </div> 
             <nav className={isActive ? 'nav-menu active': 'nav-menu'}>
@@ -33,9 +33,6 @@ function Navbar() {
                 </li>
 
               </ul>
-
-
-
             </nav>
         <div className="BussinessName"><a href="/">AYAWMA</a></div>
       </div>
@@ -62,7 +59,7 @@ function Navbar() {
 
 
 
-    </div>
+    </header>
 
   )
 }

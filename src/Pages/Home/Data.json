@@ -1,0 +1,43 @@
+{
+    "carrousel": [
+        { 
+            "id": 1,
+            "imagen": "/HOME-IMAGES/carrosel1.jpg"
+        
+        },
+        { 
+            "id": 2,
+            "imagen": "/HOME-IMAGES/carrosel2.jpg"
+        
+        },
+        { 
+            "id": 3,
+            "imagen": "/HOME-IMAGES/carrosel3.jpg"
+        
+        }
+    ],
+
+    "oportunidades": [
+        { 
+            "id": 1,
+            "imagen": "/HOME-IMAGES/LAST OPORTUNITIES/ryzen_9_5000.png",
+            "title": "AMD Ryzen 9 5950X 16-Core 3.4GHz c/ Turbo 4.9GHz AM4", 
+            "description": "Socket:AM4  Velocidade:3.4GH 4.9GHz  L3 Cache = 64MB  Consumo:105W  Outras características:Litografia TSMC 7nm FinFET64 bit16 Cores32 ThreadsDesbloqueado para Overclock",
+            "price": "563.9 €"
+        },
+        { 
+            "id": 2,
+            "imagen": "/HOME-IMAGES/LAST OPORTUNITIES/inno3d_3050_twin_x2oc_set.png",
+            "title": "INNO3D Nvidia GeForce RTX 3050 Twin X2 OC 8GB GDDR6", 
+            "description": "Modelo:INNO3D Nvidia GeForce RTX 3050 Twin X2 OC 8GB GDDR6  Memória de video:8GB, 128 bit GDDR6  Velocidade da Memória:14Gbps  Velocidade do Processador:1882 Mhz Boost Clock1552 Mhz Base Clock  Interface:PCI Express 4.0Resolução Máxima:Digital: 7680 x 4320 Interfaces na Placa:3x DisplayPort 1.4a1x HDMI 2.1Fonte de alimentação recomendada:450W ou mais ( 1 x 8-pin )",
+            "price": "563.9 €"
+        },
+        { 
+            "id": 3,
+            "imagen": "/HOME-IMAGES/LAST OPORTUNITIES/b450_4__2.png",
+            "title": "Gigabyte B450M Gaming AM4", 
+            "description": "",
+            "price": "563.9 €"
+        }
+    ]
+}

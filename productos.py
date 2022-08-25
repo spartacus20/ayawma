@@ -1,80 +1,89 @@
+from textwrap import indent
 import requests
 from bs4 import BeautifulSoup
+import time, json
+producto = input("Digite el nombre del producto: ")
 
-# producto = input("Digite el nombre del producto: ")
+url = "https://www.amazon.es/s?k="+producto
 
-# url = "https://www.amazon.es/s?k="+producto
-
-
-headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
-
-
-# peticion_http = requests.get(url, headers= headers) # <Response [200]> 
+start_time = time.time()
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
 
 
-# contenido_pagina = BeautifulSoup(peticion_http.content, "html.parser")
+peticion_http = requests.get(url, headers=headers)  # <Response [200]>
 
 
-# resultado_busqueda = contenido_pagina.find_all('div', {'data-component-type': 's-search-result'}) 
+contenido_pagina = BeautifulSoup(peticion_http.content, "html.parser")
+
+
+resultado_busqueda = contenido_pagina.find_all(
+    'div', {'data-component-type': 's-search-result'})
 # #Nos devuelve un array [resultado_busqueda]
 
 
 def ObtenerDescripcion(link):
-    
-    
-    peticion_http = requests.get(link, headers= headers) # <Response [200]> 
+
+    peticion_http = requests.get(link, headers=headers)  # <Response [200]>
     contenido_pagina = BeautifulSoup(peticion_http.content, "html.parser")
-    resultado_producto = contenido_pagina.find('table' , {'id': 'productDetails_techSpec_section_1'}) 
+    resultado_producto = contenido_pagina.find(
+        'table', {'id': 'productDetails_techSpec_section_1'})
 
-    #Detalles técnicos del  producto. 
-    fila1 =  resultado_producto.find_all('th') #Nos devueve un array 
-    fila2 =  resultado_producto.find_all('td') #Nos devueve un array 
+    # Detalles técnicos del  producto.
+    fila1 = resultado_producto.find_all('th')  # Nos devueve un array
+    fila2 = resultado_producto.find_all('td')  # Nos devueve un array
 
-    #Acerca de este producto
+    # Acerca de este producto
     acerca_producto = contenido_pagina.find('div', {'id': 'feature-bullets'})
     acerca_producto = acerca_producto.ul
-    acerca_producto = acerca_producto.find_all('li') #Nos devueve un array 
-    
+    acerca_producto = acerca_producto.find_all('li')  # Nos devueve un array
+
+    # Obtenemos la primera imagen grande.
     imagen = contenido_pagina.find('div', {'id': 'imageBlock'})
-    imagen = imagen.ul
-    imagen = imagen.find_all("li") #Nos devueve un array 
-    imagen_pequena = imagen[2].span.img.get('src') 
+    # Nos devuelve un array con una longitud de 2.
+    imagen = imagen.find_all("ul")
+    imagen = imagen[1].find("li", {"class": "itemNo0"})
+
+    primera_imagen = imagen.img.get("src")
+
+    return (fila1, fila2, acerca_producto, primera_imagen)
+
+
+def getInfoItems(item):
+
+   
+    titulo = item.h2.a.text
+
+
+    try:
+        precio = item.find("span", "a-offscreen").text
+    except:
+        precio = "0"
+
+    link = "https://www.amazon.es/" + item.h2.a.get("href")
+
+    return (titulo, precio, ObtenerDescripcion(link))
+
+
+infoallItems = []
+
+i = 0 
+for item in resultado_busqueda:
+    i += 1
+    infoallItems.append(getInfoItems(item))
+    if i== 2: 
+        break
     
- #   imagen = imagen.find_all('li', {'class': 'imageThumbnail'})
+# print(len(resultado_busqueda))
+#print(infoallItems[1])
 
-
-
-
-    print(imagen)
-
-ObtenerDescripcion("https://www.amazon.es/Gamine-MKMINIBES-Teclado-Mec%C3%A1nico-Ultra-Compacto/dp/B0972ZH4KN/ref=sr_1_3_sspa?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1G7CXWU12IQX3&keywords=teclados&qid=1660909880&sprefix=teclados%2Caps%2C108&sr=8-3-spons&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExOVI5MElGNzdFVzNXJmVuY3J5cHRlZElkPUEwNTU3MTgzM0haU0FGOENKN0tPTyZlbmNyeXB0ZWRBZElkPUEwNzA5MTIyR1BGTDFCOFFBNlNUJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ&th=1")
-
-
-
-
-# for item in resultado_busqueda:
-#     titulo = item.h2.a.text
-    
-#     try:
-#         precio = item.find("span", "a-offscreen").text
-#     except: 
-#         precio = "0"
-
-#     link = "https://www.amazon.es/"+ item.h2.a.get("href")
-
-
-    
-#     print(link)
-
-
+data = json.dumps({"item":[{"title": infoallItems[1][0], "precio": infoallItems[1][1]}] }, indent=4)
+with open('amazon-products', 'w') as f: 
+    f.write(data)
  
 
 
-
-
-
-
-
+print("--- %s seconds ---" % (time.time() - start_time))
 
 
 
