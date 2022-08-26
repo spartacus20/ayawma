@@ -4,11 +4,29 @@ import Navbar from "../../Components/Navbar/Navbar"
 import data from "./Data.json"
 import 'animate.css';
 import { Button } from '@nextui-org/react';
+import Footer from '../../Components/Navbar/Footer/Footer';
 
 
+function getSize() {
+  const WindowsSize = window.screen.width;
+
+  if (WindowsSize <= 1280) {
+    return "md";
+  } else if (WindowsSize <= 1080) {
+    return "xs";
+
+  } else {
+    return "lg";
+  }
+
+
+
+}
 
 
 function Home() {
+
+
 
   const [active, setactive] = useState(0);
   let scrollintervel = null;
@@ -46,7 +64,7 @@ function Home() {
         </article>
 
         <section>
-          <div className="container-items-discount">
+          <div className="container-items-discount down">
             <div className="item ">
               <div className="left">
                 <img src={data.oportunidades[0].imagen} alt="" />
@@ -61,7 +79,7 @@ function Home() {
 
                 <div className="bottom">
                   <div className="price"><span>{data.oportunidades[2].price}</span></div>
-                  <div className='btn-buy'><Button size='lg'>Buy</Button></div>
+                  <div className='btn-buy'><Button size={getSize()}>Buy</Button></div>
                 </div>
 
               </div>
@@ -81,7 +99,7 @@ function Home() {
 
                 <div className="bottom">
                   <div className="price"><span>{data.oportunidades[2].price}</span></div>
-                  <div className='btn-buy'><Button size='lg'>Buy</Button></div>
+                  <div className='btn-buy'><Button size={getSize()}>Buy</Button></div>
                 </div>
 
               </div>
@@ -89,7 +107,7 @@ function Home() {
             </div>
 
           </div>
-          <div className="container-items-discount">
+          <div className="container-items-discount ">
             <div className="item">
               <div className="left">
                 <img src={data.oportunidades[2].imagen} alt="" />
@@ -104,7 +122,7 @@ function Home() {
 
                 <div className="bottom">
                   <div className="price"><span>{data.oportunidades[2].price}</span></div>
-                  <div className='btn-buy'><Button size='lg'>Buy</Button></div>
+                  <div className='btn-buy'><Button size={getSize()}>Buy</Button></div>
                 </div>
               </div>
 
@@ -115,14 +133,9 @@ function Home() {
 
 
         </section>
-
-
-
-
-
       </div>
 
-
+      <Footer/>
 
 
 

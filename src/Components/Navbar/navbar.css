@@ -234,10 +234,11 @@ li{
     color: #ED4551;  
 }
 .UserInfo.active{
-    right: 130px;
+    right: 90px;
 }
 
 .UserCart{
+    transform: scaleX(-1);
     color: white; 
     margin-left: 350px; 
     display: flex;
@@ -251,3 +252,46 @@ li{
 }
 
 /* Responsive */
+
+
+@media only screen and (max-width: 1280px){
+
+    .UserCart{
+        margin-left: 50%;   
+    }
+
+}
+
+@media only screen and (max-width: 800px){
+    .Usericon{
+        width: 20%;
+    }
+    .Usericon.active{
+        margin-left: 60px;
+    }
+    .UserInfo.active{
+        opacity: 0;
+        margin-left: 0px;
+    }
+    .nav-menu{
+        width: 100%;
+    }
+    .UserCart{
+        
+        margin-left: 40px;  
+      
+    }
+    .UserCart.active{
+        opacity: 0;  
+    }
+    .middle{
+        display: none; 
+    }
+    .left{
+        width: 50%;
+    }
+    .right{
+       width: 50%;  
+    }
+}
+

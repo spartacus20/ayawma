@@ -4,6 +4,11 @@ import { RiBarChartHorizontalFill } from 'react-icons/ri';
 import { AiOutlineClose, AiOutlineUser} from 'react-icons/ai'; 
 import {BsHeadphones, BsSearch, BsCart} from 'react-icons/bs'; 
 import {GiProcessor} from 'react-icons/gi'; 
+
+function getSize(){
+  return window.screen.width; 
+}
+
 function Navbar() {
 
   const [isActive, setActive] = useState(false); 
@@ -45,14 +50,14 @@ function Navbar() {
          
       </div>
       <div className="right">
-          <div className={isUser ? 'Usericon active': 'Usericon'}>
+          <div className={(getSize() <=800 && isUser) ? 'Usericon active': 'Usericon'}>
             <AiOutlineUser onClick={showUserInfo} size={40}/>
-            <div className={isUser ? 'UserInfo active': 'UserInfo'}>
+            <div className={isUser ? 'UserInfo active ': 'UserInfo'}>
               <a href="">Login</a>
               <a href="">Register</a>
             </div>
           </div>
-          <div className="UserCart">
+          <div className={!isActive? "UserCart": "UserCart active"}>
             <BsCart size={40}/> 
           </div>
       </div>  
