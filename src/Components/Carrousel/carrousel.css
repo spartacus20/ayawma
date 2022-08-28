@@ -1,0 +1,19 @@
+/* CARROUSEL */
+
+
+.carrousel-container {
+
+    margin-top: 100px;
+    position: relative;
+    display: flex;
+  
+    margin-left: 250px;
+  
+    width: 90%;
+    height: 80vh;
+}
+
+
+@media  onscreen {
+    
+}
