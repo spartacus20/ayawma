@@ -1,4 +1,4 @@
-import React from 'react'
+import Reac, {useEffect} from 'react'
 import "./oportunidades.css"
 import 'animate.css';
 
@@ -14,11 +14,14 @@ function getSize() {
     const WindowsSize = window.screen.width;
   
     if (WindowsSize <= 1280) {
+      console.log(WindowsSize)
       return "md";
     } else if (WindowsSize <= 1080) {
+      console.log(WindowsSize)
       return "xs";
   
     } else {
+      console.log(WindowsSize)
       return "lg";
     }
   
@@ -30,6 +33,17 @@ function getSize() {
 
 
 function Oportunities() {
+
+  useEffect(() => {
+    
+
+
+
+
+
+   },[]);
+
+
   return (
     <div className="discount-container animate__bounceIn">
 

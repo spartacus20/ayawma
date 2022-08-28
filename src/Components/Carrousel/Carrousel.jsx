@@ -12,8 +12,8 @@ function Carrousel() {
 
                 {data.carrousel.map((item) => (
 
-                    <Carousel.Item key={item.id} className="ml-20 ml-40 ml-60">
-                        <img src={item.imagen} alt=""  />
+                    <Carousel.Item key={item.id} >
+                        <img src={item.imagen} alt="" className="w-100"/>
                     </Carousel.Item>
 
                 ))}

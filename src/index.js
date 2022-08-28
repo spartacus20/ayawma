@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Render from './Render';
+import dark from './Themes/Dark';
+
+import { NextUIProvider } from "@nextui-org/react"
 
 
 
@@ -11,8 +14,11 @@ import Render from './Render';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-     <App />
-    {/* <Render/> */}
+    <NextUIProvider theme={dark}>
+
+      <App />
+      {/* <Render /> */}
+    </NextUIProvider>
   </React.StrictMode>
 );
 
