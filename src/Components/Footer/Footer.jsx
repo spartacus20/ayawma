@@ -6,15 +6,31 @@ function Footer() {
         <footer className='
             w-[100%] 
             2xl:h-[300px]
-            
+            mt-[05]
             bg-black
             
             '>
 
-            <div class="flex justify-center mx-auto w-[100%] mt-[50px]">
+            <div class="flex justify-between mx-auto  mt-[50px]
+                sm:ml-[50px]
+            ">
                 {/* PARTE DE ARRIBA */}
-                <div class="ml-[300px]  grid grid-cols-4 gap-8 sm:gap-6 sm:grid-cols-5">
-                    <div className='mr-[100px]'>
+                <div class="
+                 2xl:ml-[300px] 
+                 xl:ml-[300px]
+                 lg:ml-[300px]
+                 md:mx-auto
+                 sm:mx-auto
+                 grid grid-cols-4 gap-8 sm:gap-6 sm:grid-cols-5">
+                    <div className='
+                      2xl:mr-[100px]
+                      xl:mr-[100px]
+                      lg:mr-[100px]
+                      sm:mr-[0px]
+                      border-2
+                      border-red-100
+                      
+                    '>
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Application</h2>
                         <ul class="text-gray-600 dark:text-gray-400">
                             <li class="mb-4">
@@ -25,7 +41,12 @@ function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div className='mr-[100px]'>
+                    <div className='
+                     2xl:mr-[100px]
+                     xl:mr-[100px]
+                     lg:mr-[100px]
+                     sm:mr-[25%] 
+                    '>
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
                         <ul class="text-gray-600 dark:text-gray-400">
                             <li class="mb-4">
@@ -36,7 +57,13 @@ function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div className='mr-[100px]'>
+                    <div className='
+                         2xl:mr-[100px]
+                         xl:mr-[100px]
+                         lg:mr-[100px]
+                         sm:mr-[25%] 
+                    
+                    '>
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
                         <ul class="text-gray-600 dark:text-gray-400">
                             <li class="mb-4">
@@ -47,7 +74,15 @@ function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div className='mr-[100px]'>
+                    <div className='
+                         2xl:mr-[100px]
+                         xl:mr-[100px]
+                         lg:mr-[100px]
+                         
+                         sm:ml-[40%] 
+                      
+                    
+                    '>
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
                         <ul class="text-gray-600 dark:text-gray-400">
                             <li class="mb-4">
@@ -61,8 +96,17 @@ function Footer() {
                 </div>
             </div>
             {/* PARTE DE ABAJO */}
-            <div className='bg-red-100 w-[100%] h-[15%] mt-[45px]' >
-
+            <div className=' w-[100%] h-[15%] mt-[45px] flex' >
+                <div className='w-[40%]  flex items-center'>
+                    <span className='
+                    font-bold text-white 
+                        ml-[60%]
+                    
+                    '>AYAWMA</span>
+                </div>
+                <div className='w-[40%]  flex items-center'>
+                    <span className='font-bold text-white ml-[60%]'>© 2022 All Rights Reserved</span>
+                </div>
             </div>
 
 

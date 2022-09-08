@@ -7,12 +7,13 @@ import SomeItems from '../../Components/Home/SomeItems'
 import HomeItems from '../../Components/Home/Items';
 import LatestProduct from '../../Components/Home/LatestProduct'
 import Footer from '../../Components/Footer/Footer'
+
 function Home() {
 
 
     return (
         <div className='w-full  flex flex-col'>
-            <Navbar />
+            <Navbar User={false} Home={true}/>
             <Categories />
             <SomeItems />
             <HomeItems />
