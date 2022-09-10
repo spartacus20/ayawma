@@ -12,8 +12,7 @@ import ProductResult from './Pages/SerachResullt/ProductResult';
 import RecorveryPassword from './Pages/RecoveryPassword/RecorveryPassword';
 import EmailSent from './Pages/RecoveryPassword/EmailSent';
 import NewPassword from './Pages/RecoveryPassword/NewPassword';
-
-
+import ProducPage from './Pages/ProductPage/ProductPage'
 function App() {
   
   const clientId =
@@ -40,6 +39,7 @@ function App() {
         <Route path="/recovery-password" element={<RecorveryPassword />}/>
         <Route path="/password-sent" element={<EmailSent />}/>
         <Route path="/new-password" element={<NewPassword />}/>
+        <Route path="/productPage" element={< ProducPage/>}/>
       </Routes>
     </BrowserRouter>
     <ToastContainer />
