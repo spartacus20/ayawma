@@ -1,69 +1,79 @@
 import React, { useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import im1 from "../../Images/image 14.png";
+import im2 from "../../Images/Foto.jpeg";
 import StarsChecked from "../../Assets/StarsChecked";
 import Chat from "../../Assets/Chat";
 import CartIcon2 from "../../Assets/CartIcon2";
 
-function getImage(index) {
-  switch (index) {
-    case 1:
-      break;
-    case 2:
-      break;
-    case 3:
-      break;
-    case 4:
-      break;
-    case 5:
-      break;
-    case 6:
-      break;
-  }
-}
-
 function ProductPage({ price }) {
-  const index = 1;
+  const [images, setImages] = useState(im1);
   const [quantity, setQuantity] = useState(1);
   price = 24.29;
   const finalPrice = price * quantity;
   return (
     <>
       <Navbar />
-      <div className="w-full h-screen flex flex-col items-center mt-[100px]">
-        <div className="w-[80%] h-screen  flex flex-col">
+      <div className="w-full min-h-full flex flex-col items-center mt-[100px]">
+        <div className="2xl:w-[80%] h-[100%] flex flex-col sm:w-[100%]">
           <div className="w-full h-[40px] mb-[20px] ml-[0px]">
             <h5 className="text-[#999999] text-[1.3rem] text-left">
               Home {">"} Mouse {">"} Logitech{" "}
             </h5>
           </div>
-          <div className="w-full h-[60%] flex">
-            <div className="w-[40%] h-[100%]  flex flex-col ">
-              <img src={im1} alt="" className="w-[80%] h-[84%] mb-[20px]" />
-              <div className="w-[80%] h-[12%] flex">
+          <div className="w-full h-[60%] flex mb-[40px] 
+          border-2 border-black
+          2xl:flex-row
+          sm:flex-col">
+            <div className="
+             
+             2xl:w-[40%] 2xl:h-[100%] flex 
+         
+             sm:w-[100%]  sm:flex-col sm:mb-[40px]
+            ">
+              <div
+                className=" 
+                 mb-[20px]
+                 2xl:w-[500px] 2xl:h-[500px] 2xl:ml-[0px]
+                 xl:w-[400px] xl:h-[400px]
+                 sm:w-[300px] sm:h-[300px] sm:mx-auto "
+              
+
+              >
+                <img
+                  src={images}
+                  alt=""
+                  className="object-cover w-[100%] h-[100%]"
+                />
+              </div>
+
+              <div className="
+              2xl:w-[80%] 2xl:ml-[0]
+              sm:w-[100%] 
+              h-[55px] flex border-2  border-black">
                 <div
-                  className="w-[20%] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black ml-[10px]"
-                  onClick={(index = 1)}
+                  className="2xl:w-[67px] sm:w-[20%] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black 2xl:ml-[10px]"
+                  onMouseMove={() => setImages(im1)}
                 ></div>
                 <div
-                  className="w-[20%] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black ml-[10px]"
-                  onClick={(index = 2)}
+                  className="w-[67px] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black ml-[10px]"
+                  onMouseMove={() => setImages(im2)}
                 ></div>
                 <div
-                  className="w-[20%] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black ml-[10px]"
-                  onClick={(index = 3)}
+                  className="w-[67px] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black ml-[10px]"
+                  onMouseMove={() => setImages(im1)}
                 ></div>
                 <div
-                  className="w-[20%] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black ml-[10px]"
-                  onClick={(index = 4)}
+                  className="w-[67px] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black ml-[10px]"
+                  onMouseMove={() => setImages(im2)}
                 ></div>
                 <div
-                  className="w-[20%] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black ml-[10px]"
-                  onClick={(index = 5)}
+                  className="w-[67px] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black ml-[10px]"
+                  onMouseMove={() => setImages(im2)}
                 ></div>
                 <div
-                  className="w-[20%] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black ml-[10px]"
-                  onClick={(index = 6)}
+                  className="w-[67px] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black ml-[10px]"
+                  onMouseMove={() => setImages(im2)}
                 ></div>
               </div>
             </div>
@@ -135,6 +145,28 @@ function ProductPage({ price }) {
               </div>
             </div>
           </div>
+          <div className="w-full min-h-[600px] border-2 border-black flex text-left flex-wrap mb-[40px]">
+            <p>lorem*60</p>
+          </div>
+          <div className="flex h-[50px] items-center  ">
+            <span className="font-semibold text-[20px] mr-[20px] ">Review</span>
+            <StarsChecked />
+            <StarsChecked />
+            <StarsChecked />
+            <StarsChecked />
+            <StarsChecked />
+            <textarea
+              name=""
+              id=""
+              cols="60"
+              rows="2"
+              className="ml-[70px]  rounded-[8px] border-2 border-[#999999]"
+            ></textarea>
+            <button className="bg-black text-white w-[77px] h-[100%] flex items-center justify-center ml-[50px] rounded-[8px] ">
+              <span>Ask</span>
+            </button>
+          </div>
+          <div className="flex min-h-[200px] items-center"></div>
         </div>
       </div>
     </>
