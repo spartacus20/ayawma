@@ -22,7 +22,13 @@ function Login() {
     "235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com";
 
   const responseGoogle = (response) => {
-    console.log(response);
+
+    
+    const name = response.profileObj.name
+    const email = response.profileObj.email
+    
+  
+  
   };
   return (
     <>
