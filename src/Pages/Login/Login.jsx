@@ -27,7 +27,10 @@ function Login() {
     const name = response.profileObj.name
     const email = response.profileObj.email
     
-  
+    
+    
+
+    
   
   };
   return (

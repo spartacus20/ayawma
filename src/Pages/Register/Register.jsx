@@ -1,34 +1,51 @@
 import React, { useState } from "react";
 import axios from "axios";
 import GoogleLogin from "react-google-login";
+
+
+import Navbar from "../../Components/Navbar/Navbar";
 import Email from "../../Assets/Email";
 import Password from "../../Assets/Password";
-import Navbar from "../../Components/Navbar/Navbar";
 import { FaUserAlt } from "react-icons/fa";
+import {toast} from "react-toastify"
 
 function Register() {
-  axios.defaults.withCredentials = true; 
+  axios.defaults.withCredentials = true;
   const [userName, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [googleToken, setGoogleToken] = useState();
 
-  const clientId = "235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com";
+  const clientId =
+    "235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com"; 
+    
   const handleClick = () => {
-
-    axios.post("http://localhost:3001/register", {
-      username: "Jorge Tomas"
-    }).then((response) => {
-      console.log(response);
-    });
-  }
-  const responseGoogle = (response) => {
-    const  usernameReg = response.profileObj.name;
-    const email = response.profileObj.email;
-
-
-    console.log(usernameReg)
+    console.log(userName);
+    axios
+      .post("http://localhost:3001/users/register", {
+        username: userName,
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response);
+      }); 
   };
+
+  const responseGoogle = (response) => {
+    const usernameReg = response.profileObj.name;
+    const email = response.profileObj.email;
+    const googleToken = response.tokenId
+    axios.post("http://localhost:3001/users/register", {
+        username: usernameReg,
+        email: email, 
+        googleToken: googleToken
+    }).then((response) => {
+      
+    })
+  
+  };
+
+
   return (
     <>
       <Navbar />
