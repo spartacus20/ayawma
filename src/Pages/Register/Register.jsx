@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import GoogleLogin from "react-google-login";
-
-
 import Navbar from "../../Components/Navbar/Navbar";
 import Email from "../../Assets/Email";
 import Password from "../../Assets/Password";
@@ -10,37 +8,46 @@ import { FaUserAlt } from "react-icons/fa";
 import {toast} from "react-toastify"
 
 function Register() {
-  axios.defaults.withCredentials = true;
+
+  const clientId = "235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com";  //Google CLIENT ID. 
+
   const [userName, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
-  const clientId =
-    "235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com"; 
-    
+  const REGISTER_URL = "/users/register"; 
+  
+  //Register button Click. 
   const handleClick = () => {
     console.log(userName);
     axios
-      .post("http://localhost:3001/users/register", {
+      .post(REGISTER_URL, {
         username: userName,
         email: email,
         password: password,
+        
       })
       .then((response) => {
         console.log(response);
+      }).catch((error) =>{
+        toast.error("User aleready registered", {
+          theme: "dark" 
+        })
       }); 
   };
 
+  //Google Button login Response Handler. 
   const responseGoogle = (response) => {
+    
     const usernameReg = response.profileObj.name;
     const email = response.profileObj.email;
     const googleToken = response.tokenId
-    axios.post("http://localhost:3001/users/register", {
+
+    axios.post(REGISTER_URL, {
         username: usernameReg,
         email: email, 
         googleToken: googleToken
     }).then((response) => {
-      
+       //TODO: REDIRECT TO HOME PAGE. 
     })
   
   };
@@ -130,7 +137,7 @@ function Register() {
                 <GoogleLogin
                   clientId="235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com"
                   onSuccess={responseGoogle}
-                  onFailure={responseGoogle}
+                  onFailure={responseGoogle} // TODO: Create a new function on failure. 
                   buttonText="Continue  with Google"
                   cookiePolicy={"single_host_origin"}
                 />
