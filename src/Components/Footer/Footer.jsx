@@ -11,11 +11,11 @@ function Footer() {
             
             '>
 
-            <div class="flex justify-between mx-auto  mt-[50px]
+            <div className="flex justify-between mx-auto  mt-[50px]
                 sm:ml-[50px]
             ">
                 {/* PARTE DE ARRIBA */}
-                <div class="
+                <div className="
                  2xl:ml-[300px] 
                  xl:ml-[300px]
                  lg:ml-[300px]
@@ -31,9 +31,9 @@ function Footer() {
                       border-red-100
                       
                     '>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Application</h2>
-                        <ul class="text-gray-600 dark:text-gray-400">
-                            <li class="mb-4">
+                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Application</h2>
+                        <ul className="text-gray-600 dark:text-gray-400">
+                            <li className="mb-4">
                                 <img src={GooglePlay} alt="" />
                             </li>
                             <li>
@@ -47,13 +47,13 @@ function Footer() {
                      lg:mr-[100px]
                      sm:mr-[25%] 
                     '>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
-                        <ul class="text-gray-600 dark:text-gray-400">
-                            <li class="mb-4">
-                                <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+                        <ul className="text-gray-600 dark:text-gray-400">
+                            <li className="mb-4">
+                                <a href="https://github.com/themesberg/flowbite" className="hover:underline ">Github</a>
                             </li>
                             <li>
-                                <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                                <a href="https://discord.gg/4eeurUVvTy" className="hover:underline">Discord</a>
                             </li>
                         </ul>
                     </div>
@@ -64,13 +64,13 @@ function Footer() {
                          sm:mr-[25%] 
                     
                     '>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-                        <ul class="text-gray-600 dark:text-gray-400">
-                            <li class="mb-4">
-                                <a href="#" class="hover:underline">Privacy Policy</a>
+                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                        <ul className="text-gray-600 dark:text-gray-400">
+                            <li className="mb-4">
+                                <a href="#" className="hover:underline">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                                <a href="#" className="hover:underline">Terms &amp; Conditions</a>
                             </li>
                         </ul>
                     </div>
@@ -83,13 +83,13 @@ function Footer() {
                       
                     
                     '>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-                        <ul class="text-gray-600 dark:text-gray-400">
-                            <li class="mb-4">
-                                <a href="#" class="hover:underline">Privacy Policy</a>
+                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                        <ul className="text-gray-600 dark:text-gray-400">
+                            <li className="mb-4">
+                                <a href="#" className="hover:underline">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                                <a href="#" className="hover:underline">Terms &amp; Conditions</a>
                             </li>
                         </ul>
                     </div>

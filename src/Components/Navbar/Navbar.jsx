@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import Cookies from "universal-cookie";
+import { axios, axiosPrivate } from "../../api/axios";
 import CartIcon from "../../Assets/CartIcon";
 import Barras from "../../Assets/Barras";
 import XIcon from "../../Assets/XIcon";
@@ -16,15 +17,43 @@ import Router from "../../Assets/Router";
 import Carita from "../../Assets/Carita";
 import im1 from "../../Images/Foto.jpeg";
 
-function Navbar({ User, Home}) {
-  var isLoggedIn = User;
+function Navbar({ Home }) {
+  const cookie = new Cookies(); 
+  const handleLogOut = () => { 
+    cookie.remove("jid", {
+      path: "/"
+    })
+    setLoggetIn(false);
+  }
+
+
+  useEffect(() => {
+    const refreshToken = cookie.get("jid");
+    console.log(cookie.get("jid")); 
+    axiosPrivate
+      .get("api/user", {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        },
+      })
+      .then((res) => {
+        
+        let { data } =  res; 
+        data = data.decodedToken; 
+        setName(data.username);
+        setLoggetIn(true); 
+
+      }).catch((err) => {
+        setLoggetIn(false);
+      });
+  }, []);
+
   var isHome = Home;
-
-
-
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [loggeIn, setLoggetIn] = useState(false);
   const [dropdown, setDropDown] = useState(false);
   const toggleDropDown = () => setDropDown(!dropdown);
-
   const [sidebar, setSidebar] = useState(true);
   const toggleSidebar = () => setSidebar(!sidebar);
 
@@ -113,7 +142,11 @@ function Navbar({ User, Home}) {
         <div className="w-[20%] flex items-center justify-center">
           <div className="flex ml-[100px] my-auto cursor-pointer text-2xl font-[Open sans] font-bold font-sans ">
             <div
-              className={ isHome?  "2xl:hidden xl:hidden lg:hidden sm:mr-[10px] md:mr-[10px] ":"flex 2xl:mr-[20px] 2xl:mt-[5px] xl:mr-[20px] xl:mt-[5px] lg:mr-[20px] lg:mt-[5px] sm:mr-[10px] md:mr-[10px] "}
+              className={
+                isHome
+                  ? "2xl:hidden xl:hidden lg:hidden sm:mr-[10px] md:mr-[10px] "
+                  : "flex 2xl:mr-[20px] 2xl:mt-[5px] xl:mr-[20px] xl:mt-[5px] lg:mr-[20px] lg:mt-[5px] sm:mr-[10px] md:mr-[10px] "
+              }
               onClick={toggleSidebar}
             >
               <Barras />
@@ -155,14 +188,12 @@ function Navbar({ User, Home}) {
         {/* parte de la derecha */}
         <div className="w-[20%] flex">
           <div className="w-[50%] text-2xl  sm:py-4  flex justify-center items-center  h-[100%]">
-            <span
-              className={isLoggedIn ? "hidden" : "text-[1.2rem] sm:text-base"}
-            >
+            <span className={loggeIn ? "hidden" : "text-[1.2rem] sm:text-base"}>
               <a href="/login">Sign in</a>
             </span>
             <div
               className={
-                isLoggedIn
+                loggeIn
                   ? "2xl:border-2 2xl:border-[#000032] xl:border-2 xl:border-[#000032] lg:border-2 lg:border-[#000032] rounded-[50px] w-[100%] h-[100%] flex  items-center h-[100%] flex-wrap  "
                   : "hidden"
               }
@@ -172,72 +203,73 @@ function Navbar({ User, Home}) {
                 <Carita />
               </div>
 
-              <span className="text-[14px] ml-[10px] 2xl:flex xl:flex lg:flex md:hidden sm:hidden">Jorge</span>
-            
+              <span className="text-[14px] ml-[10px] 2xl:flex xl:flex lg:flex md:hidden sm:hidden">
+                { name }
+              </span>
+
               <a
                 href="#"
-                class="block relative 2xl:hidden xl:hidden lg:hidden md:flex sm:flex"
+                className="block relative 2xl:hidden xl:hidden lg:hidden md:flex sm:flex"
                 onClick={toggleDropDown}
-            >
+              >
                 <img
                   alt="profil"
                   src={im1}
-                  class="mx-auto object-cover  h-[32px] w-[32px] "
+                  className="mx-auto object-cover  h-[32px] w-[32px] "
                 />
               </a>
 
               {/* DropdownMenu */}
 
               <div
-                class={
+                className={
                   dropdown
                     ? "absolute 2xl:mr-[170px] 2xl:top-[60px] xl:mr-[90px] xl:top-[60px] lg:mr-[60px] lg:top-[60px] md:top-[60px] md:right-[0px] sm:top-[60px] sm:right-[0px]  w-56 rounded-md shadow-lg  bg-black  ring-1 ring-black ring-opacity-5"
                     : "hidden"
                 }
               >
                 <div
-                  class="py-1 "
+                  className="py-1 "
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="options-menu"
                 >
                   <a
                     href="#"
-                    class="block block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600
+                    className="block block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600
                     sm:text-[12px] md:text-[14px]"
                     role="menuitem"
                   >
-                    <span class="flex flex-col">
+                    <span className="flex flex-col">
                       <span>Orders</span>
                     </span>
                   </a>
                   <hr />
                   <a
                     href="#"
-                    class="block block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600
+                    className="block block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600
                     sm:text-[12px] md:text-[14px]
                     "
                     role="menuitem"
                   >
-                    <span class="flex flex-col">
+                    <span className="flex flex-col">
                       <span>Account Settings</span>
                     </span>
                   </a>
                   <a
                     href="#"
-                    class="block block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600
+                    className="block block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600
                     sm:text-[12px] md:text-[14px]
                     "
                     role="menuitem"
                   >
-                    <span class="flex flex-col">
+                    <span className="flex flex-col" onClick={handleLogOut}>
                       <span>Log out</span>
                     </span>
                   </a>
                 </div>
               </div>
             </div>
-        
           </div>
           <div className="w-[50%] flex justify-center items-center">
             <CartIcon />

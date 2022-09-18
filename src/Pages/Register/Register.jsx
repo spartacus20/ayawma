@@ -1,143 +1,165 @@
 import React, { useState } from "react";
 import axios from "../../api/axios";
+import Cookies from "universal-cookie";
 import GoogleLogin from "react-google-login";
 import Navbar from "../../Components/Navbar/Navbar";
 import Email from "../../Assets/Email";
 import Password from "../../Assets/Password";
 import { FaUserAlt } from "react-icons/fa";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 
 function Register() {
-
-  const clientId = "235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com";  //Google CLIENT ID. 
+  const clientId =
+    "235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com"; //Google CLIENT ID.
 
   const [userName, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const REGISTER_URL = "/users/register"; 
-  
-  //Register button Click. 
-  const handleClick = () => {
-    console.log(userName);
-    axios
-      .post(REGISTER_URL, {
-        username: userName,
-        email: email,
-        password: password,
-        
-      })
-      .then((response) => {
-        console.log(response);
-      }).catch((error) =>{
-        toast.error("User aleready registered", {
-          theme: "dark" 
+  const [repeatedPassword, setRepeatedPassword] = useState();
+  const REGISTER_URL = "/users/register";
+
+  //Register button Click.
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (password != repeatedPassword) {
+      toast.error("Passwords do not match");
+    } else {
+      axios
+        .post(REGISTER_URL, {
+          username: userName,
+          email: email,
+          password: password,
         })
-      }); 
+        .then((response) => {
+          //Create cookie with refreshToken only to server access.
+          const { data } = response;
+          console.log(data.accessToken);
+          const cookie = new Cookies();
+          console.log(data.refreshToken)
+          cookie.set("jid", data.refreshToken, {
+            maxAge: 60 * 60 * 24 * 7, // 7 is relative to the days.
+            path: "/",
+          });
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${data.refreshToken}`;
+          //window.location.href = "/";
+        })
+        .catch((error) => {
+          toast.error("User aleready registered", {
+            theme: "dark",
+          });
+        });
+    }
   };
 
-  //Google Button login Response Handler. 
+  const handleTest = async (e) => {
+    e.preventDefault();
+    const myHeaders = new Headers();
+    console.log("Authorization " + myHeaders.get("Authorization"));
+    const response = await axios.get("/api/user");
+    console.log(response);
+  };
+
+  //Google Button login Response Handler.
   const responseGoogle = (response) => {
-    
     const usernameReg = response.profileObj.name;
     const email = response.profileObj.email;
-    const googleToken = response.tokenId
+    const googleToken = response.tokenId;
 
-    axios.post(REGISTER_URL, {
+    axios
+      .post(REGISTER_URL, {
         username: usernameReg,
-        email: email, 
-        googleToken: googleToken
-    }).then((response) => {
-       //TODO: REDIRECT TO HOME PAGE. 
-    })
-  
+        email: email,
+        googleToken: googleToken,
+      })
+      .then((response) => {
+        //TODO: REDIRECT TO HOME PAGE.
+      });
   };
-
 
   return (
     <>
-      <Navbar />
+ 
       <div className="w-full h-screen flex items-center justify-center">
-        <div class="flex flex-col items-center  w-full max-w-md px-4 py-8 bg-white rounded-lg shadow bg-[black] sm:px-6 md:px-8 lg:px-10">
-          <div class="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
+        <div className="flex flex-col items-center  w-full max-w-md px-4 py-8 bg-white rounded-lg shadow bg-[black] sm:px-6 md:px-8 lg:px-10">
+          <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
             Sign in
           </div>
 
-          <div class="mt-8 w-[400px]  mt-[100px] ">
-            <form action="#" autoComplete="off">
-              <div class="flex flex-col mb-2 ">
-                <div class="flex relative ">
-                  <span class="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
+          <div className="mt-8 w-[400px]  mt-[100px] ">
+            <form autoComplete="off">
+              <div className="flex flex-col mb-2 ">
+                <div className="flex relative ">
+                  <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                     <FaUserAlt />
                   </span>
                   <input
                     type="text"
-                    id="sign-in-email"
-                    class=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     placeholder="Your name"
                     onChange={(e) => setUserName(e.target.value)}
                   />
                 </div>
               </div>
-              <div class="flex flex-col mb-2 ">
-                <div class="flex relative ">
-                  <span class="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
+              <div className="flex flex-col mb-2 ">
+                <div className="flex relative ">
+                  <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                     <Email />
                   </span>
                   <input
                     type="email"
-                    id="sign-in-email"
-                    class=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     placeholder="Your email"
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
               </div>
 
-              <div class="flex flex-col mb-2">
-                <div class="flex relative ">
-                  <span class="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
+              <div className="flex flex-col mb-2">
+                <div className="flex relative ">
+                  <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                     <Password />
                   </span>
                   <input
                     type="password"
-                    id="sign-in-email"
-                    class=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     placeholder="Your password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </div>
 
-              <div class="flex flex-col mb-6">
-                <div class="flex relative ">
-                  <span class="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
+              <div className="flex flex-col mb-6">
+                <div className="flex relative ">
+                  <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                     <Password />
                   </span>
                   <input
                     type="password"
-                    id="sign-in-email"
-                    class=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                     placeholder="Your password"
+                    onChange={(e) => setRepeatedPassword(e.target.value)}
                   />
                 </div>
               </div>
 
-              <div class="flex w-full">
+              <div className="flex w-full">
                 <button
                   type="submit"
                   onClick={handleClick}
-                  class="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                  className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
                 >
                   Login
                 </button>
               </div>
               <br />
 
-              <div class="flex flex-col w-full">
+              <div className="flex flex-col w-full">
                 <GoogleLogin
-                  clientId="235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com"
+                  clientId={clientId}
                   onSuccess={responseGoogle}
-                  onFailure={responseGoogle} // TODO: Create a new function on failure. 
+                  onFailure={responseGoogle} // TODO: Create a new function on failure.
                   buttonText="Continue  with Google"
                   cookiePolicy={"single_host_origin"}
                 />
@@ -145,13 +167,16 @@ function Register() {
             </form>
           </div>
 
-          <div class="flex items-center justify-center mt-6">
+          <div className="flex items-center justify-center mt-6">
             <a
               href="/login"
-              class="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
+              className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
             >
-              <span class="ml-2">You have an account?</span>
+              <span className="ml-2">You have an account?</span>
             </a>
+            <button className="bg-red-100" onClick={handleTest}>
+              prasd
+            </button>
           </div>
         </div>
       </div>

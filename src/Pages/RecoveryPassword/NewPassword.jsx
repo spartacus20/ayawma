@@ -33,8 +33,8 @@ function NewPassword() {
           <h6 className="text-[#999999] text-left mb-[20px] ml-[110px]">
             Enter your new password
           </h6>
-          <div class="flex relative mb-[20px] w-[60%] mx-auto">
-            <span class="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm"
+          <div className="flex relative mb-[20px] w-[60%] mx-auto">
+            <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm"
             onClick={showPassword}
             >
               <Password />
@@ -42,7 +42,7 @@ function NewPassword() {
             <input
               type="password"
               id="reset-password"
-              class=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
               placeholder="Your password"
               onChange={e => setPassword(e.target.value)}
             />
@@ -52,10 +52,10 @@ function NewPassword() {
           password={password} />
          
           
-          <div class="flex w-[50%] mx-auto">
+          <div className="flex w-[50%] mx-auto">
             <button
               type="submit"
-              class="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+              className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
             >
               Update password
             </button>
