@@ -30,22 +30,32 @@ function Navbar({ Home }) {
   useEffect(() => {
     const refreshToken = cookie.get("jid");
     console.log(cookie.get("jid")); 
-    axiosPrivate
-      .get("api/user", {
-        headers: {
-          Authorization: `Bearer ${refreshToken}`,
-        },
-      })
-      .then((res) => {
-        
+    let i = 1
+    const HTTP = async () =>{ 
+      try{
+        const  res = await axiosPrivate.get("api/user", {
+          headers: {
+                  Authorization: `Bearer ${refreshToken}`,
+                },
+        })
         let { data } =  res; 
+        console.log(data)
         data = data.decodedToken; 
         setName(data.username);
         setLoggetIn(true); 
-
-      }).catch((err) => {
+    
+   
+      }catch(e){
         setLoggetIn(false);
-      });
+      }
+
+     
+
+    }
+
+    HTTP()
+
+ 
   }, []);
 
   var isHome = Home;

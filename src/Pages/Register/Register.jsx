@@ -8,14 +8,17 @@ import Password from "../../Assets/Password";
 import { FaUserAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 
+
+//TO DO: CHECH IF EMAIL CONTAINS @ AND .COM...
+
 function Register() {
   const clientId =
     "235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com"; //Google CLIENT ID.
 
-  const [userName, setUserName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [repeatedPassword, setRepeatedPassword] = useState();
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatedPassword, setRepeatedPassword] = useState("");
   const REGISTER_URL = "/users/register";
 
   //Register button Click.
@@ -23,7 +26,9 @@ function Register() {
     e.preventDefault();
     if (password != repeatedPassword) {
       toast.error("Passwords do not match");
-    } else {
+    } else if (password == ""|| userName == "" || email  == "" || repeatedPassword == "" ){
+      toast.error("Fill the form with the fields");
+    }else{
       axios
         .post(REGISTER_URL, {
           username: userName,
@@ -33,32 +38,24 @@ function Register() {
         .then((response) => {
           //Create cookie with refreshToken only to server access.
           const { data } = response;
-          console.log(data.accessToken);
+          console.log(data)
           const cookie = new Cookies();
-          console.log(data.refreshToken)
           cookie.set("jid", data.refreshToken, {
             maxAge: 60 * 60 * 24 * 7, // 7 is relative to the days.
             path: "/",
           });
           axios.defaults.headers.common[
             "Authorization"
-          ] = `Bearer ${data.refreshToken}`;
-          //window.location.href = "/";
+          ] = `Bearer ${data.refreshToken}`; 
+          window.location.href = "/";
         })
         .catch((error) => {
           toast.error("User aleready registered", {
             theme: "dark",
           });
         });
-    }
-  };
 
-  const handleTest = async (e) => {
-    e.preventDefault();
-    const myHeaders = new Headers();
-    console.log("Authorization " + myHeaders.get("Authorization"));
-    const response = await axios.get("/api/user");
-    console.log(response);
+    }
   };
 
   //Google Button login Response Handler.
@@ -80,7 +77,7 @@ function Register() {
 
   return (
     <>
- 
+      <Navbar />
       <div className="w-full h-screen flex items-center justify-center">
         <div className="flex flex-col items-center  w-full max-w-md px-4 py-8 bg-white rounded-lg shadow bg-[black] sm:px-6 md:px-8 lg:px-10">
           <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
@@ -174,9 +171,7 @@ function Register() {
             >
               <span className="ml-2">You have an account?</span>
             </a>
-            <button className="bg-red-100" onClick={handleTest}>
-              prasd
-            </button>
+           
           </div>
         </div>
       </div>
