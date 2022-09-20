@@ -41,6 +41,7 @@ function Navbar({ Home }) {
         let { data } =  res; 
         console.log(data)
         data = data.decodedToken; 
+        console.log(data); 
         setName(data.username);
         setLoggetIn(true); 
     

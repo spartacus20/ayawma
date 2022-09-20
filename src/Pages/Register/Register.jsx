@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
+import { useNavigate} from "react-router-dom"
 import axios from "../../api/axios";
 import Cookies from "universal-cookie";
 import GoogleLogin from "react-google-login";
@@ -9,12 +10,12 @@ import { FaUserAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 
-//TO DO: CHECH IF EMAIL CONTAINS @ AND .COM...
+//TO DO: CHECH IF EMAIL CONTAINS @ AND .COM... AND IF THE PASSWORD IS STRONG
 
 function Register() {
-  const clientId =
-    "235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com"; //Google CLIENT ID.
 
+  const clientId = "235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com"; //Google CLIENT ID.
+  const cookie = new Cookies();
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,7 +40,7 @@ function Register() {
           //Create cookie with refreshToken only to server access.
           const { data } = response;
           console.log(data)
-          const cookie = new Cookies();
+       
           cookie.set("jid", data.refreshToken, {
             maxAge: 60 * 60 * 24 * 7, // 7 is relative to the days.
             path: "/",
@@ -47,7 +48,7 @@ function Register() {
           axios.defaults.headers.common[
             "Authorization"
           ] = `Bearer ${data.refreshToken}`; 
-          window.location.href = "/";
+          window.location.href = "/"
         })
         .catch((error) => {
           toast.error("User aleready registered", {
@@ -71,9 +72,27 @@ function Register() {
         googleToken: googleToken,
       })
       .then((response) => {
-        //TODO: REDIRECT TO HOME PAGE.
+        const { data } = response;
+        console.log(data)
+    
+        cookie.set("jid", data.refreshToken, {
+          maxAge: 60 * 60 * 24 * 7, // 7 is relative to the days.
+          path: "/",
+        });
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${data.refreshToken}`;
+        window.location.href = "/"
       });
   };
+
+  //CHECK IF USER IS ALREADY LOGGED IN
+  useEffect(() => {
+    if(cookie.get("jid") != null){ 
+      window.location.href = "/"
+    }
+  })
+
 
   return (
     <>
