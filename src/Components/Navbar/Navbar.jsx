@@ -18,7 +18,14 @@ import Carita from "../../Assets/Carita";
 import im1 from "../../Images/Foto.jpeg";
 
 function Navbar({ Home }) {
+  const [search, setSeach] = useState()
   const cookie = new Cookies(); 
+  const REFRESH_TOKEN_SECRET = "ASDUJASDIAJSID"
+  const handleSearch = (e) =>{ 
+    e.preventDefault(); 
+    let product = search.replace(" ", "-")
+    window.location.href = "/s/"+product
+  }
   const handleLogOut = () => { 
     cookie.remove("jid", {
       path: "/"
@@ -27,9 +34,11 @@ function Navbar({ Home }) {
   }
 
 
+
   useEffect(() => {
+    
     const refreshToken = cookie.get("jid");
-    console.log(cookie.get("jid")); 
+  
     let i = 1
     const HTTP = async () =>{ 
       try{
@@ -48,6 +57,9 @@ function Navbar({ Home }) {
    
       }catch(e){
         setLoggetIn(false);
+        cookie.remove("jid", {
+          path: "/"
+        })
       }
 
      
@@ -175,11 +187,13 @@ function Navbar({ Home }) {
             <input
               type="text"
               placeholder="Search for anything..."
+              onChange={(e) => setSeach(e.target.value)}
               className=" border-solid border-[#000032] w-[94%] rounded-[50px] pl-[10px] outline-none  "
             />
 
-            <div className="flex item-center w-[5%] ">
+            <div   onClick={handleSearch} className="flex item-center w-[5%] ">
               <svg
+               
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
