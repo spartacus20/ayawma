@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom'
 import StarsChecked from '../../Assets/StarsChecked.js'
 import StarsNotChecked from '../../Assets/StarsNotChecked.js'
 import im1 from '../../Images/image 1.png'
@@ -8,7 +8,14 @@ import im1 from '../../Images/image 1.png'
 
 function Card({ text, stars }) {
 
+    const navigate = useNavigate();
     var stars = stars;
+    var link = "/"+text.replaceAll(" ", "-")
+
+    const handleRedirect = () => {
+        navigate(link)
+    }
+
 
 
     return (
@@ -29,11 +36,11 @@ function Card({ text, stars }) {
             xl:sm:h-[70%]
             md:h-[60%]
             sm:h-[60%] '>
-                <img src={im1} alt="" className={stars?  ' mt-[0px] h-[80%] w-[100%] 2xl:object-fill xl:object-fill lg:object-fill md:object-fill sm:object-fill':'mt-[0px] h-[100%] w-[100%] 2xl:object-cover xl:object-fill lg:object-fill md:object-fill sm:object-cover'}/>
+                <img onClick={handleRedirect} src={im1} alt="" className={stars?  ' mt-[0px] h-[80%] w-[100%] 2xl:object-fill xl:object-fill lg:object-fill md:object-fill sm:object-fill':'cursor-pointer mt-[0px] h-[100%] w-[100%] 2xl:object-cover xl:object-fill lg:object-fill md:object-fill sm:object-cover'}/>
             </div>
-            <div className={ stars? 'w-[100%] h-[30%]  2xl:mt-[-50px] xl:mt-[-50px] lg:mt-[-50px] md:mt-[-50px] sm:mt-[-30px]':'w-[100%] h-[30%] '}>
+            <div className={ stars? 'cursor-pointer w-[100%] h-[30%]  2xl:mt-[-50px] xl:mt-[-50px] lg:mt-[-50px] md:mt-[-50px] sm:mt-[-30px]':'w-[100%] h-[30%] '}>
                 <div className='text-left w-[100%] h-[50%] '>
-                    <span>{text}</span>
+                    <span onClick={handleRedirect} className="cursor-pointer">{text}</span>
                 </div>
               
               

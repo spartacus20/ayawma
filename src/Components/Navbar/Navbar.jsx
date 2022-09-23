@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
 import { axios, axiosPrivate } from "../../api/axios";
 import CartIcon from "../../Assets/CartIcon";
 import Barras from "../../Assets/Barras";
@@ -18,15 +19,16 @@ import Carita from "../../Assets/Carita";
 import im1 from "../../Images/Foto.jpeg";
 
 function Navbar({ Home }) {
+  const navigate = useNavigate();
   const [search, setSeach] = useState()
-  const cookie = new Cookies(); 
+  const cookie = new Cookies();
   const REFRESH_TOKEN_SECRET = "ASDUJASDIAJSID"
-  const handleSearch = (e) =>{ 
-    e.preventDefault(); 
+  const handleSearch = (e) => {
+    e.preventDefault();
     let product = search.replace(" ", "-")
-    window.location.href = "/s/"+product
+    navigate("/s/" + product)
   }
-  const handleLogOut = () => { 
+  const handleLogOut = () => {
     cookie.remove("jid", {
       path: "/"
     })
@@ -36,39 +38,39 @@ function Navbar({ Home }) {
 
 
   useEffect(() => {
-    
+
     const refreshToken = cookie.get("jid");
-  
+
     let i = 1
-    const HTTP = async () =>{ 
-      try{
-        const  res = await axiosPrivate.get("api/user", {
+    const HTTP = async () => {
+      try {
+        const res = await axiosPrivate.get("api/user", {
           headers: {
-                  Authorization: `Bearer ${refreshToken}`,
-                },
+            Authorization: `Bearer ${refreshToken}`,
+          },
         })
-        let { data } =  res; 
+        let { data } = res;
         console.log(data)
-        data = data.decodedToken; 
-        console.log(data); 
+        data = data.decodedToken;
+        console.log(data);
         setName(data.username);
-        setLoggetIn(true); 
-    
-   
-      }catch(e){
+        setLoggetIn(true);
+
+
+      } catch (e) {
         setLoggetIn(false);
         cookie.remove("jid", {
           path: "/"
         })
       }
 
-     
+
 
     }
 
     HTTP()
 
- 
+
   }, []);
 
   var isHome = Home;
@@ -86,9 +88,8 @@ function Navbar({ Home }) {
         {/* sidebar */}
 
         <div
-          className={`${
-            sidebar ? "ml-[-5000px] " : "ml-[0px]"
-          } h-[100%] w-[100%] bg-red-400 fixed top-[0px] opacity-90`}
+          className={`${sidebar ? "ml-[-5000px] " : "ml-[0px]"
+            } h-[100%] w-[100%] bg-red-400 fixed top-[0px] opacity-90`}
         >
           <div
             className="c w-[10%] h-[5%] flex mt-[20px] ml-[30px] items-center justify-flex-start"
@@ -182,31 +183,35 @@ function Navbar({ Home }) {
         </div>
 
         {/* parte del medio */}
+
         <div className="w-[60%] ">
           <div className="rounded-[50px] w-[80%] h-[50px] mx-auto sm:hidden  flex ml-100 border-2 border-solid border-[#000032] shadow-lg  lg:flex md:flex ">
-            <input
-              type="text"
-              placeholder="Search for anything..."
-              onChange={(e) => setSeach(e.target.value)}
-              className=" border-solid border-[#000032] w-[94%] rounded-[50px] pl-[10px] outline-none  "
-            />
 
-            <div   onClick={handleSearch} className="flex item-center w-[5%] ">
-              <svg
-               
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="my-auto mx-auto"
-              >
-                <path
-                  d="M18.031 16.617L22.314 20.899L20.899 22.314L16.617 18.031C15.0237 19.3082 13.042 20.0029 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20.0029 13.042 19.3082 15.0237 18.031 16.617ZM16.025 15.875C17.2941 14.5699 18.0029 12.8204 18 11C18 7.132 14.867 4 11 4C7.132 4 4 7.132 4 11C4 14.867 7.132 18 11 18C12.8204 18.0029 14.5699 17.2941 15.875 16.025L16.025 15.875Z"
-                  fill="black"
-                />
-              </svg>
-            </div>
+            <form onSubmit={handleSearch} className="flex w-full">
+              <input
+                type="text"
+                placeholder="Search for anything..."
+                onChange={(e) => setSeach(e.target.value)}
+                className=" border-solid border-[#000032] w-[94%] rounded-[50px] pl-[10px] outline-none  "
+              />
+
+              <button className="flex item-center w-[5%] ">
+                <svg
+
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="my-auto mx-auto"
+                >
+                  <path
+                    d="M18.031 16.617L22.314 20.899L20.899 22.314L16.617 18.031C15.0237 19.3082 13.042 20.0029 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20.0029 13.042 19.3082 15.0237 18.031 16.617ZM16.025 15.875C17.2941 14.5699 18.0029 12.8204 18 11C18 7.132 14.867 4 11 4C7.132 4 4 7.132 4 11C4 14.867 7.132 18 11 18C12.8204 18.0029 14.5699 17.2941 15.875 16.025L16.025 15.875Z"
+                    fill="black"
+                  />
+                </svg>
+              </button>
+            </form>
           </div>
         </div>
 
@@ -229,7 +234,7 @@ function Navbar({ Home }) {
               </div>
 
               <span className="text-[14px] ml-[10px] 2xl:flex xl:flex lg:flex md:hidden sm:hidden">
-                { name }
+                {name}
               </span>
 
               <a

@@ -1,16 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import im1 from "../../Images/image 14.png";
 import im2 from "../../Images/Foto.jpeg";
 import StarsChecked from "../../Assets/StarsChecked";
 import Chat from "../../Assets/Chat";
 import CartIcon2 from "../../Assets/CartIcon2";
+import axios from "../../api/axios";
 
-function ProductPage({ price }) {
+function ProductPage() {
+
+  const { product } = useParams();
   const [images, setImages] = useState(im1);
   const [quantity, setQuantity] = useState(1);
-  price = 24.29;
+  const [data, setData] = useState([{price:0}]); 
+  var price = data[0].price; 
   const finalPrice = price * quantity;
+
+  const test = () => {
+    console.log(product)
+    axios.get("/api/product/"+product+"/info")
+    .then(res => {
+      setData(res.data.data)
+    })
+  }
+  
+  useEffect(() => {test()}, [product])
+
   return (
     <>
       <Navbar />
@@ -79,7 +95,7 @@ function ProductPage({ price }) {
             </div>
             <div className="w-[50%] h-[100%]  flex flex-wrap flex-col">
               <h2 className="text-[31px] text-[#1A1A1A] text-left mb-[10px]">
-                LOGITECH Pop Mouse
+                {data[0].name}
               </h2>
               <div className="w-[50%] h-[20px] flex items-center mb-[30px]">
                 <StarsChecked />
@@ -91,10 +107,10 @@ function ProductPage({ price }) {
               </div>
               <div className="w-[50%] h-[20px] flex items-center mb-[40px]">
                 <h3 className="text-left font-bold text-[#000032] text-[25px]">
-                  ${price}
+                  ${data[0].price}
                 </h3>
                 <span className="ml-[10px] text-[#B3B3B3] text-[16px]">
-                  $24.98
+                  ${data[0].price}
                 </span>
               </div>
               <div className="w-[50%] h-[20px] flex items-center mb-[40px]">
@@ -146,7 +162,7 @@ function ProductPage({ price }) {
             </div>
           </div>
           <div className="w-full min-h-[600px] border-2 border-black flex text-left flex-wrap mb-[40px]">
-            <p>lorem*60</p>
+            <p>{data[0].description}</p>
           </div>
           <div className="flex h-[50px] items-center  ">
             <span className="font-semibold text-[20px] mr-[20px] ">Review</span>
