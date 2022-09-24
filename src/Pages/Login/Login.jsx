@@ -88,7 +88,7 @@ function Login() {
           <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
             Login To Your Account
           </div>
-          <div className="mt-8 w-[400px]  mt-[100px] ">
+          <div className="mt-8 w-[400px] ">
             <form  autoComplete="off">
               <div className="flex flex-col mb-2 ">
                 <div className="flex relative ">

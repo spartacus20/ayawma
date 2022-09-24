@@ -14,6 +14,7 @@ import EmailSent from './Pages/RecoveryPassword/EmailSent';
 import NewPassword from './Pages/RecoveryPassword/NewPassword';
 import ProducPage from './Pages/ProductPage/ProductPage'
 import ShoppingCart from './Pages/ShoppingCart/ShoppingCart';
+import ContactUs from './Pages/ContactUs/ContactUs'
 function App() {
   
   const clientId =
@@ -42,6 +43,7 @@ function App() {
         <Route path="/new-password" element={<NewPassword />}/>
         <Route path="/:product" element={< ProducPage/>}/>
         <Route path="/shopcart" element={< ShoppingCart/>}/>
+        <Route path="/contact" element={< ContactUs/>}/>
         
       </Routes>
     </BrowserRouter>

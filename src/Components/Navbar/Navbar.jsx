@@ -19,10 +19,19 @@ import Carita from "../../Assets/Carita";
 import im1 from "../../Images/Foto.jpeg";
 
 function Navbar({ Home }) {
-  const navigate = useNavigate();
+  const [dropdown, setDropDown] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [loggeIn, setLoggetIn] = useState(false);
+  const [sidebar, setSidebar] = useState(true);
   const [search, setSeach] = useState()
+  const toggleDropDown = () => setDropDown(!dropdown);
+  const toggleSidebar = () => setSidebar(!sidebar);
+  var isHome = Home;
+  const navigate = useNavigate();
   const cookie = new Cookies();
   const REFRESH_TOKEN_SECRET = "ASDUJASDIAJSID"
+  
   const handleSearch = (e) => {
     e.preventDefault();
     let product = search.replace(" ", "-")
@@ -73,17 +82,10 @@ function Navbar({ Home }) {
 
   }, []);
 
-  var isHome = Home;
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [loggeIn, setLoggetIn] = useState(false);
-  const [dropdown, setDropDown] = useState(false);
-  const toggleDropDown = () => setDropDown(!dropdown);
-  const [sidebar, setSidebar] = useState(true);
-  const toggleSidebar = () => setSidebar(!sidebar);
+
 
   return (
-    <div className="bg-blue-100 shawdow-md w-full fixed top-0 left-0  fixed">
+    <div className="bg-blue-100 shawdow-md w-full  top-0 left-0  fixed">
       <nav className="md:flex bg-white py-5 sm:py-1 sm:flex mx-auto">
         {/* sidebar */}
 
@@ -176,8 +178,7 @@ function Navbar({ Home }) {
               <Barras />
             </div>
             <span className="text-4xl xl:text-3xl sm:text-xl ml-[100xp]">
-              {" "}
-              <a href="/">AYAWMA</a>{" "}
+              <a href="/">AYAWMA</a>
             </span>
           </div>
         </div>

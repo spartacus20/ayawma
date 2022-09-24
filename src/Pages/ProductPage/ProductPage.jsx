@@ -4,28 +4,30 @@ import Navbar from "../../Components/Navbar/Navbar";
 import im1 from "../../Images/image 14.png";
 import im2 from "../../Images/Foto.jpeg";
 import StarsChecked from "../../Assets/StarsChecked";
+import Arrow from "../../Assets/Arrow";
 import Chat from "../../Assets/Chat";
+import Home from "../../Assets/Home";
 import CartIcon2 from "../../Assets/CartIcon2";
 import axios from "../../api/axios";
 
 function ProductPage() {
-
   const { product } = useParams();
   const [images, setImages] = useState(im1);
   const [quantity, setQuantity] = useState(1);
-  const [data, setData] = useState([{price:0}]); 
-  var price = data[0].price; 
+  const [data, setData] = useState([{ price: 0 }]);
+  var price = data[0].price;
   const finalPrice = price * quantity;
 
   const test = () => {
-    console.log(product)
-    axios.get("/api/product/"+product+"/info")
-    .then(res => {
-      setData(res.data.data)
-    })
-  }
-  
-  useEffect(() => {test()}, [product])
+    console.log(product);
+    axios.get("/api/product/" + product + "/info").then((res) => {
+      setData(res.data.data);
+    });
+  };
+
+  useEffect(() => {
+    test();
+  }, [product]);
 
   return (
     <>
@@ -33,28 +35,59 @@ function ProductPage() {
       <div className="w-full min-h-full flex flex-col items-center mt-[100px]">
         <div className="2xl:w-[80%] h-[100%] flex flex-col sm:w-[100%]">
           <div className="w-full h-[40px] mb-[20px] ml-[0px]">
-            <h5 className="text-[#999999] text-[1.3rem] text-left">
-              Home {">"} Mouse {">"} Logitech{" "}
-            </h5>
+            {/* Bread Crumbs */}
+            <div className="flex items-center py-4 overflow-y-auto whitespace-nowrap">
+              <a href="/" className="text-[#999999] text-[16px] ">
+                <Home/>
+              </a>
+
+              <span className="mx-5 text-[#999999] text-[16px]  rtl:-scale-x-100">
+              <Arrow/>
+              
+              </span>
+
+              <a href="#" className="text-[#999999]  text-[16px] hover:underline">
+                Account
+              </a>
+
+              <span className="mx-5 text-[#999999] text-[16px] rtl:-scale-x-100">
+              <Arrow/>
+              </span>
+
+              <a href="#" className="text-[#999999]  text-[16px] hover:underline"
+              >
+                Profile
+              </a>
+
+              <span className="mx-5 text-[#999999] text-[16px]  rtl:-scale-x-100">
+               <Arrow/>
+              </span>
+
+              <a href="#" className="text-black  text-[16px] hover:underline">
+                Settings
+              </a>
+            </div>
           </div>
-          <div className="w-full h-[60%] flex mb-[40px] 
+          <div
+            className="w-full h-[60%] flex mb-[40px] 
           border-2 border-black
           2xl:flex-row
-          sm:flex-col">
-            <div className="
+          sm:flex-col"
+          >
+            <div
+              className="
              
              2xl:w-[40%] 2xl:h-[100%] flex 
          
              sm:w-[100%]  sm:flex-col sm:mb-[40px]
-            ">
+            "
+            >
               <div
                 className=" 
                  mb-[20px]
                  2xl:w-[500px] 2xl:h-[500px] 2xl:ml-[0px]
                  xl:w-[400px] xl:h-[400px]
                  sm:w-[300px] sm:h-[300px] sm:mx-auto "
-              
-
               >
                 <img
                   src={images}
@@ -63,10 +96,12 @@ function ProductPage() {
                 />
               </div>
 
-              <div className="
+              <div
+                className="
               2xl:w-[80%] 2xl:ml-[0]
               sm:w-[100%] 
-              h-[55px] flex border-2  border-black">
+              h-[55px] flex border-2  border-black"
+              >
                 <div
                   className="2xl:w-[67px] sm:w-[20%] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black 2xl:ml-[10px]"
                   onMouseMove={() => setImages(im1)}
