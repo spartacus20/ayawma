@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
-import { axios, axiosPrivate } from "../../api/axios";
+import { axiosPrivate } from "../../api/axios";
 import CartIcon from "../../Assets/CartIcon";
 import Barras from "../../Assets/Barras";
 import XIcon from "../../Assets/XIcon";
@@ -20,69 +21,58 @@ import im1 from "../../Images/Foto.jpeg";
 
 function Navbar({ Home }) {
   const [dropdown, setDropDown] = useState(false);
-  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [loggeIn, setLoggetIn] = useState(false);
   const [sidebar, setSidebar] = useState(true);
-  const [search, setSeach] = useState()
+  const [search, setSeach] = useState();
   const toggleDropDown = () => setDropDown(!dropdown);
   const toggleSidebar = () => setSidebar(!sidebar);
   var isHome = Home;
   const navigate = useNavigate();
   const cookie = new Cookies();
-  const REFRESH_TOKEN_SECRET = "ASDUJASDIAJSID"
-  
+
   const handleSearch = (e) => {
     e.preventDefault();
-    let product = search.replace(" ", "-")
-    navigate("/s/" + product)
-  }
+    let product = search.replace(" ", "-");
+    navigate("/s/" + product);
+  };
   const handleLogOut = () => {
     cookie.remove("jid", {
-      path: "/"
-    })
+      path: "/",
+    });
     setLoggetIn(false);
-  }
+  };
 
-
+  const handleCart = (e) => {
+    console.log("quantity");
+  };
 
   useEffect(() => {
-
     const refreshToken = cookie.get("jid");
 
-    let i = 1
     const HTTP = async () => {
       try {
         const res = await axiosPrivate.get("api/user", {
           headers: {
             Authorization: `Bearer ${refreshToken}`,
           },
-        })
+        });
         let { data } = res;
-        console.log(data)
+        console.log(data);
         data = data.decodedToken;
         console.log(data);
         setName(data.username);
         setLoggetIn(true);
-
-
       } catch (e) {
         setLoggetIn(false);
         cookie.remove("jid", {
-          path: "/"
-        })
+          path: "/",
+        });
       }
+    };
 
-
-
-    }
-
-    HTTP()
-
-
+    HTTP();
   }, []);
-
-
 
   return (
     <div className="bg-blue-100 shawdow-md w-full  top-0 left-0  fixed">
@@ -90,8 +80,9 @@ function Navbar({ Home }) {
         {/* sidebar */}
 
         <div
-          className={`${sidebar ? "ml-[-5000px] " : "ml-[0px]"
-            } h-[100%] w-[100%] bg-red-400 fixed top-[0px] opacity-90`}
+          className={`${
+            sidebar ? "ml-[-5000px] " : "ml-[0px]"
+          } h-[100%] w-[100%] bg-red-400 fixed top-[0px] opacity-90`}
         >
           <div
             className="c w-[10%] h-[5%] flex mt-[20px] ml-[30px] items-center justify-flex-start"
@@ -177,9 +168,11 @@ function Navbar({ Home }) {
             >
               <Barras />
             </div>
-            <span className="text-4xl xl:text-3xl sm:text-xl ml-[100xp]">
-              <a href="/">AYAWMA</a>
-            </span>
+            <Link to="/">
+              <span className="text-4xl xl:text-3xl sm:text-xl ml-[100xp]">
+                AYAWMA
+              </span>
+            </Link>
           </div>
         </div>
 
@@ -187,7 +180,6 @@ function Navbar({ Home }) {
 
         <div className="w-[60%] ">
           <div className="rounded-[50px] w-[80%] h-[50px] mx-auto sm:hidden  flex ml-100 border-2 border-solid border-[#000032] shadow-lg  lg:flex md:flex ">
-
             <form onSubmit={handleSearch} className="flex w-full">
               <input
                 type="text"
@@ -198,7 +190,6 @@ function Navbar({ Home }) {
 
               <button className="flex item-center w-[5%] ">
                 <svg
-
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -302,8 +293,14 @@ function Navbar({ Home }) {
               </div>
             </div>
           </div>
-          <div className="w-[50%] flex justify-center items-center">
-            <CartIcon />
+          <div
+            className="w-[50%] flex justify-center items-center"
+            onClick={handleCart}
+          >
+            <Link to="/shopcart" relative="path">
+              <CartIcon onClick={handleCart} />
+            </Link>
+           
           </div>
         </div>
       </nav>

@@ -9,14 +9,24 @@ import Chat from "../../Assets/Chat";
 import Home from "../../Assets/Home";
 import CartIcon2 from "../../Assets/CartIcon2";
 import axios from "../../api/axios";
+import { useStateValue } from "../../StateProvider";
+import { actionTypes } from "../../reducer";
 
 function ProductPage() {
+  const [{ basket }, dispatch] = useStateValue();
   const { product } = useParams();
   const [images, setImages] = useState(im1);
   const [quantity, setQuantity] = useState(1);
   const [data, setData] = useState([{ price: 0 }]);
   var price = data[0].price;
   const finalPrice = price * quantity;
+  
+
+  
+  const handleAddToCart = () => {
+    dispatch({type: actionTypes.ADD_TO_BASKET, item: data[0]})
+  }
+  
 
   const test = () => {
     console.log(product);
@@ -189,7 +199,7 @@ function ProductPage() {
                 <button className="bg-black text-white w-[77px] h-[100%] flex items-center justify-center ml-[50px] rounded-[8px] ">
                   <span>Buy</span>
                 </button>
-                <button className="bg-black text-white w-[206px] h-[100%] flex items-center justify-center ml-[20px] rounded-[8px] ">
+                <button className="bg-black text-white w-[206px] h-[100%] flex items-center justify-center ml-[20px] rounded-[8px] " onClick={handleAddToCart}>
                   <CartIcon2 />
                   <span className="ml-[10px]">Add to shop cart</span>
                 </button>

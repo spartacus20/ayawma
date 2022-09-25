@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import CartItem from "../../Components/CartItem/CartItem";
 import Password from "../../Assets/Password";
+import { useStateValue } from "../../StateProvider";
+
 import im1 from "../../Images/image 14.png";
 function ShoppingCart() {
+  const [{ basket }, dispatch] = useStateValue();
   const [quantity, setQuantity] = useState(1);
 
+  useEffect(() =>{
+    console.log(basket)
+  }, [])
   return (
     <>
       <Navbar />
@@ -24,10 +30,10 @@ function ShoppingCart() {
             {/* Shopping card container */}
            <div className="flex w-full">
             <div className="w-[80%]">
-              <CartItem image={im1}/>
-              <CartItem image={im1}/>
-              <CartItem image={im1}/>
-              <CartItem image={im1}/>
+              {/* CART ITEEM HERE */}
+              {basket?.map((product) => (
+                <CartItem/>
+              ))}
             </div>
            
             {/* Checkout button and  price */}
