@@ -1,5 +1,6 @@
 export const initialState = {
   basket: [],
+  quantity: 0,
   user: null,
   shippingData: {},
   paymentMessage: "",
@@ -20,17 +21,34 @@ export const getBasketTotal = (basket) =>
 const reducer = (state, action) => {
   console.log(action);
   switch (action.type) {
+
+    //action.item indicate the payload item. 
     case "ADD_TO_BASKET":
+
+
+      let nBasket;
+      //Finding  in the basket if the product is already in there. 
+      let product = basket.find(product => product.id === action.item.id);
+
+      if(product) {
+        //When the product is already in the basket we only increment the quantity counter. 
+        product.quantity += 1;
+        nBasket = [...basket]
+      }else{
+        nBasket =[...basket, action.item]
+      }
+     
+    
       return {
         ...state,
-        basket: [...state.basket, action.item],
-      };
-    case "REMOVE_ITEM":
-      const index = state.basket.findIndex(
-        (basketItem) => basketItem.id === action.id
-      );
-      let newBasket = [...state.basket];
-      if (index >= 0) {
+        basket: [...nBasket]
+      }
+        case "REMOVE_ITEM":
+        const index = state.basket.findIndex(
+          (basketItem) => basketItem.id === action.id
+        );
+        let newBasket =[...state.basket];
+        if(index >= 0) {
         newBasket.splice(index, 1);
       } else {
         console.log(`Cant remove product (id: ${action.id})!`);
