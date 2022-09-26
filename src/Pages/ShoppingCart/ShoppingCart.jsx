@@ -32,7 +32,7 @@ function ShoppingCart() {
             <div className="w-[80%]">
               {/* CART ITEEM HERE */}
               {basket?.map((product) => (
-                <CartItem/>
+                <CartItem productQuantity={product.quantity}/>
               ))}
             </div>
            

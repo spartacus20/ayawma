@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-function CartItem({ image }) {
-  const [quantity, setQuantity] = useState(1);
+function CartItem({ image, productQuantity}) {
+  const [quantity, setQuantity] = useState(productQuantity);
   return (
     <div className="w-[100%] h-[150px] flex  mb-5">
       <div className="w-[200px] h-[100%] rounded-2xl ">

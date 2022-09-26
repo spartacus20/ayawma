@@ -22,17 +22,13 @@ function ProductPage() {
   const finalPrice = price * quantity;
   
 
+ 
   
   const handleAddToCart = () => {
     
     //THE PAYLOAD IS PRODUCT INFORMATION. 
     //REDUCER RECEIVE THE (ACTIONS, PAYLOAD) 
-  
-    data[0]["quantity"] = 0;
-
-    console.log(data[0])
-
-      
+    data[0]["quantity"] = quantity;  
     dispatch({type: actionTypes.ADD_TO_BASKET, item: data[0]})
   }
   
