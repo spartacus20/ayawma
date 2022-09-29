@@ -1,7 +1,20 @@
 import React, { useState } from "react";
+import { useStateValue } from "../../StateProvider"
+import { actionTypes } from "../../reducer";
 
-function CartItem({ image, productQuantity}) {
+function CartItem({ image, productQuantity, product }) {
   const [quantity, setQuantity] = useState(productQuantity);
+  const [{ basket }, dispatch] = useStateValue();
+
+
+  const removeItem = () => {
+    dispatch({
+      type: actionTypes.REMOVE_ITEM,
+      id: product.id,
+    });
+  };
+
+
   return (
     <div className="w-[100%] h-[150px] flex  mb-5">
       <div className="w-[200px] h-[100%] rounded-2xl ">
@@ -9,10 +22,10 @@ function CartItem({ image, productQuantity}) {
       </div>
       <div className="w-[50%] h-[100%] ">
         <div className="w-100  text-left ml-3 mb-5 ">
-          <span className="text-[25px]">LOGITECH Pop Mouse</span>
+          <span className="text-[25px]">{product.name}</span>
         </div>
         <div className="w-60 ml-3 text-left flex items-center mb-2">
-          
+
           <span className="mr-5 text-[23px]">$24.29</span>
 
           <button
@@ -20,6 +33,7 @@ function CartItem({ image, productQuantity}) {
               if (quantity == 1) {
                 return;
               }
+              product.quantity -= 1; 
               setQuantity(quantity - 1);
             }}
             className="border-2 border-black w-[25px] rounded-[8px] mr-[10px]"
@@ -29,6 +43,7 @@ function CartItem({ image, productQuantity}) {
           <span>{quantity}</span>
           <button
             onClick={() => {
+              product.quantity += 1; 
               setQuantity(quantity + 1);
             }}
             className="border-2 border-black w-[25px] rounded-[8px] ml-[10px] bg-black text-white"
@@ -38,7 +53,7 @@ function CartItem({ image, productQuantity}) {
 
         </div>
         <div className="flex justify-start">
-          <button className="pl-5 hover:text-red-500">Delete</button>
+          <button className="pl-5 hover:text-red-500" onClick={removeItem}>Delete</button>
         </div>
       </div>
     </div>

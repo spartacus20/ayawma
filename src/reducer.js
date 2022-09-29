@@ -34,7 +34,6 @@ const reducer = (state, action) => {
 
         if (product) {
           //When the product is already in the basket we only increment the quantity counter.
-          console.log("Quantity counter: " + product.quantity);
           product.quantity += 1;
           nBasket = [...state.basket];
         } else {
