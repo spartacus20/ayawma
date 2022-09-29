@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useStateValue } from "../../StateProvider"
 import { actionTypes } from "../../reducer";
 
-function CartItem({ image, productQuantity, product }) {
+function CartItem({ image, productQuantity, product, priceIncrement, priceDecrement }) {
   const [quantity, setQuantity] = useState(productQuantity);
   const [{ basket }, dispatch] = useStateValue();
 
+  
 
   const removeItem = () => {
     dispatch({
@@ -26,14 +27,15 @@ function CartItem({ image, productQuantity, product }) {
         </div>
         <div className="w-60 ml-3 text-left flex items-center mb-2">
 
-          <span className="mr-5 text-[23px]">$24.29</span>
+          <span className="mr-5 text-[23px]">${product.price}</span>
 
           <button
             onClick={() => {
-              if (quantity == 1) {
+              if (quantity === 1) {
                 return;
               }
               product.quantity -= 1; 
+              priceDecrement(); 
               setQuantity(quantity - 1);
             }}
             className="border-2 border-black w-[25px] rounded-[8px] mr-[10px]"
@@ -44,6 +46,7 @@ function CartItem({ image, productQuantity, product }) {
           <button
             onClick={() => {
               product.quantity += 1; 
+              priceIncrement(); 
               setQuantity(quantity + 1);
             }}
             className="border-2 border-black w-[25px] rounded-[8px] ml-[10px] bg-black text-white"
