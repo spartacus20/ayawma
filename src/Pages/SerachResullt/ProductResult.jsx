@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
+import ProductContainer from "../../Components/ProductContainer/ProductContainer"
 import Navbar from "../../Components/Navbar/Navbar";
 import Card from "../../Components/Card/Card";
 import axios from "../../api/axios";
@@ -9,8 +10,6 @@ function ProductResult() {
   const [dropdown, setDropDown] = useState(true);
   let { product } = useParams();
  
-
-
   useEffect(() => {
     
     const test = async () => {
@@ -29,11 +28,14 @@ function ProductResult() {
     test()
     
   }, [product]);
+  
+  
+  
   return (
     <>
       <Navbar />
       <div className="w-full h-screen flex flex-col  ">
-        {/* AQUI ES DONDE VAN A IR LOS PRODUCTOS */}
+        {/* HERE IS GOING TO BE THE PRODUCTS */}
         <div className="w-[100%] h-[100px]"></div>
         <div className="w-[100%] h-[85%] 2xl:flex-row  sm:flex sm:flex-col" >
           <div className="
@@ -64,7 +66,9 @@ function ProductResult() {
               <h3 className="font-semibold text-left ">find result: "{product}"</h3>
               </div>
               <div>
-                <button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
+               
+                {/* Drop down MENU */}
+               1<button id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider"
                 onClick={() => setDropDown(!dropdown)}
                 className="  text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Filter <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
 
@@ -86,22 +90,16 @@ function ProductResult() {
                 </div>
               </div>
             </div>
-            <div
-              className="flex flex-wrap  
-              border-2 border-black
-            2xl:w-[100%] 2xl:h-[100%] 2xl:mt-[20px]
-            xl:w-[100%] xl:h-[100%]
-            lg:w-[100%] lg:h-[100%]
-            sm:w-[100%] sm:h-[72%] sm:mt-[60px]
-            justify-center mx-auto
-             "
-            >
+            
+            <ProductContainer>
 
               {/* I neeed to iterate with json file which get the database */}
-              {data.map((e) => (<Card text={e.name} key={e.id}/>))}              
+              {data.map((e) => (<Card text={e.name} key={e.id}/>))}    
+
+            </ProductContainer>
             
 
-            </div>
+      
           </div>
         </div>
       </div>

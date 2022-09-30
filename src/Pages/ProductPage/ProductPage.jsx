@@ -83,39 +83,43 @@ function ProductPage() {
               </a>
             </div>
           </div>
+          
+          {/* Small images */}
           <div
             className="w-full h-[60%] flex mb-[40px] 
-          border-2 border-black
-          2xl:flex-row
-          sm:flex-col"
+        
+            2xl:flex-row
+            sm:flex-col"
           >
+            
+            
             <div
               className="
-             
+            
              2xl:w-[40%] 2xl:h-[100%] flex 
-         
+          
              sm:w-[100%]  sm:flex-col sm:mb-[40px]
+           
             "
             >
               <div
                 className=" 
                  mb-[20px]
-                 2xl:w-[500px] 2xl:h-[500px] 2xl:ml-[0px]
+                 2xl:w-[450px] 2xl:h-[400px] 2xl:ml-[0px]
                  xl:w-[400px] xl:h-[400px]
                  sm:w-[300px] sm:h-[300px] sm:mx-auto "
               >
                 <img
                   src={images}
                   alt=""
-                  className="object-cover w-[100%] h-[100%]"
+                  className="w-[100%] h-[100%] object-cover"
                 />
               </div>
-
               <div
                 className="
               2xl:w-[80%] 2xl:ml-[0]
               sm:w-[100%] 
-              h-[55px] flex border-2  border-black"
+              h-[55px] flex "
               >
                 <div
                   className="2xl:w-[67px] sm:w-[20%] h-[100%] hover:border-2 hover:border-blue-500  border-2 border-black 2xl:ml-[10px]"
@@ -143,7 +147,7 @@ function ProductPage() {
                 ></div>
               </div>
             </div>
-            <div className="w-[50%] h-[100%]  flex flex-wrap flex-col">
+            <div className="2xl:w-[50%] xl:w-[50%] lg:w-[50%] md:w-[100%] sm:w-[100%] h-[100%]  flex flex-wrap flex-col">
               <h2 className="text-[31px] text-[#1A1A1A] text-left mb-[10px]">
                 {data[0].name}
               </h2>
@@ -191,8 +195,8 @@ function ProductPage() {
                   alt=""
                   className="w-[56px] h-[100%] rounded-[50px] object-fill border-2 border-black mr-[10px]"
                 />
-                <span className="font-semibold ">Mouse fit</span>
-                <button className="bg-black text-white w-[96px] h-[80%] flex items-center justify-center ml-[150px] rounded-[8px] ">
+                <span className="font-semibold border-2 border-black">Mouse fit</span>
+                <button className="bg-black text-white w-[96px] h-[80%] flex items-center justify-center 2xl:ml-[150px] xl:ml-[150px] lg:ml-[150px] md:ml-[150px] sm:ml-[150px] rounded-[8px] ">
                   <Chat />
                   <span className="ml-[10px]">Chat</span>
                 </button>
@@ -211,7 +215,7 @@ function ProductPage() {
               </div>
             </div>
           </div>
-          <div className="w-full min-h-[600px] border-2 border-black flex text-left flex-wrap mb-[40px]">
+          <div className="w-full min-h-[600px]  flex text-left flex-wrap mb-[40px]">
             <p>{data[0].description}</p>
           </div>
           <div className="flex h-[50px] items-center  ">

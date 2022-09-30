@@ -12,13 +12,12 @@ function Home() {
 
 
     return (
-        <div className='w-full  flex flex-col'>
+        <div className='w-full min-h-[600] flex flex-col'>
             <Navbar User={false} Home={true}/>
             <Categories />
             <SomeItems />
             <HomeItems />
             <LatestProduct />
-            <Footer />
         </div>
 
     )

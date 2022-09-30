@@ -1,21 +1,23 @@
 import React from 'react'
 
-function ProductContainer() {
+function ProductContainer({children}) {
     return (
 
         <div
-            className="flex flex-wrap  
-  2xl:w-[80%] 2xl:h-[100%] 2xl:mt-[40px]
-  xl:w-[80%] xl:h-[700px]  xl:mt-[40px]
-  lg:w-[80%] lg:h-[700px]  lg:mt-[40px]
-  md:w-[80%] md:h-[700px] md:mt-[0px]
-  sm:w-[100%] sm:h-[72%] sm:mt-[60px]
-  justify-center mx-auto "
+        className="flex flex-wrap  
+        border-2 border-black
+      2xl:w-[100%] 2xl:h-[100%] 2xl:mt-[20px]
+      xl:w-[100%] xl:h-[100%]
+      lg:w-[100%] lg:h-[100%]
+      sm:w-[100%] sm:h-[72%] sm:mt-[60px]
+      justify-center mx-auto
+       "
         >
             
             
+            {children}
             
-            
+        
             </div>
     )
 }
