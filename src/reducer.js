@@ -1,5 +1,10 @@
+
+
+
+const basketFromLocalStorage =  JSON.parse(localStorage.getItem('previous_cart' ) ||  '[]')
+
 export const initialState = {
-  basket: [],
+  basket: basketFromLocalStorage,
   quantity: 0,
   user: null,
   shippingData: {},
@@ -14,6 +19,8 @@ export const actionTypes = {
   SET_SHIPPINGDATA: "SET_SHIPPINGDATA",
   SET_PAYMENT_MESSAGE: "SET_PAYMENT_MESSAGE",
 };
+
+
 
 export const getBasketTotal = (basket) =>
   basket?.reduce((amount, item) => (item.price * item.quantity)  + amount, 0);
@@ -31,6 +38,7 @@ const reducer = (state, action) => {
         let product = state.basket.find(
           (product) => product.id === action.item.id
         );
+        
 
         if (product) {
           //When the product is already in the basket we only increment the quantity counter.
@@ -38,8 +46,8 @@ const reducer = (state, action) => {
           nBasket = [...state.basket];
         } else {
           nBasket = [...state.basket, action.item];
-        }
-
+        } 
+        localStorage.setItem('previous_cart', JSON.stringify(nBasket))
         return {
           ...state,
           basket: [...nBasket],
@@ -53,9 +61,14 @@ const reducer = (state, action) => {
       const index = state.basket.findIndex(
         (basketItem) => basketItem.id === action.id
       );
+      const productToRemove = state.basket.filter(
+        (basketItem) => basketItem.id != action.id
+      );
+      console.log(productToRemove)
       let newBasket = [...state.basket];
       if (index >= 0) {
         newBasket.splice(index, 1);
+        localStorage.setItem("previous_cart",JSON.stringify(newBasket))
       } else {
         console.log(`Cant remove product (id: ${action.id})!`);
       }
@@ -64,6 +77,7 @@ const reducer = (state, action) => {
         basket: newBasket,
       };
     case "EMPTY_BASKET":
+      localStorage.setItem("previous_cart", [])
       return {
         ...state,
         basket: action.basket,

@@ -8,7 +8,7 @@ import { actionTypes, getBasketTotal } from "../../reducer";
 function ShoppingCart() {
   const [{ basket }, dispatch] = useStateValue();
   const [price, setPrice] = useState(0);
-
+ 
 
 
   const emptyBasket = () => {
@@ -31,15 +31,7 @@ function ShoppingCart() {
    
     })
   }
-  useEffect(() => {
 
-    basket?.map((product) => {
-      
-      setPrice(price + product.price)
-      
-    })
-
-  }, [price])
 
   return (
     <>

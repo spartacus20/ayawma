@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import { axiosPrivate } from "../../api/axios";
+import { Badge } from '@mui/material';
+import { useStateValue } from "../../StateProvider";
 import CartIcon from "../../Assets/CartIcon";
 import Barras from "../../Assets/Barras";
 import XIcon from "../../Assets/XIcon";
@@ -21,6 +23,8 @@ import im1 from "../../Images/Foto.jpeg";
 
 function Navbar({ Home }) {
   const [dropdown, setDropDown] = useState(false);
+  const [{ basket }, dispatch] = useStateValue();
+  console.log(basket?.length)
   const [name, setName] = useState("");
   const [loggeIn, setLoggetIn] = useState(false);
   const [sidebar, setSidebar] = useState(true);
@@ -30,7 +34,6 @@ function Navbar({ Home }) {
   var isHome = Home;
   const navigate = useNavigate();
   const cookie = new Cookies();
-
   const handleSearch = (e) => {
     e.preventDefault();
     let product = search.replace(" ", "-");
@@ -298,9 +301,10 @@ function Navbar({ Home }) {
             onClick={handleCart}
           >
             <Link to="/shopcart" relative="path">
-              <CartIcon onClick={handleCart} />
+              <Badge badgeContent={basket?.length} color="primary">
+                <CartIcon onClick={handleCart} />
+              </Badge>
             </Link>
-           
           </div>
         </div>
       </nav>

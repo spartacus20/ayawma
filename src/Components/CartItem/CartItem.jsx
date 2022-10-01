@@ -35,6 +35,7 @@ function CartItem({ image, productQuantity, product, priceIncrement, priceDecrem
                 return;
               }
               product.quantity -= 1; 
+              localStorage.setItem('previous_cart', JSON.stringify(basket) )
               priceDecrement(); 
               setQuantity(quantity - 1);
             }}
@@ -46,6 +47,7 @@ function CartItem({ image, productQuantity, product, priceIncrement, priceDecrem
           <button
             onClick={() => {
               product.quantity += 1; 
+              localStorage.setItem('previous_cart', JSON.stringify(basket) )
               priceIncrement(); 
               setQuantity(quantity + 1);
             }}
