@@ -20,7 +20,7 @@ function ProductResult() {
         setData(response.data.data) 
       
       }catch(err){
-
+        console.log(err)
       }
     
     }
@@ -94,7 +94,7 @@ function ProductResult() {
             <ProductContainer>
 
               {/* I neeed to iterate with json file which get the database */}
-              {data.map((e) => (<Card text={e.name} key={e.id}/>))}    
+              {data.map((e) => (<Card text={e.title} key={e.id}/>))}    
 
             </ProductContainer>
             

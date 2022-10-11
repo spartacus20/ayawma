@@ -77,7 +77,6 @@ function ShoppingCart() {
                     <div className="w-[50%] text-left"><span className="pl-2 font-semibold">Total</span></div>
                     <div className="w-[50%] text-right"><span className="pr-2 font-semibold">${getBasketTotal(basket).toFixed(2)} </span></div>
                   </div>
-                  <button className="bg-black text-white  w-[200px] h-[50px] flex items-center mx-auto justify-center hover:bg-yellow-500"><Password /><span className="pl-2">Checkout</span></button>
 
                 </div>
 

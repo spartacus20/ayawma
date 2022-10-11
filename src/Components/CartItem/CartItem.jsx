@@ -23,7 +23,7 @@ function CartItem({ image, productQuantity, product, priceIncrement, priceDecrem
       </div>
       <div className="w-[50%] h-[100%] ">
         <div className="w-100  text-left ml-3 mb-5 ">
-          <span className="text-[25px]">{product.name}</span>
+          <span className="text-[25px]">{product.title}</span>
         </div>
         <div className="w-60 ml-3 text-left flex items-center mb-2">
 

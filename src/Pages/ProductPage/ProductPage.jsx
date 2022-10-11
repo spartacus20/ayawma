@@ -35,8 +35,13 @@ function ProductPage() {
 
   const test = () => {
     console.log(product);
-    axios.get("/api/product/" + product + "/info").then((res) => {
+    let productFind = product.replaceAll("-", " ")
+    console.log(productFind)
+
+    axios.get("/api/product/" + productFind + "/info").then((res) => {
       setData(res.data.data);
+    }).catch(err => {
+      console.log(err)
     });
   };
 
@@ -149,7 +154,7 @@ function ProductPage() {
             </div>
             <div className="2xl:w-[50%] xl:w-[50%] lg:w-[50%] md:w-[100%] sm:w-[100%] h-[100%]  flex flex-wrap flex-col">
               <h2 className="text-[31px] text-[#1A1A1A] text-left mb-[10px]">
-                {data[0].name}
+                {data[0].title}
               </h2>
               <div className="w-[50%] h-[20px] flex items-center mb-[30px]">
                 <StarsChecked />

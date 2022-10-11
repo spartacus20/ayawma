@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import "./home.css"
 
 import Navbar from '../../Components/Navbar/Navbar'
@@ -7,16 +7,15 @@ import SomeItems from '../../Components/Home/SomeItems'
 import HomeItems from '../../Components/Home/Items';
 import LatestProduct from '../../Components/Home/LatestProduct'
 import Footer from '../../Components/Footer/Footer'
-
-function Home() {
-
-
+import axios from '../../api/axios'
+function Home() {   
+    const [data, setData] = useState(); 
     return (
         <div className='w-full min-h-[600] flex flex-col'>
             <Navbar User={false} Home={true}/>
             <Categories />
             <SomeItems />
-            <HomeItems />
+            <HomeItems />   
             <LatestProduct />
         </div>
 
