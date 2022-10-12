@@ -5,6 +5,7 @@ import Password from "../../Assets/Password";
 import { useStateValue } from "../../StateProvider";
 
 import { actionTypes, getBasketTotal } from "../../reducer";
+import CheckoutButton from "../../Components/Checkout/CheckoutButton";
 function ShoppingCart() {
   const [{ basket }, dispatch] = useStateValue();
   const [price, setPrice] = useState(0);
@@ -77,7 +78,7 @@ function ShoppingCart() {
                     <div className="w-[50%] text-left"><span className="pl-2 font-semibold">Total</span></div>
                     <div className="w-[50%] text-right"><span className="pr-2 font-semibold">${getBasketTotal(basket).toFixed(2)} </span></div>
                   </div>
-
+                    <CheckoutButton/>
                 </div>
 
               </div>
