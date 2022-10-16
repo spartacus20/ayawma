@@ -40,7 +40,7 @@ function Card({ text, stars }) {
             '>
                 <img onClick={handleRedirect} src={im1} alt="" className={stars?  'mt-[0px] h-[80%] w-[100%] 2xl:object-fill xl:object-fill lg:object-cover md:object-fill sm:object-fill':'cursor-pointer mt-[0px] h-[100%] w-[100%] 2xl:object-cover xl:object-fill lg:object-fill md:object-fill sm:object-cover'}/>
             </div>
-            <div className={ stars? 'cursor-pointer w-[100%] h-[30%]  2xl:mt-[-50px] xl:mt-[-30px] lg:mt-[-30px] md:mt-[-30px] sm:mt-[-30px]':'w-[100%] h-[30%] lg:mt-[10px] '}>
+            <div className={ stars? 'cursor-pointer w-[100%] h-[30%]  2xl:mt-[-40px] xl:mt-[-30px] lg:mt-[-30px] md:mt-[-30px] sm:mt-[-30px]':'w-[100%] h-[30%] lg:mt-[10px] '}>
                 <div className='text-left w-[100%] h-[50%] pl-2'>
                     <span onClick={handleRedirect} className="cursor-pointer">{text}</span>
                 </div>
@@ -50,14 +50,14 @@ function Card({ text, stars }) {
                 <div className={`
                   ${stars ? 'w-[100%] h-[60%] mt-[0px] flex flex-col ' : 'w-[100%] h-[50%] flex items-center '}   
                    sm:mt-[10px]
-                    border-2 border-black
                 `}>
                     <div className={`
                     
                       
                       ml-[10px] 
                       2xl:w-[40%] xl:w-[50%]
-                      ${stars ? '2xl:h-[35%] sm:h-[45%] 2xl:mt-[-20px] xl:mt-[0px] lg:mt-[25px] md:mt-[20px] sm:mt-[20px] sm:ml-[0px]':' 2xl:h-[60%] 2xl:mt-[-20px] xl:mt-[-20px] lg:mt-[20px] md:mt-[10px] sm:ml-[0px] sm:mt-[10px] '} 
+                    
+                      ${stars ? '2xl:h-[35%] sm:h-[45%] 2xl:mt-[-20px] xl:mt-[0px] lg:mt-[25px] md:mt-[20px] sm:mt-[20px] sm:ml-[0px] sm:w-[50%]':' 2xl:h-[60%] 2xl:mt-[-20px] xl:mt-[-20px] lg:mt-[20px] md:mt-[10px] sm:ml-[0px] sm:mt-[10px] sm:min-w-[50%]'} 
                       border-2 border-black rounded-[50px]
                       flex items-center justify-center `}>
                         <span className=" text-[#000032] font-semibold">25,87 €</span>

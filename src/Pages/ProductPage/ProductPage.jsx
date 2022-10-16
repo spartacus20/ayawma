@@ -55,38 +55,7 @@ function ProductPage() {
       <div className="w-full min-h-full flex flex-col items-center mt-[100px]">
         <div className="2xl:w-[80%] h-[100%] flex flex-col sm:w-[100%]">
           <div className="w-full h-[40px] mb-[20px] ml-[0px]">
-            {/* Bread Crumbs */}
-            <div className="flex items-center py-4 overflow-y-auto whitespace-nowrap">
-              <a href="/" className="text-[#999999] text-[16px] ">
-                <Home/>
-              </a>
-
-              <span className="mx-5 text-[#999999] text-[16px]  rtl:-scale-x-100">
-              <Arrow/>
-              
-              </span>
-
-              <a href="#" className="text-[#999999]  text-[16px] hover:underline">
-                Account
-              </a>
-
-              <span className="mx-5 text-[#999999] text-[16px] rtl:-scale-x-100">
-              <Arrow/>
-              </span>
-
-              <a href="#" className="text-[#999999]  text-[16px] hover:underline"
-              >
-                Profile
-              </a>
-
-              <span className="mx-5 text-[#999999] text-[16px]  rtl:-scale-x-100">
-               <Arrow/>
-              </span>
-
-              <a href="#" className="text-black  text-[16px] hover:underline">
-                Settings
-              </a>
-            </div>
+            
           </div>
           
           {/* Small images */}
@@ -100,7 +69,6 @@ function ProductPage() {
             
             <div
               className="
-            
              2xl:w-[40%] 2xl:h-[100%] flex 
           
              sm:w-[100%]  sm:flex-col sm:mb-[40px]
@@ -110,7 +78,7 @@ function ProductPage() {
               <div
                 className=" 
                  mb-[20px]
-                 2xl:w-[450px] 2xl:h-[400px] 2xl:ml-[0px]
+                 2xl:w-[450px] 2xl:h-[400px] 2xl:ml-[10px]
                  xl:w-[400px] xl:h-[400px]
                  sm:w-[300px] sm:h-[300px] sm:mx-auto "
               >
@@ -122,8 +90,11 @@ function ProductPage() {
               </div>
               <div
                 className="
+                
               2xl:w-[80%] 2xl:ml-[0]
+              2xl:pl-[0px]
               sm:w-[100%] 
+              sm:pl-3 sm:pr-3
               h-[55px] flex "
               >
                 <div
@@ -153,10 +124,10 @@ function ProductPage() {
               </div>
             </div>
             <div className="2xl:w-[50%] xl:w-[50%] lg:w-[50%] md:w-[100%] sm:w-[100%] h-[100%]  flex flex-wrap flex-col">
-              <h2 className="text-[31px] text-[#1A1A1A] text-left mb-[10px]">
+              <h2 className="text-[31px] text-[#1A1A1A] text-left mb-[10px] sm:pl-3">
                 {data[0].title}
               </h2>
-              <div className="w-[50%] h-[20px] flex items-center mb-[30px]">
+              <div className="w-[50%] h-[20px] flex items-center mb-[30px] sm:pl-3 ">
                 <StarsChecked />
                 <StarsChecked />
                 <StarsChecked />
@@ -164,15 +135,15 @@ function ProductPage() {
                 <StarsChecked />
                 <span className="text-[#999999] ml-[10px]">(10000)</span>
               </div>
-              <div className="w-[50%] h-[20px] flex items-center mb-[40px]">
-                <h3 className="text-left font-bold text-[#000032] text-[25px]">
+              <div className="w-[50%] h-[20px] flex items-center mb-[40px] ">
+                <h3 className="text-left font-bold text-[#000032] text-[25px] sm:pl-3 sm:pr-3">
                   ${data[0].price}
                 </h3>
-                <span className="ml-[10px] text-[#B3B3B3] text-[16px]">
+                <span className="xl:ml-[10px] text-[#B3B3B3] text-[16px] ">
                   ${data[0].price}
                 </span>
               </div>
-              <div className="w-[50%] h-[20px] flex items-center mb-[40px]">
+              <div className="w-[50%] h-[20px] flex items-center mb-[40px] sm:pl-3 ">
                 <button
                   onClick={() => {
                     if (quantity == 1) {
@@ -180,7 +151,7 @@ function ProductPage() {
                     }
                     setQuantity(quantity - 1);
                   }}
-                  className="border-2 border-black w-[25px] rounded-[8px] mr-[10px]"
+                  className="border-2 border-black w-[25px] rounded-[8px] mr-[10px]  "
                 >
                   -
                 </button>
@@ -194,7 +165,7 @@ function ProductPage() {
                   +
                 </button>
               </div>
-              <div className="w-[100%] h-[56px] flex items-center flex-wrap mb-[30px]  ">
+              {/* <div className="w-[100%] h-[56px] flex items-center flex-wrap mb-[30px]  ">
                 <img
                   src={im1}
                   alt=""
@@ -205,8 +176,8 @@ function ProductPage() {
                   <Chat />
                   <span className="ml-[10px]">Chat</span>
                 </button>
-              </div>
-              <div className="w-full h-[56px] flex items-center">
+              </div> */}
+              <div className="w-full h-[56px] flex items-center xl:mt-[100px] sm:mt-[20px] sm:pl-3 sm:pr-3">
                 <h3 className="text-left font-bold text-[#000032] text-[22px]">
                   ${finalPrice.toFixed(2)}
                 </h3>
@@ -220,7 +191,7 @@ function ProductPage() {
               </div>
             </div>
           </div>
-          <div className="w-full min-h-[600px]  flex text-left flex-wrap mb-[40px]">
+          <div className="w-full min-h-[600px]  flex text-left flex-wrap mb-[40px] sm:pl-3 sm:pr-3">
             <p>{data[0].description}</p>
           </div>
           <div className="flex h-[50px] items-center  ">

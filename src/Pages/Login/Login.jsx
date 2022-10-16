@@ -62,7 +62,7 @@ function Login() {
         maxAge: 60 * 60 * 24 * 7, // 7 is relative to the days.
         path: "/",
       });
-   //   window.location.href= "/"
+      window.location.href= "/"
     }).catch(err => {
        toast.error(err.message)
     })
@@ -75,10 +75,6 @@ function Login() {
       window.location.href = "/"
     }
   })
-
-
-
-
 
   return (
     <>

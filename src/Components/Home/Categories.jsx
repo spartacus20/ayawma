@@ -20,6 +20,7 @@ function Categories() {
         lg:flex 
         md:hidden 
         sm:hidden 
+        mb-10 
         items-center justify-center mt-[100px] h-[130px] '>
             <CardCategorie svg={<Group />} text="Foto & Video" color="#E3F5FF" />
             <CardCategorie svg={<GameIcon />} text="Gaming" color="#F1FFF2" />

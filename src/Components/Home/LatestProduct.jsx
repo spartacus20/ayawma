@@ -28,7 +28,7 @@ function LatestProduct() {
               lg:ml-[130px]
               md:ml-[130px]
               sm:ml-[0px]">
-            <span className='font-semibold font-[20px] text-[30px]'>Lastest Prododucts</span>
+            <span className='font-semibold font-[20px] text-[30px] pl-2'>Lastest Prododucts</span>
             </div>
                
                
