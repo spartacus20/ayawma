@@ -1,11 +1,13 @@
 .Recomendation{
+
+
     width: 80%;
-    height: 600px; 
+    height: 400px; 
     display: flex;
     flex-wrap: wrap;
-    margin: 0 auto auto;
+    margin: 20px auto auto;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
 .LastProduct{
@@ -26,9 +28,19 @@
     padding-left: 180px;
 }   
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
     .Recomendation{
         width: 100%;
+    }
+    .LastProduct{
+        margin-top: 50px;
+    }
+    .LastProductText{
+        margin-bottom: 20px;
+    }
+    .LastProductText h3{
+        padding-left: 0;
+        text-align: center;
     }
 }
 

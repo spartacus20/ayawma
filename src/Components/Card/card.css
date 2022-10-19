@@ -10,8 +10,6 @@
     margin-bottom: 10px;
 }
 
-
-
 .CardIMG img{
      width: 100%;
      height: 100%;
@@ -56,26 +54,47 @@
     margin-left: 10px;
 }
 
-@media only screen and (max-width: 1024) {
+/* Responsive Desing  */
+
+@media only screen and (max-width: 1920px){
+    .Card{
+       width: 310px;
+       margin: 0 auto 10px auto;
+    }
+    .CardIMG{
+       height: 50%;
+    }
+    .CardIMG img{
+       object-fit: none;
+    }
+}
+@media only screen and (max-width: 1440px){
+    .Card{
+        width: 240px;
+    }
+}
+@media only screen and (max-width: 1280px) {
+    .Card{
+       width: 240px;
+       margin: 0 auto 10px auto;
+    }
+    .CardIMG{
+       height: 50%;
+    }
+    .CardIMG img{
+       object-fit: fill;
+    }
+}
+@media only screen and (max-width: 768px) {
     .Card{
        width: 160px;
        margin: 0 auto 10px auto;
     }
-
+    .CardIMG{
+       height: 50%;
+    }
+    .CardIMG img{
+       object-fit: fill;
+    }
 }
 
-
-
-
-@media only screen and (max-width: 600px) {
-     .Card{
-        width: 160px;
-        margin: 0 auto 10px auto;
-     }
-     .CardIMG{
-        height: 50%;
-     }
-     .CardIMG img{
-        object-fit: fill;
-     }
-}

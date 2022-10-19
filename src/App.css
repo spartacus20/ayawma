@@ -9,11 +9,17 @@
 .Spacer{
   margin-top: 150px;
 }
+.Spacer-2{
+  margin-top: 0px
+}
 
 
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .Container{
       width: 100%;
+  }
+  .Spacer-2{
+     margin-top: 50px;
+
   }
 }

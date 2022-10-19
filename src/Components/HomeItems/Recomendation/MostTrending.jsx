@@ -1,5 +1,6 @@
 import React from 'react'
-import Card from '../Card/Card';
+import Card from '../../../Components/Card/Card';
+
 import "./recomendation.css"
 
 function MostTrending({ visible }) {
