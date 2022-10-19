@@ -31,7 +31,7 @@ function Dropdown({ logOut }) {
                 </span>
             </a>
             <a
-                href="#"
+                href=""
                 className="block block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600
       sm:text-[12px] md:text-[14px]
       "

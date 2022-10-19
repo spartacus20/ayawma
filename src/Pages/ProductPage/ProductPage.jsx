@@ -37,7 +37,7 @@ function ProductPage() {
     console.log(product);
     let productFind = product.replaceAll("-", " ")
     console.log(productFind)
-
+    document.title = productFind+" | Ayawma.com"; 
     axios.get("/api/product/" + productFind + "/info").then((res) => {
       setData(res.data.data);
     }).catch(err => {

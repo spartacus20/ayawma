@@ -7,10 +7,7 @@ function CardCategorie({svg, text,color }) {
             <div className='Categories' 
                  style={{
                     backgroundColor:`${color}`,
-                  }}
-            
-            
-            >
+                  }}>
                 {svg}
             </div>
             <span className="text-categorie">{text}</span>

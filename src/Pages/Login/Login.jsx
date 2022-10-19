@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom"
+
 import Cookies from "universal-cookie";
 import Email from "../../Assets/Email";
 import Password from "../../Assets/Password";
@@ -71,6 +73,7 @@ function Login() {
 
   //CHECK IF USER IS ALREADY LOGGED IN
   useEffect(() => {
+    document.title = "Ayawma Sign-In"
     if(cookie.get("jid") != null){ 
       window.location.href = "/"
     }
@@ -149,13 +152,9 @@ function Login() {
           </div>
 
           <div className="flex items-center justify-center mt-6">
-            <a
-              href="/signin"
-             
-              className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
-            >
-              <span className="ml-2">You don&#x27;t have an account?</span>
-            </a>
+            <Link to="/signin">
+              <span className="ml-2 inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white">You don&#x27;t have an account?</span>
+            </Link>
           </div>
         </div>
       </div>

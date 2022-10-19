@@ -13,61 +13,61 @@ import Router from "../../Assets/Router";
 function CategorieList() {
     return (
         <ul className="text-white">
-            <li className="mb-[10px] flex justify-center items-center">
+            <li className="mb-[25px] mt-[30px] flex justify-center items-center">
                 <Camara />
                 <a href="" className="ml-[5px]">
                     Foto & Video{" "}
                 </a>
             </li>
-            <li className="mb-[10px] flex justify-center items-center">
+            <li className="mb-[25px] flex justify-center items-center">
                 <GameIcon />
                 <a href="" className="ml-[5px]">
                     Gaming{" "}
                 </a>
             </li>
-            <li className="mb-[10px] flex justify-center items-center">
+            <li className="mb-[25px] flex justify-center items-center">
                 <Components />
                 <a href="" className="ml-[5px]">
                     Components{" "}
                 </a>
             </li>
-            <li className="mb-[10px] flex justify-center items-center">
+            <li className="mb-[25px] flex justify-center items-center">
                 <Smartphones />
                 <a href="" className="ml-[5px]">
                     Smartphones{" "}
                 </a>
             </li>
-            <li className="mb-[10px] flex justify-center items-center">
+            <li className="mb-[25px] flex justify-center items-center">
                 <Gadgets />
                 <a href="" className="ml-[5px]">
                     Gadgets{" "}
                 </a>
             </li>
-            <li className="mb-[10px] flex justify-center items-center">
+            <li className="mb-[25px] flex justify-center items-center">
                 <Cables />
                 <a href="" className="ml-[5px]">
                     Cables & Adapters{" "}
                 </a>
             </li>
-            <li className="mb-[10px] flex justify-center items-center">
+            <li className="mb-[25px] flex justify-center items-center">
                 <Computers />
                 <a href="" className="ml-[5px]">
                     Computers{" "}
                 </a>
             </li>
-            <li className="mb-[10px] flex justify-center items-center">
+            <li className="mb-[25px] flex justify-center items-center">
                 <Acessories />
                 <a href="" className="ml-[5px]">
                     Acessories{" "}
                 </a>
             </li>
-            <li className="mb-[10px] flex justify-center items-center">
+            <li className="mb-[25px] flex justify-center items-center">
                 <TV />
                 <a href="" className="ml-[5px]">
                     TV{" "}
                 </a>
             </li>
-            <li className="mb-[10px] flex justify-center items-center">
+            <li className="mb-[25px] flex justify-center items-center">
                 <Router />
                 <a href="" className="ml-[5px]">
                     Router{" "}

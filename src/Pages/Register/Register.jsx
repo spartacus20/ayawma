@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
-import { useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+
 import axios from "../../api/axios";
 import Cookies from "universal-cookie";
 import GoogleLogin from "react-google-login";
@@ -14,6 +15,7 @@ import { toast } from "react-toastify";
 
 function Register() {
 
+  const navigate = useNavigate();
   const clientId = "235810836453-l5j7h9ithmbsf1is1bsld3o7aao9rmiv.apps.googleusercontent.com"; //Google CLIENT ID.
   const cookie = new Cookies();
   const [userName, setUserName] = useState("");
@@ -48,6 +50,7 @@ function Register() {
           axios.defaults.headers.common[
             "Authorization"
           ] = `Bearer ${data.refreshToken}`; 
+          // navigate("/"); 
           window.location.href = "/"
         })
         .catch((error) => {
@@ -82,12 +85,14 @@ function Register() {
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${data.refreshToken}`;
+        // navigate("/")
         window.location.href = "/"
       });
   };
 
   //CHECK IF USER IS ALREADY LOGGED IN
   useEffect(() => {
+    document.title = "Ayawma Registration"
     if(cookie.get("jid") != null){ 
       window.location.href = "/"
     }
@@ -188,7 +193,7 @@ function Register() {
               href="/login"
               className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
             >
-              <span className="ml-2">You have an account?</span>
+              <span className="ml-2"><Link to="/login">You have an account?</Link></span>
             </a>
            
           </div>

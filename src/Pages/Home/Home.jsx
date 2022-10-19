@@ -1,15 +1,22 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import "./home.css"
 
 import Navbar from '../../Components/Navbar/Navbar'
 import Categories from '../../Components/Home/Categories'
 import SomeItems from '../../Components/Home/SomeItems'
-import HomeItems from '../../Components/Home/Items';
-import LatestProduct from '../../Components/Home/LatestProduct'
-import Footer from '../../Components/Footer/Footer'
-import axios from '../../api/axios'
+import HomeItems from '../../Components/Home/Recomendation/Items';
+import LatestProduct from '../../Components/Home/Recomendation/LatestProduct'
+
+
+
+
 function Home() {   
-    const [data, setData] = useState(); 
+    
+
+    useEffect(() => {
+        document.title = "Ayawma.com"
+    }, [])
+
     return (
         <div className='w-full min-h-[600] flex flex-col'>
             <Navbar User={false} Home={true}/>

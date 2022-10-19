@@ -1,0 +1,22 @@
+.pageResults{
+     width: 100%;
+     height: 100%;
+}
+.Divider{
+     display: flex;
+     align-items: center;
+     border: 1px solid black;
+     width: 80%;
+     height: 60px;
+     margin-top: 150px;
+     margin-left: auto;
+     margin-right: auto;
+}
+.Filter{
+     border: 1px solid black;
+     margin-left: auto;
+     display: flex;
+     align-items: center;
+     width: 100px;
+     height: 50px;
+}

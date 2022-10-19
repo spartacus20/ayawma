@@ -42,6 +42,12 @@ function Navbar({ Home }) {
     console.log("quantity");
   };
 
+
+  //TO DO: Refactor this code beacuse when i logge out it redirects to product page
+  //Try to get refreshToken by cookie and check it or try to use react reducer and context 
+  //To store the information of the user. 
+
+
   useEffect(() => {
     const refreshToken = cookie.get("jid");
 
@@ -58,9 +64,7 @@ function Navbar({ Home }) {
         setLoggetIn(true);
       } catch (e) {
         setLoggetIn(false);
-        cookie.remove("jid", {
-          path: "/",
-        });
+        cookie.remove("jid", {path: "/" });
       }
     };
 
@@ -68,14 +72,14 @@ function Navbar({ Home }) {
   }, []);
 
   return (
-    <div className="bg-blue-100 shawdow-md w-full  top-0 left-0  fixed">
+    <div className="bg-blue-100 shawdow-md w-full  top-0 left-0  fixed z-20">
       <nav className="md:flex bg-white py-5 sm:py-1 sm:flex mx-auto ">
         {/* sidebar */}
 
         <div
           className={`${
             sidebar ? "ml-[-5000px] " : "ml-[0px]"
-          } h-[100%] w-[100%] bg-red-400 fixed top-[0px] opacity-90`}
+          } h-[100%] w-[100%] bg-black fixed top-[0px] opacity-90`}
         >
           <div
             className="c w-[10%] h-[5%] flex mt-[20px] ml-[30px] items-center justify-flex-start"
@@ -101,10 +105,11 @@ function Navbar({ Home }) {
               <Barras />
             </div>
             <Link to="/">
-              <span className="text-4xl xl:text-3xl sm:text-xl ml-[100xp] ">
+              <span className="text-4xl xl:text-3xl sm:text-xl ml-[100xp] " onClick={() => window.href = "/"}>
                 AYAWMA
               </span>
             </Link>
+          
           </div>
         </div>
 
@@ -129,13 +134,14 @@ function Navbar({ Home }) {
         {/* parte de la derecha */}
         <div className="xl:w-[20%] flex sm:ml-[140px] sm:w-[50%]">
           <div className="xl:w-[50%] sm:w-[120px] sm:mr-[0px] text-2xl  sm:py-4  flex justify-center items-center  h-[100%]">
+
             <span className={loggeIn ? "hidden" : "text-[1.2rem] sm:text-base"}>
-              <a href="/login">Sign in</a>
+              <Link to="/login">Sign in</Link>
             </span>
             <div
               className={
                 loggeIn
-                  ? "2xl:border-2 2xl:border-[#000032] xl:border-2 xl:border-[#000032] lg:border-2 lg:border-[#000032] rounded-[50px] w-[100%] h-[100%] flex  items-center h-[100%] flex-wrap  "
+                  ? "2xl:border-2 2xl:border-[#000032] xl:border-2 xl:border-[#000032] lg:border-2 lg:border-[#000032] rounded-[50px] w-[100%]  flex  items-center h-[100%] flex-wrap  "
                   : "hidden"
               }
               onClick={toggleDropDown}
