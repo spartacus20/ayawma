@@ -103,14 +103,14 @@ function Register() {
     <>
       <Navbar />
       <div className="w-full h-screen flex items-center justify-center">
-        <div className="flex flex-col items-center  w-full max-w-md px-4 py-8 bg-white rounded-lg shadow bg-[black] sm:px-6 md:px-8 lg:px-10">
+        <div className="flex flex-col items-center  xl:w-full sm:w-[98%] sm:mx-auto max-w-md px-4 py-8 bg-white rounded-lg shadow bg-[black] sm:px-6 md:px-8 lg:px-10">
           <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
             Sign in
           </div>
 
           <div className="mt-8 w-[400px]  mt-[100px] ">
             <form autoComplete="off">
-              <div className="flex flex-col mb-2 ">
+              <div className="flex flex-col mb-2 xl:w-full sm:w-[90%] sm:mx-auto">
                 <div className="flex relative ">
                   <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                     <FaUserAlt />
@@ -123,7 +123,7 @@ function Register() {
                   />
                 </div>
               </div>
-              <div className="flex flex-col mb-2 ">
+              <div className="flex flex-col mb-2 xl:w-full sm:w-[90%] sm:mx-auto">
                 <div className="flex relative ">
                   <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                     <Email />
@@ -137,7 +137,7 @@ function Register() {
                 </div>
               </div>
 
-              <div className="flex flex-col mb-2">
+              <div className="flex flex-col mb-2 xl:w-full sm:w-[90%] sm:mx-auto">
                 <div className="flex relative ">
                   <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                     <Password />
@@ -151,7 +151,7 @@ function Register() {
                 </div>
               </div>
 
-              <div className="flex flex-col mb-6">
+              <div className="flex flex-col mb-6 xl:w-full sm:w-[90%] sm:mx-auto">
                 <div className="flex relative ">
                   <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                     <Password />
@@ -165,7 +165,7 @@ function Register() {
                 </div>
               </div>
 
-              <div className="flex w-full">
+              <div className="flex  xl:w-full sm:w-[90%] sm:mx-auto">
                 <button
                   type="submit"
                   onClick={handleClick}
@@ -176,7 +176,7 @@ function Register() {
               </div>
               <br />
 
-              <div className="flex flex-col w-full">
+              <div className="flex flex-col xl:w-full sm:w-[90%] sm:mx-auto">
                 <GoogleLogin
                   clientId={clientId}
                   onSuccess={responseGoogle}
@@ -193,7 +193,7 @@ function Register() {
               href="/login"
               className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
             >
-              <span className="ml-2"><Link to="/login">You have an account?</Link></span>
+              <span className="ml-2 sm:text-[16px]"><Link to="/login">You have an account?</Link></span>
             </a>
            
           </div>

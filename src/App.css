@@ -1,11 +1,20 @@
 .Container{
-  justify-content: center;
   margin: 0 auto auto;
   width: 80%;
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
   min-height: 700px;
 }
+.Container-2{
+  margin: 0 auto auto;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 700px;
+}
+
 .Spacer{
   margin-top: 150px;
 }
@@ -16,6 +25,9 @@
 
 @media only screen and (max-width: 768px) {
   .Container{
+      width: 100%;
+  }
+  .Container-2{
       width: 100%;
   }
   .Spacer-2{

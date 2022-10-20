@@ -14,14 +14,7 @@ import Router from '../../Assets/Router'
 
 function Categories() {
     return (
-        <div className='
-        2xl:flex 
-        xl:flex 
-        lg:flex 
-        md:hidden 
-        sm:hidden 
-        mb-10 
-        items-center justify-center mt-[100px] h-[130px] '>
+        <div className='2xl:flex xl:flex lg:flex md:hidden sm:hidden mb-10  items-center justify-center mt-[100px] h-[130px] '>
             <CardCategorie svg={<Group />} text="Foto & Video" color="#E3F5FF" />
             <CardCategorie svg={<GameIcon />} text="Gaming" color="#F1FFF2" />
             <CardCategorie svg={<Components />} text="Components" color="#D0E7D2" />

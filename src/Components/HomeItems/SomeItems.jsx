@@ -3,7 +3,7 @@ import Card from '../../Components/Card/Card';
 
 function SomeItems() {
   return (
-    <div className='Container Spacer-2'>
+    <div className='Container-2 Spacer-2'>
         <Card text="Hippo Ilo W2 Powerbank wireless 10000mah"/>
         <Card text="Hippo Ilo W2 Powerbank wireless 10000mah"/>
         <Card text="Hippo Ilo W2 Powerbank wireless 10000mah"/>
