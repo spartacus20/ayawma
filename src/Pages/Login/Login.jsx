@@ -7,7 +7,7 @@ import Cookies from "universal-cookie";
 import Email from "../../Assets/Email";
 import Password from "../../Assets/Password";
 import GoogleLogin from "react-google-login";
-import axios from "../../api/axios";
+import axios from "../../Services/axios";
 
 function Login() {
 
@@ -68,9 +68,11 @@ function Login() {
     }
   })
 
+
   return (
     <>
       <Navbar />
+
       <div className="w-full h-screen flex items-center justify-center">
         <div className="flex flex-col items-center  xl:w-full sm:w-[98%] sm:px-auto sm:mx-auto  max-w-md px-4 py-8 bg-white rounded-lg shadow bg-[black] sm:px-6 md:px-8 lg:px-10">
           <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">

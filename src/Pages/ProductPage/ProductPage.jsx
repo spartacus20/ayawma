@@ -8,7 +8,7 @@ import Arrow from "../../Assets/Arrow";
 import Chat from "../../Assets/Chat";
 import Home from "../../Assets/Home";
 import CartIcon2 from "../../Assets/CartIcon2";
-import axios from "../../api/axios";
+import axios from "../../Services/axios";
 import { useStateValue } from "../../StateProvider";
 import { actionTypes } from "../../reducer";
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
+import { Authentication } from "../../Services/Authentication"
 import { useNavigate } from "react-router-dom";
-import { axiosPrivate } from "../../api/axios";
 import { Badge } from '@mui/material';
 import { useStateValue } from "../../StateProvider";
 import CartIcon from "../../Assets/CartIcon";
@@ -16,14 +16,12 @@ import Dropdown from "./Dropdown";
 function Navbar({ Home }) {
   const [dropdown, setDropDown] = useState(false);
   const [{ basket }, dispatch] = useStateValue();
-  console.log(basket?.length)
   const [name, setName] = useState("");
   const [loggeIn, setLoggetIn] = useState(false);
   const [sidebar, setSidebar] = useState(true);
   const [search, setSeach] = useState();
   const toggleDropDown = () => setDropDown(!dropdown);
   const toggleSidebar = () => setSidebar(!sidebar);
-  var isHome = Home;
   const navigate = useNavigate();
   const cookie = new Cookies();
   const handleSearch = (e) => {
@@ -38,9 +36,6 @@ function Navbar({ Home }) {
     setLoggetIn(false);
   };
 
-  const handleCart = (e) => {
-    console.log("quantity");
-  };
 
 
   //TO DO: Refactor this code beacuse when i logge out it redirects to product page
@@ -49,22 +44,14 @@ function Navbar({ Home }) {
 
 
   useEffect(() => {
-    const refreshToken = cookie.get("jid");
 
     const HTTP = async () => {
       try {
-        const res = await axiosPrivate.get("api/user", {
-          headers: {
-            Authorization: `Bearer ${refreshToken}`,
-          },
-        });
-        let { data } = res;
-        data = data.decodedToken;
-        setName(data.username);
+        const res = await Authentication(); 
+        setName(res.data[0].name);
         setLoggetIn(true);
       } catch (e) {
         setLoggetIn(false);
-        cookie.remove("jid", {path: "/" });
       }
     };
 
@@ -96,7 +83,7 @@ function Navbar({ Home }) {
           <div className="flex ml-[100px] my-auto cursor-pointer text-2xl font-[Open sans] font-bold font-sans items-center">
             <div
               className={
-                isHome
+                Home
                   ? "2xl:hidden xl:hidden lg:hidden sm:mr-[10px] md:mr-[10px] "
                   : "flex 2xl:mr-[20px] 2xl:mt-[5px] xl:mr-[20px] xl:mt-[5px] lg:mr-[20px] lg:mt-[5px] sm:mr-[10px] md:mr-[10px] sm:mt-[0px]"
               }
@@ -182,11 +169,11 @@ function Navbar({ Home }) {
           </div>
           <div
             className="xl:w-[50%] sm:ml-[5px] flex justify-center items-center"
-            onClick={handleCart}
+           
           >
             <Link to="/shopcart" relative="path">
               <Badge badgeContent={basket?.length} color="primary">
-                <CartIcon onClick={handleCart} />
+                <CartIcon />
               </Badge>
             </Link>
           </div>

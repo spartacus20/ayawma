@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from '../../api/axios';
+import axios from '../../Services/axios';
 import Password from "../../Assets/Password";
 
 import { useStateValue } from '../../StateProvider'

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import ProductContainer from "../../Components/ProductContainer/ProductContainer"
 import Navbar from "../../Components/Navbar/Navbar";
 import Card from "../../Components/Card/Card";
-import axios from "../../api/axios";
+import axios from "../../Services/axios";
 function ProductResult() {
 
   const [data, setData] = useState([])
