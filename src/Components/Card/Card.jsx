@@ -1,11 +1,19 @@
 import React from 'react'
 import "./card.css"
-import Rating from '@mui/material/Rating';
+import { useNavigate } from 'react-router-dom'
 import im1 from "../../Images/monitor.png"
+import Rating from '@mui/material/Rating';
 function Card({stars, text}) {
-  return (
+  
+  let link = "/"+text.replaceAll(" ", "-")
+  const navigate = useNavigate(); 
 
-    <div className='Card'>
+  const handleRedirect = () => {
+     navigate(link); 
+  }
+
+  return (
+    <div className='Card' onClick={handleRedirect}>
         <div className='CardIMG'>
             <img src={im1} alt="" />
         </div>
@@ -19,8 +27,6 @@ function Card({stars, text}) {
           <Rating name="read-only" value={5} size="small" readOnly />  
           <span className='CardReviews'>(10,270)</span>
         </div>
-
-       
     </div>
   )
 }
