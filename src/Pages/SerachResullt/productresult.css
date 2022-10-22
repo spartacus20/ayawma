@@ -5,7 +5,6 @@
 .Divider{
      display: flex;
      align-items: center;
-     border: 1px solid black;
      width: 80%;
      height: 60px;
      margin-top: 150px;
@@ -13,10 +12,66 @@
      margin-right: auto;
 }
 .Filter{
-     border: 1px solid black;
+     position: relative;
+
      margin-left: auto;
      display: flex;
      align-items: center;
      width: 100px;
      height: 50px;
+}
+
+.Filter span{
+
+     cursor: pointer;
+     margin-right: 5px;
+}
+#Icon{
+     transition: .3s ease-in-out;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 20px;
+     height: 30px;
+   
+}
+.rotate{
+     transition: .3s ease-in-out;
+     transform: rotate(180deg);
+}
+
+.Dropdown{
+   
+     transition: .3s ease;
+     background-color: black;
+     color: white;
+     width: 150px;
+     height: 150px;
+     border: 1px solid black;
+     position: absolute;
+     top: 75%;
+     right: 20%;
+     display: flex;
+     border-radius: 20px;
+     flex-direction: column;
+}
+.Button{
+ 
+     padding: 5px 15px;
+     text-align: right;
+}
+
+.Button:hover{
+     color:chartreuse;
+}
+
+.inactive{
+     position: absolute;
+     visibility: hidden;
+}
+
+@media only screen and (max-width: 768px) {
+     .Divider{
+          margin-top: 80px;
+     }
 }
