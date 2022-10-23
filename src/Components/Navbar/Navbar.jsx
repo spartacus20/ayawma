@@ -119,7 +119,7 @@ function Navbar({ Home }) {
         </div>
 
         {/* parte de la derecha */}
-        <div className="xl:w-[20%] flex sm:ml-[140px] sm:w-[50%]">
+        <div className="xl:w-[20%] flex sm:ml-[140px] sm:w-[50%] ">
           <div className="xl:w-[50%] sm:w-[120px] sm:mr-[0px] text-2xl  sm:py-4  flex justify-center items-center  h-[100%]">
 
             <span className={loggeIn ? "hidden" : "text-[1.2rem] sm:text-base"}>

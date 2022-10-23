@@ -1,0 +1,19 @@
+.Comentary{
+    margin-bottom: 30px;
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-wrap: no-wrap;
+    flex-direction: column;
+    word-wrap: break-word;
+}
+.ComentaryText{
+    color: #999999
+}
+.RatingComentary{
+    margin-top: 10px;
+}
+.Comentary p{
+    margin-top: 10px;
+    color: #4D4D4D;
+}
