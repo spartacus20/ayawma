@@ -12,7 +12,6 @@ export var Authentication = async () => {
                     Authorization: `Bearer ${userToken}`,
                 },
             });
-            console.log(response.data)
             return response.data;
         } catch (e) {
             return null;

@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import Cookies from "universal-cookie";
 import { toast } from "react-toastify";
 import { Rating } from '@mui/material'
 import { Authentication } from '../../../Services/Authentication'
 import Comentary from '../Comentary/Comentary'
 import "./reviews.css"
-function Reviews() {
+import axios from '../../../Services/axios';
+function Reviews({productID}) {
 
+    const cookie = new Cookies();
     const [limitAmount, setLimitAmount] = useState(0)
     const [value, setValue] = useState(0);
     const [rating, setRating] = useState({ comment: "", rating: 0 })
@@ -43,8 +46,17 @@ function Reviews() {
             toast.error("The text have to be at least 15 characters")
             return;  
         }
-        
 
+
+        const refreshToken = cookie.get("jid")
+        const { data } = await axios.get("/api/user/id", {
+            headers: {
+                Authorization: `Bearer ${refreshToken}`,
+            },
+        });
+        console.log(productID)
+        const newRating = await axios.post("/new-rating", {productID: productID, userID: data.id, comment: {comment: rating.comment, rating: rating.rating} })
+       console.log(newRating)
 
     }
 

@@ -43,7 +43,6 @@ function ProductPage() {
       console.log(err)
     });
   };
-
   useEffect(() => {
     test();
   }, [product]);
@@ -186,7 +185,7 @@ function ProductPage() {
           <div className="w-full min-h-[600px]  flex text-left flex-wrap mb-[40px] sm:pl-3 sm:pr-3">
             <p>{data[0].description}</p>
           </div>
-              <Reviews/>
+              <Reviews productID={data[0].id}/>
         </div>
       </div>
     </>
