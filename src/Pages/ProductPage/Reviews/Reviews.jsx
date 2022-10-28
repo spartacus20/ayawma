@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Cookies from "universal-cookie";
+import { useLocation } from 'react-router-dom'
+
 import { toast } from "react-toastify";
 import { Rating } from '@mui/material'
 import { Authentication } from '../../../Services/Authentication'
@@ -67,7 +69,7 @@ function Reviews({ productID }) {
 
     useEffect(() => {
         updateComments();
-    }, [])
+    }, [productID])
 
     const handleSubmit = async () => {
 
@@ -128,7 +130,7 @@ function Reviews({ productID }) {
             ? 
             <h3></h3>
             : allComments.map((comment) => (
-                <Comentary name={comment.name} date={comment.comment_data} rating={comment.rating} text={comment.comment} />
+                <Comentary name={comment.name} date={comment.comment_data} rating={comment.rating} text={comment.comment} key={comment.id}/>
             ))
             }
 
