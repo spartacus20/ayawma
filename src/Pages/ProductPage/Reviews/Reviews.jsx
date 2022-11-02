@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Cookies from "universal-cookie";
-import { useLocation } from 'react-router-dom'
-
 import { toast } from "react-toastify";
 import { Rating } from '@mui/material'
 import { Authentication } from '../../../Services/Authentication'
@@ -40,6 +38,7 @@ function Reviews({ productID }) {
     }
 
     const updateComments = async () => {
+       
         const response = await axios.post('/rating', { productID: productID })
 
         data = response.data.data
@@ -89,13 +88,26 @@ function Reviews({ productID }) {
         }
 
         const refreshToken = cookie.get("jid")
-        const { data } = await axios.get("/api/user/id", {
-            headers: {
-                Authorization: `Bearer ${refreshToken}`,
-            },
-        });
-
-        const newRating = await axios.post("/new-rating", { productID: productID, userID: data.id, comment: { comment: rating.comment, rating: rating.rating } })
+      
+        if (refreshToken) {
+            try {
+                console.log("entre aqui")
+                const response = await axios.post("/new-rating", {
+                    headers: {
+                        Authorization: `Bearer ${refreshToken}`,
+                    },
+                    productID: productID,
+                    comment: {
+                        rating: rating.rating,
+                        comment: rating.comment,
+                    }
+                });
+                console.log(response)
+            } catch (e) {
+                console.log(e)
+                return null;
+            }
+    
 
 
         updateComments();
@@ -104,8 +116,9 @@ function Reviews({ productID }) {
         setRating({ comment: "", rating: 0 });
         document.querySelector("#comment-input").value = ""
         setValue(0);
+        setLimitAmount(0);
 
-
+        }
     }
 
     return (
@@ -113,7 +126,7 @@ function Reviews({ productID }) {
             <h2>Customer reviews:</h2>
             <div className='Reviews-number'>
                 <span className='rating-text'>{allRating.toFixed(1)}</span>
-                <Rating name="read-only" value={5} size="small" readOnly />
+                <Rating name="read-only" value={allRating} precision={0.5} size="small" readOnly />
                 <p>{allComments.length} reviews</p>
             </div>
             <div className='Review-text'>
