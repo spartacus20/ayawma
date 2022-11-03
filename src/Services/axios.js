@@ -1,10 +1,6 @@
 import axios from 'axios';
-const BASE_URL = 'https://api.ayawma.com'
-<<<<<<< HEAD
-// const BASE_URL = 'http://localhost:3005'
-=======
-//const BASE_URL = 'http://localhost:3005'
->>>>>>> 696197b39831290a4e62ed7fcc57aba523d08857
+//const BASE_URL = 'https://api.ayawma.com'
+const BASE_URL = 'http://localhost:3005'
 export default axios.create({
     baseURL: BASE_URL,
     origin: true,
