@@ -27,7 +27,7 @@ function CheckoutButton() {
   return (
 
     <>
-      <button onClick={() => handleCheckout()} className="bg-black text-white  w-[200px] h-[50px] flex items-center mx-auto justify-center hover:bg-yellow-500"><Password /><span className="pl-2">Checkout</span></button>
+      <button onClick={() => handleCheckout()} className="bg-black text-white  w-[200px] h-[50px] mt-[20px] flex items-center mx-auto justify-center hover:bg-yellow-500"><Password /><span className="pl-2">Checkout</span></button>
 
     </>
   )

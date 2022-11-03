@@ -17,7 +17,7 @@ function CartItem({ image, productQuantity, product, priceIncrement, priceDecrem
 
 
   return (
-    <div className="w-[100%] h-[150px] flex  mb-5">
+    <div className="w-[100%]  flex  mb-5">
       <div className="w-[200px] h-[100%] rounded-2xl ">
         <img src={image} alt="" className="w-[100%] h-[100%] object-cover rounded-2xl" />
       </div>
