@@ -43,7 +43,6 @@ function ProductPage() {
       console.log(err)
     });
   };
-
   useEffect(() => {
     test();
   }, [product]);
@@ -120,13 +119,9 @@ function ProductPage() {
               </div>
             </div>
             <div className="xl:w-[50%]  lg:w-[50%] md:w-[100%] sm:w-[100%] h-[100%]  flex flex-wrap flex-col">
-              <h2 className="text-[31px] text-[#1A1A1A] text-left mb-[10px] sm:pl-3">
+              <h2 className="text-[31px] text-[#1A1A1A] text-left mb-[30px] sm:pl-3">
                 {data[0].title}
               </h2>
-              <div className="w-[50%] h-[20px] flex items-center mb-[30px] sm:pl-3 ">
-                  <Rating name="read-only" value={5} size="small" readOnly/>
-                <span className="text-[#999999] ml-[10px]">(10000)</span>
-              </div>
               <div className="w-[50%] h-[20px] flex items-center mb-[40px] ">
                 <h3 className="text-left font-bold text-[#000032] text-[25px] sm:pl-3 sm:pr-3">
                   ${data[0].price}
@@ -157,19 +152,7 @@ function ProductPage() {
                   +
                 </button>
               </div>
-              {/* <div className="w-[100%] h-[56px] flex items-center flex-wrap mb-[30px]  ">
-                <img
-                  src={im1}
-                  alt=""
-                  className="w-[56px] h-[100%] rounded-[50px] object-fill border-2 border-black mr-[10px]"
-                />
-                <span className="font-semibold border-2 border-black">Mouse fit</span>
-                <button className="bg-black text-white w-[96px] h-[80%] flex items-center justify-center 2xl:ml-[150px] xl:ml-[150px] lg:ml-[150px] md:ml-[150px] sm:ml-[150px] rounded-[8px] ">
-                  <Chat />
-                  <span className="ml-[10px]">Chat</span>
-                </button>
-              </div> */}
-              <div className="w-full h-[56px] flex items-center xl:mt-[100px] sm:mt-[20px] sm:pl-3 sm:pr-3">
+              <div className="w-full h-[56px] flex items-center xl:mt-[50px] sm:mt-[20px] sm:pl-3 sm:pr-3">
                 <h3 className="text-left font-bold text-[#000032] text-[22px]">
                   ${finalPrice.toFixed(2)}
                 </h3>
@@ -186,7 +169,7 @@ function ProductPage() {
           <div className="w-full min-h-[600px]  flex text-left flex-wrap mb-[40px] sm:pl-3 sm:pr-3">
             <p>{data[0].description}</p>
           </div>
-              <Reviews/>
+              <Reviews productID={data[0].id}/>
         </div>
       </div>
     </>

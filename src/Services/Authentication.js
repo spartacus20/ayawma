@@ -9,7 +9,7 @@ export var Authentication = async () => {
         try {
             const response = await axios.get("/api/user", {
                 headers: {
-                    Authorization: `Bearer ${userToken}`,
+                    "Authorization": `Bearer ${userToken}`,
                 },
             });
             console.log(response.data)

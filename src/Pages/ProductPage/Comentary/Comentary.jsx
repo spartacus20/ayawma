@@ -1,12 +1,12 @@
 import React from 'react'
 import { Rating } from '@mui/material'
 import "./comentary.css"
-function Comentary() {
+function Comentary({name, date, rating, text}) {
   return (
     <div className='Comentary'>
-      <span className='ComentaryText'>Jorge, 13 May 2022</span>
-      <div className='RatingComentary'><Rating name="read-only" value={5} size="small" readOnly /></div>
-      <p>asdasdjsabdkjhasbdiiiiiibsabiuassssssiuuiasnljokajsndjunasdinwaipdbawipbdqwaipdpiwuabdipabdipabdipabwdpibpdifbnaijfbwiejabfikjabdnfkjaosndokjasndojsandikjsandijnadjwndujnadunaipufbpaubfiupawbdiujpwab</p>
+      <span className='ComentaryText'>{name}, {date}</span>
+      <div className='RatingComentary'><Rating name="read-only" value={rating} size="small" readOnly /></div>
+      <p>{text}</p>
     </div>
   )
 }
