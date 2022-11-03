@@ -46,9 +46,9 @@ function Reviews({ productID }) {
         //console.log(data.length)
         
         let totalRating = 0
-        data.map((comment) => {
+        data.map((comment, index) => {
             totalRating += comment.rating
-            return (<Comentary name={comment.name} date={comment.comment_data} rating={comment.rating} text={comment.comment} key={comment.id}/>)
+            return (<Comentary name={comment.name} date={comment.comment_data} rating={comment.rating} text={comment.comment} key={index}/>)
         }) 
 
         if(data.length != 0){
@@ -142,8 +142,8 @@ function Reviews({ productID }) {
             { data.length === 0
             ? 
             <h3></h3>
-            : allComments.map((comment) => (
-                <Comentary name={comment.name} date={comment.comment_data} rating={comment.rating} text={comment.comment} key={comment.id}/>
+            : allComments.map((comment, index) => (
+                <Comentary name={comment.name} date={comment.comment_data} rating={comment.rating} text={comment.comment} key={index    }/>
             ))
             }
 
