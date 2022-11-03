@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import CartItem from "../../Components/CartItem/CartItem";
-import Password from "../../Assets/Password";
 import { useStateValue } from "../../StateProvider";
 
 import { actionTypes, getBasketTotal } from "../../reducer";
@@ -39,11 +38,11 @@ function ShoppingCart() {
       <Navbar />
       <div className="w-full min-h-[600px]  mt-[100px] ">
         <div className="w-[80%] mx-auto min-h-[550px]">
-          <div className="font-semibold  w-[20%] mb-[30px]">
+          <div className="font-semibold w-[20%] mb-[30px]">
             <h3 className="text-[25px] text-[#333333]">Shop cart</h3>
           </div>
           <div className="h-[80%]">
-            <div className="flex">
+            <div className="flex sm:flex-col">
               <div className={basket.length < 1 ? "mr-auto h-[40px] mt-[50px]  w-[50%]  " : "hidden"}>
                 <span className="text-[#808080] text-[16px]">
                   No product found in shop cart

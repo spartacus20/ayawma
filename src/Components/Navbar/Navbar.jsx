@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 import { Authentication } from "../../Services/Authentication"
 import { useNavigate } from "react-router-dom";
 import { Badge } from '@mui/material';
+import Menu from './Menu/Menu'; 
 import { useStateValue } from "../../StateProvider";
 import CartIcon from "../../Assets/CartIcon";
 import Barras from "../../Assets/Barras";
@@ -60,22 +61,14 @@ function Navbar({ Home }) {
 
   return (
     <div className="bg-blue-100 shawdow-md w-full  top-0 left-0  fixed z-20">
-      <nav className="md:flex bg-white py-5 sm:py-1 sm:flex mx-auto ">
-        {/* sidebar */}
-
-        <div
-          className={`${
-            sidebar ? "ml-[-5000px] " : "ml-[0px]"
-          } h-[100%] w-[100%] bg-black fixed top-[0px] opacity-90`}
-        >
-          <div
-            className="c w-[10%] h-[5%] flex mt-[20px] ml-[30px] items-center justify-flex-start"
-            onClick={toggleSidebar}
-          >
-            <XIcon />
-          </div>
-          <CategorieList/>
+       {/* sidebar */}
+      <div className={sidebar? 'hidden':'h-screen absolute'}>
+          <Menu sidebar={sidebar} toggleSidebar={toggleSidebar}/>
         </div>
+      <nav className="md:flex bg-white py-5 sm:py-1 sm:flex mx-auto ">
+       
+
+       
 
         {/* parte de la izquierda */}
 
