@@ -6,6 +6,8 @@ import ProductContainer from "../../Components/ProductContainer/ProductContainer
 import Navbar from "../../Components/Navbar/Navbar";
 import Card from "../../Components/Card/Card";
 import axios from "../../Services/axios";
+import Sort from "./Filers/Sort";
+import Filters from "./Filers/Filters.jsx";
 function ProductResult() {
 
   const [data, setData] = useState([])
@@ -40,32 +42,19 @@ function ProductResult() {
   return (
     <>
       <Navbar />
-      <div className="pageResult">
-
-        <div className="Divider">
-          <span>{data.length} results for "{product}"</span>
-          <div className="Filter" onClick={rotateIcon}>
-            <span>Sort by</span>
-            <div id="Icon">
-              <FiChevronDown size={30} />
-            </div>
-            <div className={dropdown? "Dropdown":"inactive"}>
-                <button className="Button">Featured</button>
-                <button className="Button">Newest</button>
-                <button className="Button">Price: High-Low</button>
-                <button className="Button">Price: Low-Hight</button>
-            </div>
+      <div className='flex w-[85vw] my-16 mx-auto xl:mt-[150px]'>
+        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-12 gap-y-12'>
+          <div className='sticky lg:col-span-1'>
+            <Filters filters="asd" />
+          </div>
+          <div className='mb-[20rem] md:col-span-2 lg:col-span-4'>
+            <div className='w-full flex flex-col'>
+              <Sort />
+              
           </div>
         </div>
-
-
-        <ProductContainer>
-
-          {/* I neeed to iterate with json file which get the database */}
-          {data.map((e) => (<Card text={e.title} key={e.id} />))}
-
-        </ProductContainer>
       </div>
+    </div>
 
 
 

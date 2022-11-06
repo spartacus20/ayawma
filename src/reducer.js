@@ -4,6 +4,7 @@
 const basketFromLocalStorage =  JSON.parse(localStorage.getItem('previous_cart' ) ||  '[]')
 
 export const initialState = {
+  productSidebar: false,
   basket: basketFromLocalStorage,
   quantity: 0,
   user: null,
@@ -12,6 +13,7 @@ export const initialState = {
 };
 
 export const actionTypes = {
+  SET_PRODUCT_SIDEBAR: "SET_PRODUCT_SIDEBAR",
   ADD_TO_BASKET: "ADD_TO_BASKET",
   REMOVE_ITEM: "REMOVE_ITEM",
   EMPTY_BASKET: "EMPTY_BASKET",
@@ -97,6 +99,10 @@ const reducer = (state, action) => {
         ...state,
         paymentMessage: action.paymentMessage,
       };
+    case "SET_PRODUCT_SIDEBAR": 
+      return {
+        productSidebar: true
+      }
     default:
       return state;
   }
