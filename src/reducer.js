@@ -54,10 +54,7 @@ const reducer = (state, action) => {
           ...state,
           basket: [...nBasket],
         };
-      // return {
-      //   ...state,
-      //   basket: [...state.basket, action.item],
-      // };
+ 
 
     case "REMOVE_ITEM":
       const index = state.basket.findIndex(
@@ -101,7 +98,7 @@ const reducer = (state, action) => {
       };
     case "SET_PRODUCT_SIDEBAR": 
       return {
-        productSidebar: true
+        productSidebar: !state.productSidebar
       }
     default:
       return state;
