@@ -58,18 +58,7 @@
 
 /* Responsive Desing  */
 
-@media only screen and (max-width: 1920px){
-    .Card{
-       width: 350px;
-       margin: 0 10px 10px ;
-    }
-    .CardIMG{
-       height: 50%;
-    }
-    .CardIMG img{
-       object-fit: none;
-    }
-}
+
 @media only screen and (max-width: 1440px){
     .Card{
         width: 240px;

@@ -1,7 +1,10 @@
 import React, {useState} from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import Password from "../../Assets/Password";
+import { toast } from "react-toastify"
 import PasswordStrengthBar from 'react-password-strength-bar';
+import axios from "../../Services/axios";
 
 function showPassword() {
     var x = document.getElementById("reset-password");
@@ -13,10 +16,19 @@ function showPassword() {
   }
 
 
+
+
+
 function NewPassword() {
 
-   
+    const navigate = useNavigate();
+    const {id, token} = useParams();
     const [password, setPassword] = useState(""); 
+    const handleClick = async () => {
+      const response = await axios.post("/reset-password/"+id+"/"+token, { password })
+      toast.success(response.data.msg)
+      navigate("/login")
+    }
 
 
   return (
@@ -56,6 +68,7 @@ function NewPassword() {
             <button
               type="submit"
               className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+              onClick={handleClick}
             >
               Update password
             </button>

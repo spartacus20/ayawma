@@ -42,7 +42,7 @@ function App() {
             <Route path="/s/:product" element={<ProductResult />} />
             <Route path="/recovery-password" element={<RecorveryPassword />} />
             <Route path="/password-sent" element={<EmailSent />} />
-            <Route path="/new-password" element={<NewPassword />} />
+            <Route path="/reset-password/:id/:token" element={<NewPassword />} />
             <Route path="/:product" element={<ProducPage />} />
             <Route path="/shopcart" element={<ShoppingCart />} />
             <Route path="/contact" element={<ContactUs />} />
