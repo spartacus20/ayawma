@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Email from "../../Assets/Email";
 import ReCAPTCHA from "react-google-recaptcha";
-import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function getEmail(){
@@ -27,7 +27,7 @@ function RecorveryPassword() {
 
     navigate("/password-sent?email="+getEmail());
   };
-
+  console.log(process.env.REACT_APP_SITE_KEY)
   return (
     <>
       <Navbar />
@@ -36,7 +36,7 @@ function RecorveryPassword() {
           <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
             Recovery Password
           </div>
-          <div className="mt-8 w-[400px]  mt-[100px] ">
+          <div className="mt-8 w-[400px]  ">
             <form action="#" autoComplete="off">
               <div className="flex relative mb-[30px]">
                 <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">

@@ -29,7 +29,7 @@ function NewPassword() {
       toast.success(response.data.msg)
       navigate("/login")
     }
-
+    
 
   return (
     <>

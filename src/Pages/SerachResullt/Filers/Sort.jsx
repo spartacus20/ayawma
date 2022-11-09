@@ -7,12 +7,15 @@ import "./categories"
 function Sort({ totalProducts }) {
 
     const [{ productSidebar }, dispatch] = useStateValue();
+    
 
     const toggleSidebar = () => {
         dispatch({ type: actionTypes.SET_PRODUCT_SIDEBAR })
     }
     const [Sort, setSort] = useState("price-lowest")
-
+    const ChangeView = () => { 
+        dispatch({ type: actionTypes.CHANGE_GRID_VIEW } )
+    }
     return (
 
 
@@ -22,14 +25,14 @@ function Sort({ totalProducts }) {
                 <button className='border-2 border-black rounded-md p-1 inline-block xl:hidden sm:flex' onClick={toggleSidebar}>
                     <BiFilterAlt />
                 </button>
-                <button className='border-2 border-black rounded-md p-1 inline-block'>
+                <button className='border-2 border-black rounded-md p-1 inline-block' onClick={ChangeView}>
                     <BsFillGridFill />
                 </button>
-                <button className='border-2 border-black rounded-md p-1 inline-block'>
+                <button className='border-2 border-black rounded-md p-1 inline-block' onClick={ChangeView}>
                     <BsList />
                 </button>
             </div>
-            <p className='text-sm inline-block capitalize sm:ml-[15px]'>0 products found</p>
+            <p className='text-sm inline-block capitalize sm:ml-[15px]'>{totalProducts} products found</p>
             <div className='h-[1px] w-1/2 bg-gray-500 sm:hidden xl:flex'></div>
             <form className='ml-4'>
                 <label htmlFor="sort" className='capitalize'>sort by</label>
