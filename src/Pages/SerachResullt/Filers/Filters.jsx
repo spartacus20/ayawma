@@ -6,7 +6,7 @@ function Filters() {
 
     const [{ productSidebar }, dispatch] = useStateValue();
     const [categorie, setCategorie] = useState("all")
-    const maxPrice = 3000.99
+    const maxPrice = 100.99
     const minPrice = 0.99
     const [price, setPrice] = useState(maxPrice)
     

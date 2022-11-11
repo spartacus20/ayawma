@@ -1,5 +1,5 @@
 export const CATEGORIES = [
-    'all', 'desktop', 'laptop', 'printer', 'scanner', 'tablet', 'monitor'
+    'all', 'apple', 'dell', 'hp', 'samsung'
 ];
 export const BRANDS = [
     'All', 'Apple', 'Dell', 'HP', 'Samsung'
