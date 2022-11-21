@@ -1,21 +1,22 @@
 import React from 'react'
 import axios from '../../Services/axios';
 import Password from "../../Assets/Password";
-
+import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../../StateProvider'
 
 function CheckoutButton() {
-
+  const navigate = useNavigate();
   const [{ basket }, dispatch] = useStateValue();
   const handleCheckout = () => {
 
     if(basket.length > 0){ 
-      axios.post("/create-checkout-session", {
+      axios.post("/create-payment-intent", {
         basket
       }).then(res => {
-        if (res.data.url) {
-          window.location.href = res.data.url;
-        }
+        const { clientSecret, id } = res.data
+        // console.log(res.data)
+        navigate("/checkout/"+clientSecret+"/"+id);
+        
       }).catch(err => {
         console.log(err.message)
       });
