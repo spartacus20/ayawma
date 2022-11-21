@@ -14,6 +14,7 @@ import NewPassword from "./Pages/RecoveryPassword/NewPassword";
 import ProducPage from "./Pages/ProductPage/ProductPage";
 import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 import ContactUs from "./Pages/ContactUs/ContactUs";
+import Checkout from "./Pages/Checkout/Checkout";
 
 
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="/reset-password/:id/:token" element={<NewPassword />} />
             <Route path="/:product" element={<ProducPage />} />
             <Route path="/shopcart" element={<ShoppingCart />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/contact" element={<ContactUs />} />
           </Routes>
       
