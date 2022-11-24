@@ -10,7 +10,6 @@ export const initialState = {
   quantity: 0,
   user: null,
   shippingData: {},
-  paymentMessage: "",
 };
 
 export const actionTypes = {
@@ -21,7 +20,6 @@ export const actionTypes = {
   EMPTY_BASKET: "EMPTY_BASKET",
   SET_USER: "SET_USER",
   SET_SHIPPINGDATA: "SET_SHIPPINGDATA",
-  SET_PAYMENT_MESSAGE: "SET_PAYMENT_MESSAGE",
 };
 
 
@@ -91,12 +89,7 @@ const reducer = (state, action) => {
     case "SET_SHIPPINGDATA":
       return {
         ...state,
-        shippingData: action.shippingData,
-      };
-    case "SET_PAYMENT_MESSAGE":
-      return {
-        ...state,
-        paymentMessage: action.paymentMessage,
+        shippingData: action.item,
       };
     case "SET_PRODUCT_SIDEBAR": 
       return {

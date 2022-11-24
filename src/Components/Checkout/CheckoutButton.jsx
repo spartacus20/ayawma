@@ -16,7 +16,9 @@ function CheckoutButton() {
         const { clientSecret, id } = res.data
         // console.log(res.data)
         navigate("/checkout/"+clientSecret+"/"+id);
-        
+        // if (res.data.url) {
+        //   window.location.href = res.data.url;
+        // }
       }).catch(err => {
         console.log(err.message)
       });
