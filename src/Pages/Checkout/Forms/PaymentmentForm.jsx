@@ -4,6 +4,7 @@ import "./paymentForm.css"
 import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import Button from '@mui/material/Button';
 import { useStateValue } from '../../../StateProvider';
+import { actionTypes } from '../../../reducer';
 
 function PaymentmentForm({backStep, nextStep}) {
 
@@ -11,8 +12,8 @@ function PaymentmentForm({backStep, nextStep}) {
  
     const [ {shippingData}, dispatch] = useStateValue(); 
     console.log(shippingData)
-    const { clientSecret } = useParams();
-    const RETURN_URL = 'http://localhost:3000/checkout/'+clientSecret
+    const { clientSecret, id} = useParams();
+    const RETURN_URL = 'http://localhost:3000/checkout/'+clientSecret+"/"+id+"/success"
     console.log(clientSecret)
     const stripe = useStripe();
     const elements = useElements();
@@ -78,19 +79,14 @@ function PaymentmentForm({backStep, nextStep}) {
 
 
         if (error.type === "card_error" || error.type === "validation_error") {
-            setMessage(error.message);
-            setIsLoading(false);
-            return;
-            
+            setMessage(error.message);  
         } else {
             setMessage("An unexpected error occurred.");
-            setIsLoading(false);
-            return;
         }
 
-      
-
+        
         setIsLoading(false);
+        
 
 
     }

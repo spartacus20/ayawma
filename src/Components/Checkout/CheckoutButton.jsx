@@ -3,6 +3,8 @@ import axios from '../../Services/axios';
 import Password from "../../Assets/Password";
 import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../../StateProvider'
+import { faDisplay } from '@fortawesome/free-solid-svg-icons';
+import { actionTypes } from '../../reducer';
 
 function CheckoutButton() {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ function CheckoutButton() {
       }).then(res => {
         const { clientSecret, id } = res.data
         // console.log(res.data)
+        dispatch({type: actionTypes.SET_CLIENT_SECRET, clientSecret: clientSecret})
         navigate("/checkout/"+clientSecret+"/"+id);
         // if (res.data.url) {
         //   window.location.href = res.data.url;

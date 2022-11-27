@@ -1,5 +1,6 @@
 
 .Sidebar{
+    z-index: 999;
     transition: 2s ease-in;
     position: absolute;
     top: 0px;

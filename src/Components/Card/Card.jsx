@@ -3,8 +3,10 @@ import "./card.css"
 import { useNavigate } from 'react-router-dom'
 import im1 from "../../Images/monitor.png"
 import Rating from '@mui/material/Rating';
-function Card({stars, text}) {
+function Card({stars, text, img, price}) {
   
+  let fprice = price || 25.87
+  let image = img || im1; 
   let link = "/"+text.replaceAll(" ", "-")
   const navigate = useNavigate(); 
 
@@ -15,13 +17,13 @@ function Card({stars, text}) {
   return (
     <div className='Card' onClick={handleRedirect}>
         <div className='CardIMG'>
-            <img src={im1} alt="" />
+            <img src={image} alt={text} />
         </div>
         <div className='CardTitle'>
             <p>{text}</p>
         </div>
         <div className='CardPrice'>
-            <span >25,87 €</span>
+            <span >{fprice} €</span>
         </div>
         <div className={stars? "CardStars":"hidden"}>
           <Rating name="read-only" value={5} size="small" readOnly />  

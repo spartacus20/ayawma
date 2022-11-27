@@ -15,6 +15,7 @@ import ProducPage from "./Pages/ProductPage/ProductPage";
 import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import Checkout from "./Pages/Checkout/Checkout";
+import Success from "./Pages/Checkout/Success";
 
 
 function App() {
@@ -37,8 +38,8 @@ function App() {
     
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signin" element={<Register />} />
+            <Route path="/signin" element={<Login />} />
+            <Route path="/signup" element={<Register />} />
             <Route path="/s/:product" element={<ProductResult />} />
             <Route path="/recovery-password" element={<RecorveryPassword />} />
             <Route path="/password-sent" element={<EmailSent />} />
@@ -46,6 +47,7 @@ function App() {
             <Route path="/:product" element={<ProducPage />} />
             <Route path="/shopcart" element={<ShoppingCart />} />
             <Route path="/checkout/:clientSecret/:id" element={<Checkout />} />
+            <Route path="/checkout/:clientSecret/:id/success" element={<Success />} />
             <Route path="/contact" element={<ContactUs />} />
           </Routes>
       

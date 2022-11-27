@@ -10,9 +10,11 @@ export const initialState = {
   quantity: 0,
   user: null,
   shippingData: {},
+  client_secret: "",
 };
 
 export const actionTypes = {
+  SET_CLIENT_SECRET: "SET_CLIENT_SECRET",
   SET_PRODUCT_SIDEBAR: "SET_PRODUCT_SIDEBAR",
   CHANGE_GRID_VIEW: "CHANGE_GRID_VIEW",
   ADD_TO_BASKET: "ADD_TO_BASKET",
@@ -89,15 +91,22 @@ const reducer = (state, action) => {
     case "SET_SHIPPINGDATA":
       return {
         ...state,
-        shippingData: action.item,
+        shippingData: action.shippingData,
       };
     case "SET_PRODUCT_SIDEBAR": 
       return {
+        ...state,
         productSidebar: !state.productSidebar
       }
     case "CHANGE_GRID_VIEW":
       return {
+        ...state,
          gridView: !state.gridView
+      }
+    case "SET_CLIENT_SECRET": 
+      return {
+        ...state,
+        client_secret: action.clientSecret
       }
     default:
       return state;

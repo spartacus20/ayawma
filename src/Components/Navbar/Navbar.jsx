@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
+import { BiUser } from "react-icons/bi"
 import { Authentication } from "../../Services/Authentication"
 import { useNavigate } from "react-router-dom";
 import { Badge } from '@mui/material';
-import Menu from './Menu/Menu'; 
+import Menu from './Menu/Menu';
 import { useStateValue } from "../../StateProvider";
 import CartIcon from "../../Assets/CartIcon";
 import Barras from "../../Assets/Barras";
-import XIcon from "../../Assets/XIcon";
 import Carita from "../../Assets/Carita";
 import im1 from "../../Images/Foto.jpeg";
 import SeachIcon from "../../Assets/SeachIcon";
-import CategorieList from "./CategorieList";
 import Dropdown from "./Dropdown";
+import useScrollBlock from "../../Hooks/useScrollBlock.js"
+import { info } from "autoprefixer";
+
 function Navbar({ Home }) {
+ 
+  const [data, setData] = useState({});
+  const [blockScroll, allowScroll] = useScrollBlock()
   const [dropdown, setDropDown] = useState(false);
   const [{ basket }, dispatch] = useStateValue();
   const [name, setName] = useState("");
@@ -22,7 +27,14 @@ function Navbar({ Home }) {
   const [sidebar, setSidebar] = useState(true);
   const [search, setSeach] = useState();
   const toggleDropDown = () => setDropDown(!dropdown);
-  const toggleSidebar = () => setSidebar(!sidebar);
+  const toggleSidebar = () => {
+    setSidebar(!sidebar)
+    if (sidebar) {
+      blockScroll();
+    } else {
+      allowScroll();
+    }
+  };
   const navigate = useNavigate();
   const cookie = new Cookies();
   const handleSearch = (e) => {
@@ -48,8 +60,9 @@ function Navbar({ Home }) {
 
     const HTTP = async () => {
       try {
-        const res = await Authentication(); 
-        setName(res.data[0].name);
+        const res = await Authentication();
+        
+        setData(res.data[0]);
         setLoggetIn(true);
       } catch (e) {
         setLoggetIn(false);
@@ -60,119 +73,65 @@ function Navbar({ Home }) {
   }, []);
 
   return (
-    <div className="bg-blue-100 shawdow-md w-full  top-0 left-0  fixed z-20">
-       {/* sidebar */}
-      <div className={sidebar? 'hidden':'h-screen absolute'}>
-          <Menu sidebar={sidebar} toggleSidebar={toggleSidebar}/>
-        </div>
-      <nav className="md:flex bg-white py-5 sm:py-1 sm:flex mx-auto ">
-       
-
-       
-
-        {/* parte de la izquierda */}
-
-        <div className="w-[20%] flex items-center justify-center">
-          <div className="flex ml-[100px] my-auto cursor-pointer text-2xl font-[Open sans] font-bold font-sans items-center">
-            <div
-              className={
-                Home
-                  ? "2xl:hidden xl:hidden lg:hidden sm:mr-[10px] md:mr-[10px] "
-                  : "flex 2xl:mr-[20px] 2xl:mt-[5px] xl:mr-[20px] xl:mt-[5px] lg:mr-[20px] lg:mt-[5px] sm:mr-[10px] md:mr-[10px] sm:mt-[0px]"
-              }
-              onClick={toggleSidebar}
-            >
-              <Barras />
+    <>
+      {/* Sidebar */}
+      <div className={sidebar ? 'hidden' : 'h-[100%] absolute top-0'}>
+        <Menu sidebar={sidebar} toggleSidebar={toggleSidebar} />
+      </div>
+      <header className="w-full h-[80px] bg-white fixed z-20 flex items-center top-0">
+        <nav className="xl:px-16 py-5 flex xl:container sm:w-full items-center mx-auto flex-wrap">
+          <div className="container flex flex-wrap items-center justify-between mx-auto">
+            <div className="flex items-center xl:px-5">
+              <div className={Home ? "xl:hidden sm:flex" : "flex"} onClick={toggleSidebar} >
+                <Barras />
+              </div>
+              <Link to="/">
+                <h1 className="xl:ml-5 sm:ml-2 xl:text-2xl sm:text-lg  font-bold">AYAWMA</h1>
+              </Link>
             </div>
-            <Link to="/">
-              <span className="text-4xl xl:text-3xl sm:text-xl ml-[100xp] " onClick={() => window.href = "/"}>
-                AYAWMA
-              </span>
-            </Link>
-          
-          </div>
-        </div>
+            <form className="flex items-center h-[48px] xl:w-[600px] border-2 border-black rounded-3xl sm:hidden xl:flex">
+              <input type="text" placeholder="Search for anything..." className="h-[100%] w-[92%] px-3 rounded-3xl outline-none" onChange={(e) => setSeach(e.target.value)} />
+              <button onClick={handleSearch}><SeachIcon /></button>
 
-        {/* parte del medio */}
-
-        <div className="xl:w-[60%] xl:flex sm:hidden ">
-          <div className="rounded-[50px] w-[80%] h-[50px] mx-auto sm:hidden  flex ml-100 border-2 border-solid border-[#000032] shadow-lg  lg:flex md:flex ">
-            <form onSubmit={handleSearch} className="flex w-full">
-              <input
-                type="text"
-                placeholder="Search for anything..."
-                onChange={(e) => setSeach(e.target.value)}
-                className=" border-solid border-[#000032] w-[94%] rounded-[50px] pl-[10px] outline-none  "
-              />
-              <button className="flex item-center w-[5%] ">
-                <SeachIcon/>
-              </button>
             </form>
-          </div>
-        </div>
+            <Link to="/signin">
+              <span className={!loggeIn ? "xl:text-lg sm:text-md font-semibold sm:hidden xl:flex" : "hidden"}>Sign in</span>
+            </Link>
 
-        {/* parte de la derecha */}
-        <div className="xl:w-[20%] flex sm:ml-[140px] sm:w-[50%] ">
-          <div className="xl:w-[50%] sm:w-[120px] sm:mr-[0px] text-2xl  sm:py-4  flex justify-center items-center  h-[100%]">
-
-            <span className={loggeIn ? "hidden" : "text-[1.2rem] sm:text-base"}>
-              <Link to="/login">Sign in</Link>
-            </span>
-            <div
-              className={
-                loggeIn
-                  ? "2xl:border-2 2xl:border-[#000032] xl:border-2 xl:border-[#000032] lg:border-2 lg:border-[#000032] rounded-[50px] w-[100%]  flex  items-center h-[100%] flex-wrap  "
-                  : "hidden"
-              }
-              onClick={toggleDropDown}
-            >
-              <div className="h-[100%] flex items-center ml-[10px] 2xl:flex xl:flex lg:flex md:hidden sm:hidden">
-                <Carita />
+            <div className={loggeIn ? "border-2 border-black rounded-3xl px-3 py-1 xl:flex sm:hidden items-center cursor-pointer relative" : "hidden"} onClick={toggleDropDown} >
+              <Carita />
+              <span className="text-md font-semibold ml-2" >Hi, {data.name}</span>
+              <div className={dropdown ? "xl:flex sm:hidden" : "hidden"}>
+                <Dropdown  logOut={handleLogOut} data={data}/>
               </div>
 
-              <span className="text-[14px] ml-[10px] 2xl:flex xl:flex lg:flex md:hidden sm:hidden">
-                {name}
-              </span>
+            </div>
 
-              <a
-                href="#"
-                className="block relative 2xl:hidden xl:hidden lg:hidden md:flex sm:flex"
-                onClick={toggleDropDown}
-              >
-                <img
-                  alt="profil"
-                  src={im1}
-                  className="mx-auto object-cover  h-[32px] w-[32px] "
-                />
-              </a>
-
-              {/* DropdownMenu */}
-
-              <div
-                className={
-                  dropdown
-                    ? "absolute 2xl:mr-[170px] 2xl:top-[60px] xl:mr-[90px] xl:top-[60px] lg:mr-[60px] lg:top-[60px] md:top-[60px] md:right-[0px] sm:top-[60px] sm:right-[0px]  w-56 rounded-md shadow-lg  bg-black  ring-1 ring-black ring-opacity-5"
-                    : "hidden"
-                }
-              >
-                {/* DropDown */}
-                <Dropdown logOut={handleLogOut}/>
+            <div className="flex items-center ">
+              <div className={loggeIn ? "hidden" : "flex"}>
+                <Link to="/signin">
+                  <BiUser size={25} className="sm:flex xl:hidden mr-3" />
+                </Link>
               </div>
+              <div className={loggeIn ? "flex relative" : "hidden"} onClick={toggleDropDown} >
+                <BiUser size={25} className="sm:flex xl:hidden mr-3" />
+                <div className={dropdown ? "xl:hidden sm:flex" : "hidden"}>
+                <Dropdown logOut={handleLogOut} data={data}/>
+              </div>
+              </div>
+              <Link to="/shopcart" relative="path">
+                <Badge badgeContent={basket?.length} color="primary">
+                  <CartIcon />
+                </Badge>
+              </Link>
             </div>
           </div>
-          <div
-            className="xl:w-[50%] sm:ml-[5px] flex justify-center items-center"
-           
-          >
-            <Link to="/shopcart" relative="path">
-              <Badge badgeContent={basket?.length} color="primary">
-                <CartIcon />
-              </Badge>
-            </Link>
-          </div>
-        </div>
-      </nav>
-    </div>
+
+
+        </nav>
+      </header>
+
+    </>
   );
 }
 

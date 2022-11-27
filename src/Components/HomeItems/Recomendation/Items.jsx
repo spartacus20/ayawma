@@ -19,8 +19,8 @@ function Items() {
                     <span>Most trending items</span>
                 </div>
             </div>
-                <MostPopular visible={!Items} />
-                <MostTrending visible={Items} />
+                <MostPopular visible={!items} />
+                <MostTrending visible={items} />
 
            
 
