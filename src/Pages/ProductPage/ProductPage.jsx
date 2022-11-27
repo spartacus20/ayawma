@@ -33,6 +33,7 @@ function ProductPage() {
   
 
   const test = () => {
+    window.scrollTo(0,0)
     console.log(product);
     let productFind = product.replaceAll("-", " ")
     console.log(productFind)

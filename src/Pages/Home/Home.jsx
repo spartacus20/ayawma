@@ -15,6 +15,7 @@ function Home() {
 
     useEffect(() => {
         document.title = "Ayawma.com"
+        window.scrollTo(0,0)
     }, [])
 
     return (

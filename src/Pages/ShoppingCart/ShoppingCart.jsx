@@ -10,8 +10,6 @@ function ShoppingCart() {
   const [{ basket }, dispatch] = useStateValue();
   const [price, setPrice] = useState(0);
 
-
-
   const emptyBasket = () => {
     dispatch({ type: actionTypes.EMPTY_BASKET, basket: [] })
   }
@@ -33,11 +31,7 @@ function ShoppingCart() {
     })
   }
 
-  const product = {
-    title: "asdhiaghdwahd",
-    price: 121
-  }
-
+  
   return (
     <>
       <Navbar />

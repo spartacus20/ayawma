@@ -16,6 +16,8 @@ import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import Checkout from "./Pages/Checkout/Checkout";
 import Success from "./Pages/Checkout/Success";
+import Navbar from "./Components/Navbar/Navbar";
+import Settings from "./Pages/Settings/Settings";
 
 
 function App() {
@@ -35,7 +37,8 @@ function App() {
   return (
     <div className="App"> 
       <BrowserRouter>
-    
+      <Navbar/>
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signin" element={<Login />} />
@@ -48,6 +51,7 @@ function App() {
             <Route path="/shopcart" element={<ShoppingCart />} />
             <Route path="/checkout/:clientSecret/:id" element={<Checkout />} />
             <Route path="/checkout/:clientSecret/:id/success" element={<Success />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/contact" element={<ContactUs />} />
           </Routes>
       
