@@ -13,12 +13,10 @@ function ShippingForm({handleClick}) {
      * console.
      */
     const formsFields = (e) => {
+
         if(e.complete) {
-            const name = e.value.name;
-            const address = e.value.address;
-            console.log("gucci")
+         
             dispatch({type: actionTypes.SET_SHIPPINGDATA, shippingData: e.value})
-            console.log(shippingData)
         }
     }
 

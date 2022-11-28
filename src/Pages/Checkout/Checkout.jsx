@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import "./checkout.css"
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -13,17 +14,26 @@ const stripe = loadStripe("pk_test_51LlKpNKO3d18apjLqLK4CXIDzkLQFunwPsZp1vUPW5hg
 
 function Checkout() {
 
-  const [{ basket }, dispatch] = useStateValue();
-  const { clientSecret } = useParams(); 
+  const [{ shippingData }, dispatch] = useStateValue();
+  const { clientSecret } = useParams();
   const steps = ["Shipping Options", "Payment Options"]
   const [activeStep, setActiveStep] = useState(0);
 
-  const nextStep = () => setActiveStep((prevStep) => prevStep + 1);
+  const nextStep = () => {
+
+    if(Object.keys(shippingData).length === 0){
+      
+      toast.error("Please enter your shipping information.")
+      return; 
+    }
+      setActiveStep((prevStep) => prevStep + 1);
+    
+  }
   const backStep = () => setActiveStep((prevStep) => prevStep - 1);
 
 
   const options = {
-    clientSecret: clientSecret, 
+    clientSecret: clientSecret,
     appearance: {
       theme: 'stripe'
     }
@@ -37,7 +47,7 @@ function Checkout() {
   return (
     <main className='CheckoutLayout'>
       <h1>Checkout</h1>
-    <Stepper activeStep={activeStep}>
+      <Stepper activeStep={activeStep}>
         {steps.map((label, index) => (
           <Step key={index} >
             <StepButton onClick={handleStep(index)}>{label}</StepButton>
@@ -46,7 +56,7 @@ function Checkout() {
         ))}
       </Stepper>
       <Elements options={options} stripe={stripe}>
-        <FormHandler currentStep={activeStep} nextStep={nextStep} backStep={backStep}/>
+        <FormHandler currentStep={activeStep} nextStep={nextStep} backStep={backStep} />
       </Elements>
     </main>
   )

@@ -79,9 +79,9 @@ function Login() {
   return (
     <>
       <Navbar />
-      <div className="mx-auto mt-[150px] bg-[#CBCBCB] xl:w-[400px] sm:w-[380px] px-6 py-6 rounded-xl">
+      <div className="mx-auto mt-[150px] bg-black xl:w-[400px] sm:w-[380px] px-6 py-6 rounded-xl">
 
-        <h2 className="text-2xl font-semibold mb-10">Sign in</h2>
+        <h2 className="text-2xl font-semibold mb-10 text-white">Sign in</h2>
         <input type="email" name="" id="" placeholder="Enter your email address" className="w-full h-[45px] rounded-lg pl-3 border-2 border-black mb-5" onChange={emailCompleted} />
         <input type="password" name="" id="" placeholder="Enter your password" className={completed ? " w-full h-[45px] rounded-lg pl-3 border-2 border-black mb-1 " : "hidden"} onChange={(e) => setPassword(e.target.value)} />
 
@@ -89,13 +89,13 @@ function Login() {
           <p className={completed ? "text-right text-gray-500 sm:text-sm hover:text-gray-700 mb-5 cursor-pointer" : "hidden"}>Forgot Password?</p>
         </Link>
 
-        <button className="w-full h-[54px] bg-black text-white rounded-lg mb-7" onClick={handleLogin}>Sign in</button>
+        <button className="py-2 px-4 mb-7  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg " onClick={handleLogin}>Sign in</button>
 
         <Link to="/signup">
-          <p className="text-lg font-semibold text-center mb-10 cursor-pointer">Sign up</p>
+          <p className="text-lg font-semibold text-center text-white mb-10 cursor-pointer ">Sign up</p>
         </Link>
 
-        <h5 className="text-lg font-semibold text-center mb-5">or</h5>
+        <h5 className="text-lg font-semibold text-center mb-5 text-white">or</h5>
 
         <GoogleLogin
           className="w-full rounded-lg"
