@@ -1,6 +1,7 @@
 .Card{
     cursor: pointer;
-    width: 283px;
+    /* width: 283px; */
+    width: 285px;
     height: 350px;
     margin: 0 10px 30px ;
 

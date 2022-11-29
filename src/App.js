@@ -19,6 +19,7 @@ import Success from "./Pages/Checkout/Success";
 import Navbar from "./Components/Navbar/Navbar";
 import Settings from "./Pages/Settings/Settings";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
+import PageHandler from "./Pages/PageNotFound/PageHandler";
 
 
 function App() {
@@ -36,27 +37,24 @@ function App() {
   });
 
   return (
-    <div className="App"> 
+    <div className="App">
       <BrowserRouter>
-      <Navbar/>
-
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signin" element={<Login />} />
-            <Route path="/signup" element={<Register />} />
-            <Route path="/s/:product" element={<ProductResult />} />
-            <Route path="/recovery-password" element={<RecorveryPassword />} />
-            <Route path="/password-sent" element={<EmailSent />} />
-            <Route path="/reset-password/:id/:token" element={<NewPassword />} />
-            <Route path="/:product" element={<ProducPage />} />
-            <Route path="/shopcart" element={<ShoppingCart />} />
-            <Route path="/checkout/:clientSecret/:id" element={<Checkout />} />
-            <Route path="/checkout/:clientSecret/:id/success" element={<Success />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/contact" element={<ContactUs />} />
-            
-          </Routes>
-      
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/s/:product" element={<ProductResult />} />
+          <Route path="/recovery-password" element={<RecorveryPassword />} />
+          <Route path="/password-sent" element={<EmailSent />} />
+          <Route path="/reset-password/:id/:token" element={<NewPassword />} />
+          <Route path="/:product" element={<PageHandler />} />
+          <Route path="/shopcart" element={<ShoppingCart />} />
+          <Route path="/checkout/:clientSecret/:id" element={<Checkout />} />
+          <Route path="/checkout/:clientSecret/:id/success" element={<Success />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/contact" element={<ContactUs />} />
+        </Routes>
       </BrowserRouter>
       <ToastContainer />
     </div>

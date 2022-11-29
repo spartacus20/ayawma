@@ -13,7 +13,7 @@ import HPNotebook from '../../../Images/HOME/hp-notebook.png'
 function LatestProduct() {
     return (
         <div className="LastProduct">
-            <div class="LastProductText">
+            <div className="LastProductText">
                 <h3>Latest Products</h3>
             </div>
             <div className="Recomendation">
