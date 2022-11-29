@@ -75,10 +75,10 @@ function Navbar({ Home }) {
   return (
     <>
       {/* Sidebar */}
-      <div className={sidebar ? 'hidden' : 'h-[100%] absolute top-0'}>
-        <Menu sidebar={sidebar} toggleSidebar={toggleSidebar} />
+      <div className={ sidebar? "hidden":"flex"}>
+      <Menu sidebar={sidebar} toggleSidebar={toggleSidebar} />
       </div>
-      <header className="w-full h-[80px] bg-white fixed z-20 flex items-center top-0">
+      <header className="w-full h-[80px] bg-white fixed z-10 flex items-center top-0">
         <nav className="xl:px-16 py-5 flex xl:container sm:w-full items-center mx-auto flex-wrap">
           <div className="container flex flex-wrap items-center justify-between mx-auto">
             <div className="flex items-center xl:px-5">

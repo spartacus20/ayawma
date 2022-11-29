@@ -21,7 +21,7 @@ function Filters() {
 
     return (
         <>
-            <div className={`xl:sticky top-0 w-[200px] xl:bg-white sm:absolute sm:bg-black sm:h-[100vh] ${productSidebar ? 'sm:left-[-30px]' : 'sm:left-[-5000px]'}`}>
+            <div className={`xl:sticky top-0 w-[200px] xl:z-10 xl:bg-white sm:absolute sm:bg-black  sm:h-[100vh] ${productSidebar ? 'sm:left-[-30px] ' : 'sm:left-[-5000px]'}`}>
                 <div className="mb-6 sm:pl-3 sm:mt-10 sm:text-white xl:text-black">
                     <div className='mb-6 xl:hidden sm:flex' onClick={toggleSidebar} >
                         X

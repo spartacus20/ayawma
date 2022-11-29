@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { axios } from 'axios'
 import { BsPencilFill } from "react-icons/bs"
+import { Authentication } from '../../Services/Authentication';
+
 import LateralTable from './LateralTable'
 import EmailModal from './Modals/EmailModal';
 import NameModal from './Modals/NameModal'
 import PasswordModal from './Modals/PasswordModal';
 
-// import PasswordModal from './Modals/NameModal'
 
 function Settings() {
 
@@ -17,13 +17,8 @@ function Settings() {
     const toggleEmailModal = () => setEmailModal(!emailModal)
     const togglePasswordModal = () => setPasswordModal(!passwordModal)
 
-    const handleClick =  async () => {
-        const response = await axios.post("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a")
-
-        console.log(response)
-
-    }
-
+  
+    
     return (
 
         <>
@@ -66,8 +61,11 @@ function Settings() {
                                 </div>
                             </div>
                         </div>
-                        <button onClick={handleClick} className=' h-[40px] px-5 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg mb-7'>Save change</button>
+                        <button  className=' h-[40px] px-5 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg mb-7'>Save change</button>
 
+                    </div>
+                    <div>
+                        <h2>Shipping directions</h2>
                     </div>
 
 

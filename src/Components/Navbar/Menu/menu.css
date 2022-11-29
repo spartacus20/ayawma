@@ -34,3 +34,9 @@
     background-color: black;
     opacity: 0.4;
 }
+
+@media only screen and (max-width: 768px) {
+    .Sidebar{
+        height: 200vh;
+    }
+}

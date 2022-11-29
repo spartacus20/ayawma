@@ -18,6 +18,7 @@ import Checkout from "./Pages/Checkout/Checkout";
 import Success from "./Pages/Checkout/Success";
 import Navbar from "./Components/Navbar/Navbar";
 import Settings from "./Pages/Settings/Settings";
+import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
             <Route path="/checkout/:clientSecret/:id/success" element={<Success />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/contact" element={<ContactUs />} />
+            
           </Routes>
       
       </BrowserRouter>

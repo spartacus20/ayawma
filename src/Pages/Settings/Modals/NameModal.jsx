@@ -3,7 +3,7 @@ import React from 'react'
 function NameModal({ nameModal, toggleModal }) {
     return (
         <>
-            <div className={nameModal ? 'w-full h-[100vh] absolute bg-black opacity-30 z-10' : "hidden"}>
+            <div className={nameModal ? 'w-full h-[100vh] absolute bg-black opacity-30 z-20' : "hidden"}>
             </div>
             <div id="defaultModal" tabindex="-1" aria-hidden="true" class={nameModal ? "flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full" : "hidden"}>
                 <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
