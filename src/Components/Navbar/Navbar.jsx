@@ -82,23 +82,23 @@ function Navbar({ Home }) {
         <nav className="xl:px-16 py-5 flex xl:container sm:w-full items-center mx-auto flex-wrap">
           <div className="container flex flex-wrap items-center justify-between mx-auto">
             <div className="flex items-center xl:px-5">
-              <div className={Home ? "xl:hidden sm:flex" : "flex"} onClick={toggleSidebar} >
+              <div className={Home ? "xl:hidden sm:flex" : "flex"} onChange={toggleSidebar} >
                 <Barras />
               </div>
               <Link to="/">
                 <h1 className="xl:ml-5 sm:ml-2 xl:text-2xl sm:text-lg  font-bold">AYAWMA</h1>
               </Link>
             </div>
-            <form className="flex items-center h-[48px] xl:w-[600px] border-2 border-black rounded-3xl sm:hidden xl:flex">
+            <form className="flex items-center h-[48px] xl:w-[600px] border-2 border-black rounded-3xl sm:hidden xl:flex" onSubmit={handleSearch}>
               <input type="text" placeholder="Search for anything..." className="h-[100%] w-[92%] px-3 rounded-3xl outline-none" onChange={(e) => setSeach(e.target.value)} />
-              <button onClick={handleSearch}><SeachIcon /></button>
+              <button onChange={handleSearch}><SeachIcon /></button>
 
             </form>
             <Link to="/signin">
               <span className={!loggeIn ? "xl:text-lg sm:text-md font-semibold sm:hidden xl:flex" : "hidden"}>Sign in</span>
             </Link>
 
-            <div className={loggeIn ? "border-2 border-black rounded-3xl px-3 py-1 xl:flex sm:hidden items-center cursor-pointer relative" : "hidden"} onClick={toggleDropDown} >
+            <div className={loggeIn ? "border-2 border-black rounded-3xl px-3 py-1 xl:flex sm:hidden items-center cursor-pointer relative" : "hidden"} onChange={toggleDropDown} >
               <Carita />
               <span className="text-md font-semibold ml-2" >Hi, {data.name}</span>
               <div className={dropdown ? "xl:flex sm:hidden" : "hidden"}>
@@ -114,7 +114,7 @@ function Navbar({ Home }) {
                   <BiUser size={25} className="sm:flex xl:hidden mr-3" />
                 </Link>
               </div>
-                <button onClick={() => setSearchBtn(!searchBtn)}><SeachIcon /></button>
+                <button onChange={() => setSearchBtn(!searchBtn)}><SeachIcon /></button>
                 <form className={searchBtn? "absolute top-9 right-[-60px] w-[350px]":"hidden"} onSubmit={handleSearch} >
                   <div className="top-[-10px]  xl:left-20 sm:left-[270px] absolute h-3 w-3 origin-bottom-left rotate-45 transform  dark:bg-gray-700 dark:divide-gray-600"></div>
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -123,12 +123,13 @@ function Navbar({ Home }) {
                   <input type="text" id="search-navbar" className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." onChange={(e) => setSeach(e.target.value)}/>
                 </form>
               </div>
-              <div className={loggeIn ? "flex relative" : "hidden"} onClick={toggleDropDown} >
+              <div className={loggeIn ? "flex relative" : "hidden"} onChange={toggleDropDown} >
                 <BiUser size={25} className="sm:flex xl:hidden mr-3" />
                 <div className={dropdown ? "xl:hidden sm:flex" : "hidden"}>
                   <Dropdown logOut={handleLogOut} data={data} />
                 </div>
               </div>
+              {/* <button onClick={handleSearch}>seraasdasd</button> */}
               <Link to="/shopcart" relative="path">
                 <Badge badgeContent={basket?.length} color="primary">
                   <CartIcon />

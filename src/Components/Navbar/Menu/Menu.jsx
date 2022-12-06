@@ -7,12 +7,12 @@ function Menu({ sidebar, toggleSidebar }) {
   return (
     <div className={sidebar ? 'inactive' : 'active'}>
       <div className='Sidebar'>
-        <div className='icon' onClick={toggleSidebar}>
+        <div className='icon' onChange={toggleSidebar}>
           <XIcon />
         </div>
         <CategorieList />
       </div>
-      <div className='Othercontent' onClick={toggleSidebar}></div>
+      <div className='Othercontent' onChange={toggleSidebar}></div>
     </div>
   )
 }
