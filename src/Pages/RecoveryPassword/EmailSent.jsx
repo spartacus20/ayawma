@@ -10,14 +10,20 @@ function EmailSent() {
   const query = new URLSearchParams(loc.search);
   const email = query.get("email");
 
-  // useEffect( async () => {
-  //   axios.post("/forgot-password", { email: email })
-  //   .then((res) => {
-  //     console.log(res.data.msg)
-  //   }).catch((err) => {
-  //     toast.error("Someting went wrong")
-  //   })
-  // }, [])
+  useEffect(() => {
+
+    const HTTP = async () => {
+      axios.post("/forgot-password", { email: email })
+        .then((res) => {
+          console.log(res.data.msg)
+        }).catch((err) => {
+          toast.error("Someting went wrong")
+        })
+    }
+
+    HTTP();
+
+  }, [])
 
 
 
@@ -30,7 +36,7 @@ function EmailSent() {
   return (
     <>
       <Navbar />
-      <div className="2xl:w-[38%] 2xl:h-[60%] xl:w-[40%] flex flex-wrap flex-col sm:w-[80%]">
+      <div className="mx-auto xl:mt-[150px] sm:mt-[100px] 2xl:w-[38%] 2xl:h-[60%] xl:w-[40%] flex flex-wrap flex-col sm:w-[80%]">
         <h1 className="mb-[20px] font-bold text-[2rem]">AYAWMA</h1>
         <h4 className="mb-[20px] font-semibold text-[1.4rem] text-center mx-auto">
           We'll send you an email with instructions on how to reset your

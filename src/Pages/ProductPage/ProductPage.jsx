@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
 import im1 from "../../Images/image 14.png";
 import im2 from "../../Images/Foto.jpeg";
 import Reviews from "./Reviews/Reviews";
-import Rating from '@mui/material/Rating';
-
+import { Navigate } from "react-router-dom";
 import CartIcon2 from "../../Assets/CartIcon2";
 import axios from "../../Services/axios";
 import { useStateValue } from "../../StateProvider";
@@ -19,25 +18,49 @@ function ProductPage() {
   const [data, setData] = useState([{ price: 0 }]);
   var price = data[0].price;
   const finalPrice = price * quantity;
-  
+  const navigate = useNavigate();
 
- 
-  
+
+
   const handleAddToCart = () => {
-    
+
     //THE PAYLOAD IS PRODUCT INFORMATION. 
     //REDUCER RECEIVE THE (ACTIONS, PAYLOAD) 
-    data[0]["quantity"] = quantity;  
-    dispatch({type: actionTypes.ADD_TO_BASKET, item: data[0]})
+    data[0]["quantity"] = quantity;
+    dispatch({ type: actionTypes.ADD_TO_BASKET, item: data[0] })
   }
-  
+
+  const handleBuy = () => {
+
+    data[0]["quantity"] = quantity;
+    dispatch({ type: actionTypes.ADD_TO_BASKET, item: data[0] })
+
+    axios.post("/create-payment-intent", {
+      basket
+    }).then(res => {
+      const { clientSecret, id } = res.data
+      // console.log(res.data)
+      dispatch({ type: actionTypes.SET_CLIENT_SECRET, clientSecret: clientSecret })
+      navigate("/checkout/" + clientSecret + "/" + id);
+      // if (res.data.url) {
+      //   window.location.href = res.data.url;
+      // }
+    }).catch(err => {
+      console.log(err.message)
+    });
+
+
+  }
+
+
+
 
   const test = () => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     console.log(product);
     let productFind = product.replaceAll("-", " ")
     console.log(productFind)
-    document.title = productFind+" | Ayawma.com"; 
+    document.title = productFind + " | Ayawma.com";
     axios.get("/api/product/" + productFind + "/info").then((res) => {
       setData(res.data.data);
     }).catch(err => {
@@ -53,16 +76,16 @@ function ProductPage() {
       <Navbar />
       <div className="w-full min-h-full flex flex-col items-center xl:mt-[150px] sm:mt-[100px] ">
         <div className="xl:w-[80%] h-[100%] flex flex-col sm:w-[100%]">
-         
-          
+
+
           {/* Small images */}
           <div
             className="w-full h-[60%] flex mb-[40px] 
             xl:flex-row
             sm:flex-col"
           >
-            
-            
+
+
             <div
               className="
              xl:w-[40%] xl:h-[100%] flex 
@@ -157,7 +180,7 @@ function ProductPage() {
                 <h3 className="text-left font-bold text-[#000032] text-[22px]">
                   ${finalPrice.toFixed(2)}
                 </h3>
-                <button className="bg-black text-white w-[77px] h-[100%] flex items-center justify-center ml-[50px] rounded-[8px] ">
+                <button className="bg-black text-white w-[77px] h-[100%] flex items-center justify-center ml-[50px] rounded-[8px] " onClick={handleBuy}>
                   <span>Buy</span>
                 </button>
                 <button className="bg-black text-white w-[206px] h-[100%] flex items-center justify-center ml-[20px] rounded-[8px] " onClick={handleAddToCart}>
@@ -170,7 +193,7 @@ function ProductPage() {
           <div className="w-full min-h-[600px]  flex text-left flex-wrap mb-[40px] sm:pl-3 sm:pr-3">
             <p>{data[0].description}</p>
           </div>
-              <Reviews productID={data[0].id}/>
+          <Reviews productID={data[0].id} />
         </div>
       </div>
     </>

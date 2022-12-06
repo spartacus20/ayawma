@@ -20,6 +20,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Settings from "./Pages/Settings/Settings";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import PageHandler from "./Pages/PageNotFound/PageHandler";
+import Dashboard from "./Pages/Dashboard/Dashboard";
 
 
 function App() {
@@ -48,12 +49,13 @@ function App() {
           <Route path="/recovery-password" element={<RecorveryPassword />} />
           <Route path="/password-sent" element={<EmailSent />} />
           <Route path="/reset-password/:id/:token" element={<NewPassword />} />
-          <Route path="/:product" element={<PageHandler />} />
+          <Route path="/:product" element={<ProducPage />} />
           <Route path="/shopcart" element={<ShoppingCart />} />
           <Route path="/checkout/:clientSecret/:id" element={<Checkout />} />
           <Route path="/checkout/:clientSecret/:id/success" element={<Success />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

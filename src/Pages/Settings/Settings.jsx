@@ -85,9 +85,7 @@ function Settings() {
                         <button className=' h-[40px] px-5 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white  transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg mb-7'>Save change</button>
 
                     </div>
-                    <div>
-                        <h2>Shipping directions</h2>
-                    </div>
+                 
 
 
                 </div>
