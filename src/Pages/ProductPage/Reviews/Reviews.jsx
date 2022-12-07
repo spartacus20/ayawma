@@ -123,7 +123,7 @@ function Reviews({ productID }) {
 
     return (
         <div className='Reviews'>
-            <h2>Customer reviews:</h2>
+            <h2 className='text-2xl font-bold'>Customer reviews:</h2>
             <div className='Reviews-number'>
                 <span className='rating-text'>{allRating.toFixed(1)}</span>
                 <Rating name="read-only" value={allRating} precision={0.5} size="small" readOnly />

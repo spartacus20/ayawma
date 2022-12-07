@@ -39,6 +39,7 @@ function ProductResult() {
   const handleViews = () => {
     console.log(gridView)
     if (gridView) {
+      
       return <List product={data} />
     }
     return <Grid product={data} />
@@ -50,6 +51,7 @@ function ProductResult() {
       try {
         const response = await axios.get('/api/product/' + product)
         setData(response.data.data)
+        console.log(response.data.data)
 
       } catch (err) {
         console.log(err)

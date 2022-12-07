@@ -41,6 +41,8 @@ function Navbar({ Home }) {
     e.preventDefault();
     let product = search.replace(" ", "-");
     navigate("/s/" + product);
+    const iSearch = document.getElementById("search");
+    iSearch.value = "";
   };
   const handleLogOut = () => {
     cookie.remove("jid", {
@@ -90,7 +92,7 @@ function Navbar({ Home }) {
               </Link>
             </div>
             <form className="flex items-center h-[48px] xl:w-[600px] border-2 border-black rounded-3xl sm:hidden xl:flex" onSubmit={handleSearch}>
-              <input type="text" placeholder="Search for anything..." className="h-[100%] w-[92%] px-3 rounded-3xl outline-none" onChange={(e) => setSeach(e.target.value)} />
+              <input type="text" id="search" placeholder="Search for anything..." className="h-[100%] w-[92%] px-3 rounded-3xl outline-none" onChange={(e) => setSeach(e.target.value)} />
               <button onChange={handleSearch}><SeachIcon /></button>
 
             </form>
