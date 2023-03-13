@@ -32,7 +32,7 @@ function Login() {
       });
       window.location.href = "/"
     }).catch(err => {
-      console.log(err);
+        toast.error("Wrong email or password")
     })
   };
 
@@ -89,7 +89,7 @@ function Login() {
           <p className={completed ? "text-right text-gray-500 sm:text-sm hover:text-gray-700 mb-5 cursor-pointer" : "hidden"}>Forgot Password?</p>
         </Link>
 
-        <button className="py-2 px-4 mb-7  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg " onChange={handleLogin}>Sign in</button>
+        <button className="py-2 px-4 mb-7  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg " onClick={handleLogin}>Sign in</button>
 
         <Link to="/signup">
           <p className="text-lg font-semibold text-center text-white mb-10 cursor-pointer ">Sign up</p>

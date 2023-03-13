@@ -67,6 +67,7 @@ function Navbar({ Home }) {
         setData(res.data[0]);
         setLoggetIn(true);
       } catch (e) {
+        console.log(e.message)
         setLoggetIn(false);
       }
     };
@@ -100,7 +101,7 @@ function Navbar({ Home }) {
               <span className={!loggeIn ? "xl:text-lg sm:text-md font-semibold sm:hidden xl:flex" : "hidden"}>Sign in</span>
             </Link>
 
-            <div className={loggeIn ? "border-2 border-black rounded-3xl px-3 py-1 xl:flex sm:hidden items-center cursor-pointer relative" : "hidden"} onChange={toggleDropDown} >
+            <div className={loggeIn ? "border-2 border-black rounded-3xl px-3 py-1 xl:flex sm:hidden items-center cursor-pointer relative" : "hidden"} onClick={toggleDropDown} >
               <Carita />
               <span className="text-md font-semibold ml-2" >Hi, {data.name}</span>
               <div className={dropdown ? "xl:flex sm:hidden" : "hidden"}>
@@ -125,7 +126,7 @@ function Navbar({ Home }) {
                   <input type="text" id="search-navbar" className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." onChange={(e) => setSeach(e.target.value)}/>
                 </form>
               </div>
-              <div className={loggeIn ? "flex relative" : "hidden"} onChange={toggleDropDown} >
+              <div className={loggeIn ? "flex relative" : "hidden"} onClick={toggleDropDown} >
                 <BiUser size={25} className="sm:flex xl:hidden mr-3" />
                 <div className={dropdown ? "xl:hidden sm:flex" : "hidden"}>
                   <Dropdown logOut={handleLogOut} data={data} />
