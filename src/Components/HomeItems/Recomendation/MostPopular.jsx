@@ -13,10 +13,10 @@ function MostPopular({visible}) {
     return (
         <div className={visible ? 'Recomendation':'hidden'}>
    
-            <Card stars={true} text="Realme C20" img={RealmeC20} price="165.99"/>
-            <Card stars={true} text="Monitor 24'' IPS Full HD 4 Side Virtually Borderless Design" img={Monitor} price="240.99"/>
-            <Card stars={true} text="External Case HDD 2.5 USB 2.0 / Casing Hardisk Eksternal 2.5 Inch" img={ExternalCase} price="2.99"/>
-            <Card stars={true} text="Hippo Ilo W2 Powerbank wireless 10000mah" img={HardDrive} price="55.72"/>
+            <Card stars={true} text="Realme C20" img={RealmeC20} price="165.99" id={1}/>
+            <Card stars={true} text="Monitor 24'' IPS Full HD 4 Side Virtually Borderless Design" img={Monitor} price="240.99" id={1}/>
+            <Card stars={true} text="External Case HDD 2.5 USB 2.0 / Casing Hardisk Eksternal 2.5 Inch" img={ExternalCase} price="2.99" id={1}/>
+            <Card stars={true} text="Hippo Ilo W2 Powerbank wireless 10000mah" img={HardDrive} price="55.72" id={1}/>
 
         </div>
     )

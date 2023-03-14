@@ -5,7 +5,7 @@ const basketFromLocalStorage =  JSON.parse(localStorage.getItem('previous_cart' 
 
 export const initialState = {
   productSidebar: false,
-  gridView: true, 
+  gridView: false, 
   basket: basketFromLocalStorage,
   quantity: 0,
   user: null,

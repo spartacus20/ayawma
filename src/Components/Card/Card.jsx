@@ -6,7 +6,7 @@ import Rating from '@mui/material/Rating';
 function Card({stars, text, img, price, id}) {
   
   let fprice = price || 25.87
-  let image = JSON.parse(img)  
+  let image = JSON.parse(img) 
 
   let link = "/"+id+"/"+text.replaceAll(" ", "-").toLowerCase()
   const navigate = useNavigate(); 
@@ -18,7 +18,7 @@ function Card({stars, text, img, price, id}) {
   return (
     <div className='Card' onClick={handleRedirect}>
         <div className='CardIMG'>
-            <img src={image[0].url} alt={text} />
+            <img src={image && image[0].url} alt={text} />
         </div>
         <div className='CardTitle'>
             <p>{text}</p>

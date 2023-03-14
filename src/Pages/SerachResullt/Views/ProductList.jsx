@@ -10,7 +10,7 @@ function ProductList({ product }) {
     let images = JSON.parse(product.images);
     // console.log(images[0].url)
     // console.log(images);
-    let link = "/"+product.title.replaceAll(" ", "-")
+    let link = "/"+product.id+"/"+product.title.replaceAll(" ", "-").toLowerCase()
     const navigate = useNavigate(); 
   
     const handleRedirect = () => {
