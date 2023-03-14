@@ -49,7 +49,7 @@ function App() {
           <Route path="/recovery-password" element={<RecorveryPassword />} />
           <Route path="/password-sent" element={<EmailSent />} />
           <Route path="/reset-password/:id/:token" element={<NewPassword />} />
-          <Route path="/:product" element={<ProducPage />} />
+          <Route path="/:id/:product" element={<ProducPage />} />
           <Route path="/shopcart" element={<ShoppingCart />} />
           <Route path="/checkout/:clientSecret/:id" element={<Checkout />} />
           <Route path="/checkout/:clientSecret/:id/success" element={<Success />} />

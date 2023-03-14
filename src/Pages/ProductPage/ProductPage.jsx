@@ -14,8 +14,9 @@ function ProductPage() {
 
   const BACKEND_URL = "http://localhost:3001/images/";
   const [{ basket }, dispatch] = useStateValue();
-  const { product } = useParams();
+  const { product, id } = useParams();
   const [images, setImages] = useState(im1);
+  const [imageActive, setImageActive] = useState(im1);
   const [quantity, setQuantity] = useState(1);
   const [data, setData] = useState([{ price: 0 }]);
   var price = data[0].price || 9.99;
@@ -23,6 +24,8 @@ function ProductPage() {
   const navigate = useNavigate();
 
 
+
+  
 
   const handleAddToCart = () => {
 
@@ -62,14 +65,19 @@ function ProductPage() {
 
 
 
-  const test = () => {
+  const test = async () => {
     window.scrollTo(0, 0)
     console.log(product);
     let productFind = product.replaceAll("-", " ")
     console.log(productFind)
     document.title = productFind + " | Ayawma.com";
-    axios.get("/api/product/" + productFind + "/info").then((res) => {
+    console.log("id: "+id)
+    axios.get("api/product/"+id+"/edit").then((res) => {
       setData(res.data.data);
+      let prueba = data[0].images
+      setImages(JSON.parse(prueba))
+      console.log(images)
+
     }).catch(err => {
       console.log(err)
     });
@@ -84,17 +92,17 @@ function ProductPage() {
         <div className="xl:w-[40%] sm:[90%] sm:mb-5">
           <img src={im1} alt="" className="object-contain h-[400px] w-[100%] xl:ml-2 xl:mb-3" />
           <div className="flex xl:px-10">
-            <div className="w-[70px] h-[67px] border-2 border-black mr-3">
-              <img src={BACKEND_URL+data[0].images} alt="" className="object-contain w-[100%] h-[98%]" />
+            <div className="w-[70px] h-[67px] border-2 border-black mr-3"  >
+              <img src={im1} alt="" className="object-contain w-[100%] h-[98%]" />
             </div>
             <div className="w-[70px] h-[67px] border-2 border-black mr-3">
-              <img src={BACKEND_URL+data[0].images} alt="" className="object-contain w-[100%] h-[98%]" />
+              <img src={im1} alt="" className="object-contain w-[100%] h-[98%]" />
             </div>
             <div className="w-[70px] h-[67px] border-2 border-black mr-3">
-              <img src={BACKEND_URL+data[0].images} alt="" className="object-contain w-[100%] h-[98%]" />
+              <img src={im1} alt="" className="object-contain w-[100%] h-[98%]" />
             </div>
             <div className="w-[70px] h-[67px] border-2 border-black mr-3">
-              <img src={BACKEND_URL+data[0].images} alt="" className="object-contain w-[100%] h-[98%]" />
+              <img src={im1} alt="" className="object-contain w-[100%] h-[98%]" />
             </div>
 
           </div>

@@ -6,7 +6,10 @@ import { HiChevronDoubleRight } from 'react-icons/hi';
 function ProductList({ product }) {
     
     const BACKEND_URL = "http://localhost:3001/images/"+product.images; 
-
+    // let images = product.images.split("}");
+    let images = JSON.parse(product.images);
+    // console.log(images[0].url)
+    // console.log(images);
     let link = "/"+product.title.replaceAll(" ", "-")
     const navigate = useNavigate(); 
   
@@ -18,7 +21,7 @@ function ProductList({ product }) {
     <div className="flex mb-8" onClick={handleRedirect}>
                 <img
                     className="xl:w-[300px] xl:h-[200px] sm:w-[100px] h-[150] object-contain mb-4 rounded"
-                    src={BACKEND_URL}
+                    src={images[0].url}
                     alt=""
                 />
                 <div className="flex flex-col sm:ml-[5px]">
