@@ -1,6 +1,8 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useEffect, useState } from 'react'
 // import Card from '../../Components/Card/Card';
 // Images
+
+import axios from '../../Services/axios'
 
 import ps4 from '../../Images/HOME/controller-ps4.png'
 import powerbank from '../../Images/HOME/hippo-powerbank.png'
@@ -14,18 +16,37 @@ import LazyCard from '../Lazy/LazyCard';
 
 const Card = lazy(() => import("../Card/Card"))
 
+
+
+
+
 function SomeItems() {
+
+  const [products, setProducts] = useState([{}]);
+  const test = () => {
+    axios.get("/api/products/get/8")
+      .then((res) => {
+        const productsData = res.data.data.map((product) => {
+          const parsedImg = JSON.parse(product.images);
+          return { ...product, images: parsedImg };
+        });
+        setProducts(productsData);
+      }).catch((err) => {
+        setProducts([{}]);
+      })
+  }
+
+  useEffect(() => {
+    test();
+  }, [])
+
+
   return (
     <div className='Container-2 Spacer-2'>
       <Suspense fallback={<LazyCard />}>
-        <Card text="PS4 OP Stick Bonus USB Charge Cable White" img={ps4} price="27.87" id={1} />
-        <Card text="Hippo Ilo W2 Powerbank wireless 10000mah" img={powerbank} price="32.50"id={1} />
-        <Card text="ASUS ExpertBook B1400CEAE-EK3424T" img={asus} price="527.66" id={1}/>
-        <Card text="SAMSUNG Galaxy A03" img={SamsungA03} price="118.60" id={1}/>
-        <Card text="SAMSUNG 32 Inch TV LED UA32T4003" img={SamsungTV} price="188.55" id={1}/>
-        <Card text="LOGITECH Pop Mouse" img={LGmouse} price="24.29" id={1}/>
-        <Card text="ACER All-In-One Aspire C24-1650 (Core i3-1115G4, 4GB, 1TB HDD, Win 11 Home)" img={AcerAll} price="577.20" id={1}/>
-        <Card text="TP-LINK Archer AX73 Router" img={TPLink} price="116.61" id={1}/>
+        {products.map((product, index) => (
+          <Card text={product.title} img={product.images} price={product.price} id={product.id} key={index}/>
+        ))}
       </Suspense>
 
     </div>

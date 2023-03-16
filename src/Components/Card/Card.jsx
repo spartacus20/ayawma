@@ -6,9 +6,10 @@ import Rating from '@mui/material/Rating';
 function Card({stars, text, img, price, id}) {
   
   let fprice = price || 25.87
-  let image = JSON.parse(img) 
+  console.log(img)
 
-  let link = "/"+id+"/"+text.replaceAll(" ", "-").toLowerCase()
+  let image = img 
+  let link = "/"+id+"/"+text?.replaceAll(" ", "-").replaceAll("/", "-").toLowerCase()
   const navigate = useNavigate(); 
 
   const handleRedirect = () => {
