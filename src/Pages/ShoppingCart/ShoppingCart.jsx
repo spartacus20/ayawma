@@ -31,6 +31,10 @@ function ShoppingCart() {
     })
   }
 
+  useEffect(() => {
+    document.title = "Shopping Cart | Ayawma.com";
+  }, [])
+
   
   return (
     <>
@@ -41,7 +45,7 @@ function ShoppingCart() {
           <div className="Cart-container">
             <span className={basket.length < 1 ? 'textNoProducts' : 'hidden'}>No product found shop cart</span>
             {basket?.map((product) => (
-              <CartItem productQuantity={product.quantity} product={product} key={product.id} priceIncrement={priceIncrement} priceDecrement={priceDecrement} />
+              <CartItem productQuantity={product.quantity} product={product} key={product.id} priceIncrement={priceIncrement} priceDecrement={priceDecrement}image={product.images} />
             ))}
           </div>
           <div className="Checkout">

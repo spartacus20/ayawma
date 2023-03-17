@@ -135,7 +135,7 @@ function ProductPage() {
           <div className="flex items-center">
             <span className="xl:text-xl sm:text-lg mr-7 ">{finalPrice.toFixed(2)} €</span>
             <button className="xl:text-lg sm:text-md bg-black text-white rounded-lg xl:w-[77px] sm:w-[50px] h-[46px] mr-5">Buy</button>
-            <div className="flex items-center px-3 xl:text-lg sm:text-md bg-black text-white rounded-lg xl:w-[206px] h-[46px] justify-center">
+            <div className="flex items-center px-3 xl:text-lg sm:text-md bg-black text-white rounded-lg xl:w-[206px] h-[46px] justify-center" onClick={handleAddToCart}>
               <CartIcon2 />
               Add to shop cart
             </div>

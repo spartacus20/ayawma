@@ -5,7 +5,7 @@ import { actionTypes } from "../../reducer";
 function CartItem({ image, productQuantity, product, priceIncrement, priceDecrement }) {
   const [quantity, setQuantity] = useState(productQuantity);
   const [{ basket }, dispatch] = useStateValue();
-
+  const img = JSON.parse(image);
   
 
   const removeItem = () => {
@@ -19,7 +19,7 @@ function CartItem({ image, productQuantity, product, priceIncrement, priceDecrem
   return (
     <div className="w-[100%]  flex  mb-5">
       <div className="w-[200px] h-[100%] rounded-2xl ">
-        <img src={image} alt="" className="w-[100%] h-[100%] object-cover rounded-2xl" />
+        <img src={img[0].url} alt="" className="w-[100%] h-[100%] object-cover rounded-2xl" />
       </div>
       <div className="w-[50%] h-[100%] ">
         <div className="w-100  text-left ml-3 mb-5 ">

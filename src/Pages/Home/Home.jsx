@@ -23,8 +23,8 @@ function Home() {
             <Navbar User={false} Home={true}/>
             <Categories />
             <SomeItems />
-            {/* <HomeItems />   
-            <LatestProduct /> */}
+            <HomeItems />    
+            {/* <LatestProduct />  */}
         </div>
 
     )

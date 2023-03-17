@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { AddressElement } from '@stripe/react-stripe-js';
 import Button from '@mui/material/Button';
 import { useStateValue } from '../../../StateProvider';
@@ -6,8 +6,11 @@ import { actionTypes } from '../../../reducer';
 
 function ShippingForm({handleClick}) {
 
-    const [ {shippingData}, dispatch] = useStateValue(); 
 
+    const [ {shippingData}, dispatch] = useStateValue(); 
+    useEffect(() => {
+        document.title = "Payment | Ayawma.com";
+    })
     /**
      * If the form is complete, then get the name and address values from the form and log them to the
      * console.
