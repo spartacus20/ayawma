@@ -76,12 +76,13 @@ function ProductPage() {
     console.log(product);
     let productFind = product.replaceAll("-", " ")
     console.log(productFind)
-    document.title = productFind + " | Ayawma.com";
     console.log("id: " + id)
     axios.get("api/product/" + id + "/edit").then((res) => {
       setData(res.data.data);
       // console.log(res.data.data[0].images)
       let prueba = JSON.parse(res.data.data[0].images)
+      document.title = res.data.data[0].title + " | Ayawma.com";
+
       setImages(prueba)
       setImageActive(prueba[0].url)
 

@@ -24,7 +24,7 @@ function Home() {
             <Categories />
             <SomeItems />
             <HomeItems />    
-            {/* <LatestProduct />  */}
+            <LatestProduct /> 
         </div>
 
     )

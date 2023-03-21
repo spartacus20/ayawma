@@ -92,7 +92,8 @@ function PaymentmentForm({backStep, nextStep}) {
     }
 
     const paymentElementOptions = {
-        layout: "tabs"
+        layout: "tabs",
+        billingDetails: "auto", 
     }
 
 

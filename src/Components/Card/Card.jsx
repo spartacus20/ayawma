@@ -3,12 +3,17 @@ import "./card.css"
 import { useNavigate } from 'react-router-dom'
 import im1 from "../../Images/monitor.png"
 import Rating from '@mui/material/Rating';
-function Card({stars, text, img, price, id}) {
+function Card({stars, text, img, price, id, log}) {
   
   let fprice = price || 25.87
-  console.log(img)
-
+  // console.log(img)
   let image = img 
+  console.log(stars)
+  // if(log){
+  //   console.log(img)
+  // }else{
+  //   console.log(img)
+  // }
   let link = "/"+id+"/"+text?.replaceAll(" ", "-").replaceAll("/", "-").toLowerCase()
   const navigate = useNavigate(); 
 
@@ -27,10 +32,12 @@ function Card({stars, text, img, price, id}) {
         <div className='CardPrice'>
             <span >{fprice} €</span>
         </div>
-        <div className={stars? "CardStars":"hidden"}>
-          <Rating name="read-only" value={5} size="small" readOnly />  
+        {stars && (
+        <div className='CardStars'>
+          <Rating name='read-only' value={stars} precision={0.5} size='small' readOnly />
           <span className='CardReviews'>(10,270)</span>
         </div>
+      )}
     </div>
   )
 }
