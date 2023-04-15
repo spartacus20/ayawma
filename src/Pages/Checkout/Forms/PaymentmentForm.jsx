@@ -5,21 +5,35 @@ import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import Button from '@mui/material/Button';
 import { useStateValue } from '../../../StateProvider';
 import { actionTypes } from '../../../reducer';
+import axios, { axiosPrivate } from '../../../Services/axios';
+import { Authentication } from "../../../Services/Authentication"
 
 function PaymentmentForm({backStep, nextStep}) {
 
 
  
     const [ {shippingData}, dispatch] = useStateValue(); 
-    console.log(shippingData)
+    // console.log(shippingData)
     const { clientSecret, id} = useParams();
     const RETURN_URL = 'http://localhost:3000/checkout/'+clientSecret+"/"+id+"/success"
-    console.log(clientSecret)
+    // console.log(clientSecret)
     const stripe = useStripe();
     const elements = useElements();
-
     const [message, setMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+
+
+    const UpdatePaymentIntent = async () => {
+        try {
+
+            const user = await Authentication(); 
+            const res = await axios.post("/update-payment-intent", {id, name: user.data[0].name, email: user.data[0].email, address: shippingData})
+            console.log(res)
+        }catch(e){
+            console.log(e)
+        }
+    }
+
 
     useEffect(() => {
 
@@ -31,23 +45,11 @@ function PaymentmentForm({backStep, nextStep}) {
             return;
         }
 
-        /* Checking the status of the payment intent. */
-        stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-            switch (paymentIntent.status) {
-                case "succeeded":
-                    setMessage("Payment succeeded!");
-                    break;
-                case "processing":
-                    setMessage("Your payment is processing.");
-                    break;
-                case "requires_payment_method":
-                    setMessage("Your payment was not successful, please try again.");
-                    break;
-                default:
-                    setMessage("Something went wrong.");
-                    break;
-            }
-        })
+        UpdatePaymentIntent() ;
+
+      
+
+        
 
 
     }, [stripe])

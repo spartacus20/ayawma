@@ -21,6 +21,10 @@ import Settings from "./Pages/Settings/Settings";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import PageHandler from "./Pages/PageNotFound/PageHandler";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Footer from "./Components/Footer/Footer"
+import Privacy from "./Pages/Information/Privacy";
+import Terms from "./Pages/Information/Terms";
+import Support from "./Pages/Information/Support";
 
 
 function App() {
@@ -56,7 +60,11 @@ function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/support" element={<Support />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
       <ToastContainer />
     </div>

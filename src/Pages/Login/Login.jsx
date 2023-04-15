@@ -79,7 +79,7 @@ function Login() {
   return (
     <>
       <Navbar />
-      <div className="mx-auto mt-[150px] bg-black xl:w-[400px] sm:w-[380px] px-6 py-6 rounded-xl">
+      <div className="mx-auto mt-[150px] bg-black xl:w-[400px] sm:w-[380px] px-6 py-6 rounded-xl mb-[150px]">
 
         <h2 className="text-2xl font-semibold mb-10 text-white">Sign in</h2>
         <input type="email" name="" id="" placeholder="Enter your email address" className="w-full h-[45px] rounded-lg pl-3 border-2 border-black mb-5" onChange={emailCompleted} />

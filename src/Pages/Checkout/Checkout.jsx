@@ -11,10 +11,10 @@ import { StepButton } from '@mui/material';
 import FormHandler from './Forms/FormHandler';
 
 //DEBUG MODE. 
-// const stripe = loadStripe("pk_test_51LlKpNKO3d18apjLqLK4CXIDzkLQFunwPsZp1vUPW5hgNkJ5XNhp4diCDnE8GVFFp5Xybcat6JvmUYS4UV1ETU6700TqWYEjb4")
+const stripe = loadStripe("pk_test_51LlKpNKO3d18apjLqLK4CXIDzkLQFunwPsZp1vUPW5hgNkJ5XNhp4diCDnE8GVFFp5Xybcat6JvmUYS4UV1ETU6700TqWYEjb4")
 
 //DEPLOY MODE. 
-const stripe = loadStripe("pk_live_51LlKpNKO3d18apjLgXPz9WPeKvn5vba9TXSxr0efG3X85gVtofWhWDF2lxTZ1Hov1yrFF7PqaD9qc2ssyh4tJKJN0045d9q2CU")
+// const stripe = loadStripe("pk_live_51LlKpNKO3d18apjLgXPz9WPeKvn5vba9TXSxr0efG3X85gVtofWhWDF2lxTZ1Hov1yrFF7PqaD9qc2ssyh4tJKJN0045d9q2CU")
 
 
 
@@ -52,7 +52,7 @@ function Checkout() {
 
 
   return (
-    <main className='CheckoutLayout'>
+    <main className='CheckoutLayout mb-[150px]'>
       <h1>Checkout</h1>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => (

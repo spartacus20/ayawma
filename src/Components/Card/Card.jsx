@@ -7,13 +7,25 @@ function Card({stars, text, img, price, id, log}) {
   
   let fprice = price || 25.87
   // console.log(img)
-  let image = img 
-  console.log(stars)
-  // if(log){
-  //   console.log(img)
-  // }else{
-  //   console.log(img)
-  // }
+  const isJson = (str) => {
+    try {
+      JSON.parse(str); // JSON
+      return  true; 
+    }catch(err) {
+      return false;
+    }
+  }
+
+  let image;
+  if(isJson(img)) {
+    image = JSON.parse(img)
+  }else{
+    image = img;
+  }
+
+ 
+  console.log(image)
+
   let link = "/"+id+"/"+text?.replaceAll(" ", "-").replaceAll("/", "-").toLowerCase()
   const navigate = useNavigate(); 
 

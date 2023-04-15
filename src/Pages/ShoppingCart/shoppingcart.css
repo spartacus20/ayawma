@@ -12,6 +12,7 @@
 }
 .container-Cart{
     display: flex;
+    margin-bottom: 200px;
   
 }
 .Cart-container{
@@ -34,6 +35,7 @@
     border-top: 2px solid black;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 150px;
 }
 
 .Checkout{
