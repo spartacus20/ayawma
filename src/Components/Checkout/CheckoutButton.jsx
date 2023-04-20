@@ -3,15 +3,15 @@ import axios from '../../Services/axios';
 import Password from "../../Assets/Password";
 import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../../StateProvider'
-import { faDisplay } from '@fortawesome/free-solid-svg-icons';
 import { actionTypes } from '../../reducer';
-
+import { Authentication } from '../../Services/Authentication';
 function CheckoutButton() {
   const navigate = useNavigate();
   const [{ basket }, dispatch] = useStateValue();
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
 
-    if(basket.length > 0){ 
+    const user = await Authentication() 
+    if(basket.length > 0 && user ){ 
       axios.post("/create-payment-intent", {
         basket
       }).then(res => {
@@ -25,6 +25,8 @@ function CheckoutButton() {
       }).catch(err => {
         console.log(err.message)
       });
+    }else{
+       navigate("/signin");
     }
 
   }

@@ -1,39 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom';
-import { Authentication } from "../../Services/Authentication"
 import axios from '../../Services/axios';
+import { actionTypes } from '../../reducer';
 import { useStateValue } from '../../StateProvider';
+import Cookies from "universal-cookie";
+
 
 function Success() {
 
+    const cookie = new Cookies() ;
+    const token = cookie.get("jid");
     const { id } = useParams();
     const [{ basket }, dispatch] = useStateValue();
-    const [data, setData] = useState([{}])
+    const [data, setData] = useState({}) // initialize data with an empty object
 
     const handleSubmit = () => {
-        console.log(id)
-        axios.post("/set-order", { id })
-            .then((response) => { console.log(response) })
+        axios.post("/set-order", {
+            order_id: id,
+            basket,
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            },
+        })
+            .then((response) => {
+                console.log(response)
+                dispatch({ type: actionTypes.EMPTY_BASKET, basket: [] })
+            })
             .catch((error) => { console.log(error) })
     }
 
-
-    const userCheck = async () => {
-        try {
-            const user = await Authentication();
-            setData(user.data[0]);
-            console.log(user.data[0])
-        } catch (e) {
-            setData([{}])
-            console.log(e.message)
-        }
-    }
-
     useEffect(() => {
-        userCheck()
+        handleSubmit();
     }, [])
-
-
 
     return (
         <div className='mb-[150px] mt-[150px]'>
@@ -51,9 +49,9 @@ function Success() {
                     <p className='text-gray-800 my-2'>{data.email}</p>
                     <p> Have a great day!  </p>
                     <div className="py-10 text-center">
-                            <a href="/" className=" mx-auto xl:w-[300px] sm:w-[50%] px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3" onClick={handleSubmit()}>
-                                GO BACK
-                            </a>
+                        <a href="/" className=" mx-auto xl:w-[300px] sm:w-[50%] px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3" >
+                            GO BACK
+                        </a>
                     </div>
                 </div>
             </div>
@@ -62,4 +60,4 @@ function Success() {
     )
 }
 
-export default Success
+export default Success;

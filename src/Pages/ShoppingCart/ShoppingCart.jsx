@@ -3,9 +3,9 @@ import Navbar from "../../Components/Navbar/Navbar";
 import "./shoppingcart.css"
 import CartItem from "../../Components/CartItem/CartItem";
 import { useStateValue } from "../../StateProvider";
-
 import { actionTypes, getBasketTotal } from "../../reducer";
 import CheckoutButton from "../../Components/Checkout/CheckoutButton";
+
 function ShoppingCart() {
   const [{ basket }, dispatch] = useStateValue();
   const [price, setPrice] = useState(0);
@@ -15,19 +15,12 @@ function ShoppingCart() {
   }
   const priceDecrement = () => {
     basket?.map((product) => {
-
-      //The price is the total price of the product. 
-
       setPrice(price - product.price)
     })
   }
   const priceIncrement = () => {
     basket?.map((product) => {
-
-      //The price is the total price of the product. 
-
       setPrice(price + product.price)
-
     })
   }
 
