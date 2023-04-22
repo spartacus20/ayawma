@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Authentication } from '../../Services/Authentication';
 import axios from '../../Services/axios';
-
+import { toast } from 'react-toastify';
+import Cookies from "universal-cookie";
 
 function Settings() {
 
@@ -12,12 +13,40 @@ function Settings() {
     const [currentPassword, setCurrentPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-        
+    const cookie = new Cookies();
+    const userToken = cookie.get("jid");
 
     const handleSubmitPassword = () => {
-         
+        if (newPassword === confirmPassword && newPassword.length >= 8) {
+            axios.post("/api/user/change/password", {
+                headers: {
+                    "Authorization": `Bearer ${userToken}`,
+                }, 
+                password: newPassword,
+                currentPassword
+            }).then((res) => {
+                toast.success(res.msg); 
+            }).catch((err) => {
+                toast.error("Something went wrong")
+            })
+        }
     }
 
+    const handleSubmitGeneral = () => {
+
+        axios.post("/api/user/change/general-settings", {
+            headers: {
+                "Authorization": `Bearer ${userToken}`,
+            }, 
+            name, 
+            email
+        }).then((res) => {
+            toast.success(res.msg); 
+        }).catch((err) => {
+            toast.error("Something went wrong")
+        })
+    
+    }
 
     useEffect(() => {
         const HTTP = async () => {
@@ -52,7 +81,7 @@ function Settings() {
                         <input type="text" className='xl:w-80 sm:w-72 bg-[#F9FAFB] mt-2 rounded-md border-2 border-gray-300 h-[36px] pl-3' value={data.email} onChange={(e) => setEmail(e.target.value)}/>
                     </div>
                 </div>
-                <button className='bg-[#1D4ED8] w-[150px] h-[40px] rounded-lg text-white font-semibold mt-14'>Save all</button>
+                <button className='bg-[#1D4ED8] w-[150px] h-[40px] rounded-lg text-white font-semibold mt-14' onClick={handleSubmitGeneral}>Save all</button>
             </div>
             <div className='flex flex-col xl:px-10  w-full  rounded-lg min-h-[300px]  '>
                 <h2 className='text-xl font-bold mt-3'>Password information</h2>
@@ -80,7 +109,7 @@ function Settings() {
                         Some text here zoltan<br />
                     </p>
                 </div>
-                <button className='bg-[#1D4ED8] w-[150px] h-[40px] rounded-lg text-white font-semibold mb-10'>Save all</button>
+                <button className='bg-[#1D4ED8] w-[150px] h-[40px] rounded-lg text-white font-semibold mb-10' onClick={handleSubmitPassword}>Save all</button>
             </div>
 
         </div>

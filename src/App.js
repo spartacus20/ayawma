@@ -25,6 +25,7 @@ import Footer from "./Components/Footer/Footer"
 import Privacy from "./Pages/Information/Privacy";
 import Terms from "./Pages/Information/Terms";
 import Support from "./Pages/Information/Support";
+import Orders from "./Pages/Orders/Orders";
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
           <Route path="/shopcart" element={<ShoppingCart />} />
           <Route path="/checkout/:clientSecret/:id" element={<Checkout />} />
           <Route path="/checkout/:clientSecret/:id/success" element={<Success />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/dashboard" element={<Dashboard />} />
