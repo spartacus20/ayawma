@@ -26,6 +26,7 @@ function Orders() {
                 setOrder_information(res.data.order_information)
                 setIsLoading(false)
                 console.log(res.data)
+                console.log(res.data.order_information)
             } catch (err) {
                 toast.error("Something went wrong")
             }
@@ -69,8 +70,11 @@ function Orders() {
                             {
                                 data?.map((item, index) => {
 
-                                    let total = 0; 
+                                    let total = 0;
                                     let products = JSON.parse(item.products)
+                                    let shipping = JSON.parse(item.shipping_address)
+
+
 
                                     return (
                                         <div className='mt-5 w-full min-h-[300px] bg-[#F9FAFB] px-4 py-5 flex flex-col mb-10 shadow-lg' key={index}>
@@ -78,30 +82,30 @@ function Orders() {
                                             <span className='text-lg font-semibold mb-4'>Payment by: <span className='text-[#c7a87d]'> Card</span></span>
                                             <div className='flex flex-col'>
                                                 <span className='text-lg font-semibold mb-4'>Delivery: </span>
-                                                <span>{order_information[index].shipping.name}</span>
-                                                <span>{order_information[index].shipping.address.line1}, </span>
-                                                <span>{order_information[index].shipping.address.line2}, </span>
-                                                <span>{order_information[index].shipping.address.city}, </span>
-                                                <span>{order_information[index].shipping.address.postal_code}, </span>
-                                                <span>{order_information[index].shipping.address.country} </span>
+                                                <span>{shipping.name}</span>
+                                                <span>{shipping.address.line1}, </span>
+                                                <span>{shipping.address.line2}, </span>
+                                                <span>{shipping.address.city}, </span>
+                                                <span>{shipping.address.postal_code}, </span>
+                                                <span>{shipping.address.country} </span>
                                             </div>
 
                                             {
                                                 products.map((product, indice) => {
 
                                                     let images = JSON.parse(product.images)
-                                                    console.log(product.price * product.quantity)
+                                                    // console.log(product.price * product.quantity)
                                                     total = total + (product.price * product.quantity)
-                                                    console.log("Total "+indice+": "+total)
+                                                    // console.log("Total "+indice+": "+total)
                                                     // console.log(images)
                                                     return (
-                                                        <div className='w-full px-10 flex items-center xl:justify-between mt-3 xl:flex-row sm:flex-col sm:justify-center '>
+                                                        <div className='w-full px-10 flex items-center xl:justify-between mt-3 xl:flex-row sm:flex-col sm:justify-center ' key={indice}>
 
                                                             <img src={images[0].url} alt="" className='w-[150px]' />
-                                                                <span className='sm:mt-3 sm:text-center'>{product.title} </span>
-                                                                <span className='mt-3'>{product.price} €</span>
-                                                                <span className='mt-3 mb-3'>{product.quantity}</span>
-                                                                <span>{(product.price * product.quantity).toFixed(2)} €</span>
+                                                            <span className='sm:mt-3 sm:text-center'>{product.title} </span>
+                                                            <span className='mt-3'>{product.price} €</span>
+                                                            <span className='mt-3 mb-3'>{product.quantity}</span>
+                                                            <span>{(product.price * product.quantity).toFixed(2)} €</span>
 
 
                                                         </div>
