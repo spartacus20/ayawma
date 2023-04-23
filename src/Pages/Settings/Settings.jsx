@@ -25,6 +25,7 @@ function Settings() {
                 password: newPassword,
                 currentPassword
             }).then((res) => {
+                console.log(res);
                 toast.success(res.msg); 
             }).catch((err) => {
                 toast.error("Something went wrong")
@@ -56,6 +57,8 @@ function Settings() {
                 return;
             }
             setData(user.data[0])
+            setName(user.data[0].name)
+            setEmail(user.data[0].email)
 
         }
 
@@ -74,11 +77,11 @@ function Settings() {
                 <div className='flex xl:flex-row sm:flex-col '>
                     <div className='flex flex-col mt-6'>
                         <label htmlFor="CurrentPassword" >Name</label>
-                        <input type="text" className='xl:w-80 sm:w-72 bg-[#F9FAFB] mt-2 rounded-md border-2 border-gray-300 h-[36px] pl-3' value={data.name} onChange={(e) => setName(e.target.value)}/>
+                        <input type="text" className='xl:w-80 sm:w-72 bg-[#F9FAFB] mt-2 rounded-md border-2 border-gray-300 h-[36px] pl-3' value={name} onChange={(e) => setName(e.target.value)}/>
                     </div>
                     <div className='flex flex-col mt-6 xl:ml-24 '>
                         <label htmlFor="CurrentPassword" >Email</label>
-                        <input type="text" className='xl:w-80 sm:w-72 bg-[#F9FAFB] mt-2 rounded-md border-2 border-gray-300 h-[36px] pl-3' value={data.email} onChange={(e) => setEmail(e.target.value)}/>
+                        <input type="text" className='xl:w-80 sm:w-72 bg-[#F9FAFB] mt-2 rounded-md border-2 border-gray-300 h-[36px] pl-3' value={email} onChange={(e) => setEmail(e.target.value)}/>
                     </div>
                 </div>
                 <button className='bg-[#1D4ED8] w-[150px] h-[40px] rounded-lg text-white font-semibold mt-14' onClick={handleSubmitGeneral}>Save all</button>
