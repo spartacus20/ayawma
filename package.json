@@ -1,8 +1,8 @@
 {
   "name": "ayawma",
-  "homepage": "http://ayawma.com/",
   "private": true,
-  "version": "1.1.6",
+  "version": "1.2.4",
+  "homepage": "/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

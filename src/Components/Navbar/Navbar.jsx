@@ -35,8 +35,8 @@ function Navbar({ Home }) {
       allowScroll();
     }
   };
-  const navigate = useNavigate();
   const cookie = new Cookies();
+  const navigate = useNavigate();
   const handleSearch = (e) => {
     e.preventDefault();
     let product = search.replace(" ", "-");
@@ -49,6 +49,7 @@ function Navbar({ Home }) {
       path: "/",
     });
     setLoggetIn(false);
+    navigate("/");
   };
 
 
@@ -85,7 +86,7 @@ function Navbar({ Home }) {
         <nav className="xl:px-16 py-5 flex xl:container sm:w-full items-center mx-auto flex-wrap">
           <div className="container flex flex-wrap items-center justify-between mx-auto">
             <div className="flex items-center xl:px-5">
-              <div className={Home ? "xl:hidden sm:flex" : "flex"} onChange={toggleSidebar} >
+              <div className={Home ? "xl:hidden sm:flex" : "flex"} onClick={toggleSidebar} >
                 <Barras />
               </div>
               <Link to="/">
@@ -94,7 +95,7 @@ function Navbar({ Home }) {
             </div>
             <form className="flex items-center h-[48px] xl:w-[600px] border-2 border-black rounded-3xl sm:hidden xl:flex" onSubmit={handleSearch}>
               <input type="text" id="search" placeholder="Search for anything..." className="h-[100%] w-[92%] px-3 rounded-3xl outline-none" onChange={(e) => setSeach(e.target.value)} />
-              <button onChange={handleSearch}><SeachIcon /></button>
+              <button onClick={handleSearch}><SeachIcon /></button>
 
             </form>
             <Link to="/signin">
@@ -117,9 +118,9 @@ function Navbar({ Home }) {
                   <BiUser size={25} className="sm:flex xl:hidden mr-3" />
                 </Link>
               </div>
-                <button onChange={() => setSearchBtn(!searchBtn)}><SeachIcon /></button>
-                <form className={searchBtn? "absolute top-9 right-[-60px] w-[350px]":"hidden"} onSubmit={handleSearch} >
-                  <div className="top-[-10px]  xl:left-20 sm:left-[270px] absolute h-3 w-3 origin-bottom-left rotate-45 transform  dark:bg-gray-700 dark:divide-gray-600"></div>
+                <button onClick={() => setSearchBtn(!searchBtn)}><SeachIcon /></button>
+                <form className={searchBtn? "absolute top-9 right-[-80px] w-[350px]":"hidden"} onSubmit={handleSearch} >
+                  <div className="top-[-10px]  xl:left-20 sm:left-[250px] absolute h-3 w-3 origin-bottom-left rotate-45 transform  dark:bg-gray-700 dark:divide-gray-600"></div>
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg className="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
                   </div>
