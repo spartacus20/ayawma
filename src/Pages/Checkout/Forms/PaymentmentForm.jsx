@@ -15,8 +15,8 @@ function PaymentmentForm({backStep, nextStep}) {
     const [ {shippingData}, dispatch] = useStateValue(); 
     // console.log(shippingData)
     const { clientSecret, id} = useParams();
-    const RETURN_URL = 'http://localhost:3000/checkout/'+clientSecret+"/"+id+"/success"
-    // const RETURN_URL = 'https://ayawma.com/checkout/'+clientSecret+"/"+id+"/success"
+    // const RETURN_URL = 'http://localhost:3000/checkout/'+clientSecret+"/"+id+"/success"
+    const RETURN_URL = 'https://ayawma.com/checkout/'+clientSecret+"/"+id+"/success"
     // console.log(clientSecret)
     const stripe = useStripe();
     const elements = useElements();

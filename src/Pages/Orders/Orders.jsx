@@ -37,8 +37,9 @@ function Orders() {
 
 
     return (
-        <div className='mt-[150px] mb-[150px] xl:px-24 sm:px-8'>
+        <div className='mt-[150px] xl:mb-[150px] 2xl:mb-[300px] xl:px-24 sm:px-8'>
             <h1 className='text-3xl font-semibold mb-14 mt-10'>Your Orders</h1>
+            <div className='mb-[150px] mx-auto text-center text-gray-600 text-xl'>You don't have any orders yet</div>
             {
                 isLoading ?
                     (
