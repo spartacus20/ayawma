@@ -24,7 +24,7 @@ function Card({stars, text, img, price, id, log}) {
   }
 
  
-  console.log(image)
+  // console.log(image)
 
   let link = "/"+id+"/"+text?.replaceAll(" ", "-").replaceAll("/", "-").toLowerCase()
   const navigate = useNavigate(); 

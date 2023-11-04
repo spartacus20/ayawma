@@ -1,23 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CATEGORIES} from "./categories"
 import { actionTypes } from "../../../reducer.js";
 import { useStateValue } from "../../../StateProvider"
-function Filters() {
+function Filters(maxPrice) {
 
     const [{ productSidebar }, dispatch] = useStateValue();
     const [categorie, setCategorie] = useState("all")
-    const maxPrice = 100.99
-    const minPrice = 0.99
-    const [price, setPrice] = useState(maxPrice)
     
+    const minPrice = 0.99
+    const [price, setPrice] = useState(maxPrice.maxPrice)
+    
+    useEffect(() => {
+        setPrice(maxPrice.maxPrice)
+    }, [maxPrice])
+
     const toggleSidebar = () => {
         dispatch({ type: actionTypes.SET_PRODUCT_SIDEBAR })
     }
     const handleClick = (e) => {
-        setPrice(maxPrice)
+        dispatch({ type: actionTypes.SET_FILTER, filter: "ALL"})
+        setPrice(maxPrice.maxPrice)
         setCategorie('all');
 
     }
+
 
     return (
         <>
@@ -51,7 +57,7 @@ function Filters() {
                         id="price"
                         onChange={(e) => setPrice(e.target.value)}
                         min={minPrice}
-                        max={maxPrice}
+                        max={maxPrice.maxPrice}
                         value={price}
                         className="form-range"
                     />

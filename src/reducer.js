@@ -10,12 +10,14 @@ export const initialState = {
   quantity: 0,
   user: null,
   shippingData: {},
+  sortby: "ALL",
   client_secret: "",
 };
 
 export const actionTypes = {
   SET_CLIENT_SECRET: "SET_CLIENT_SECRET",
   SET_PRODUCT_SIDEBAR: "SET_PRODUCT_SIDEBAR",
+  SET_FILTER: "SET_FILTER",
   CHANGE_GRID_VIEW: "CHANGE_GRID_VIEW",
   ADD_TO_BASKET: "ADD_TO_BASKET",
   REMOVE_ITEM: "REMOVE_ITEM",
@@ -108,6 +110,11 @@ const reducer = (state, action) => {
         ...state,
         client_secret: action.clientSecret
       }
+    case "SET_FILTER": 
+    return {
+          ...state, 
+          sortby: action.filter
+        }
     default:
       return state;
   }
