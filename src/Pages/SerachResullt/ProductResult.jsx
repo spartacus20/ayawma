@@ -27,13 +27,13 @@ const containerVariants = {
 function ProductResult() {
   const [data, setData] = useState([])
   const [originalData, setOriginalData] = useState([])
-  const [{ gridView, sortby }, dispatch] = useStateValue();
-  const [maxPrice, setmaxPrice] = useState(100); 
+  const [{ gridView, sortby, price_between }, dispatch] = useStateValue();
+  const [maxPrice, setmaxPrice] = useState(100);
   let { product } = useParams();
 
   const ChangeFilter = (filter) => {
     let new_products = []
-    if (filter === "A_TO_Z") {    
+    if (filter === "A_TO_Z") {
       new_products = data.sort((a, b) => {
         if (a.title < b.title) return -1;
         if (a.title > b.title) return 1;
@@ -59,58 +59,54 @@ function ProductResult() {
       })
     }else if(filter === "ALL"){
         new_products = [...originalData]
+     }else if(filter === "BETWEEN"){
+        new_products = originalData.filter(( product => product.price <= price_between))
      }
-    console.log(new_products);
+     setData([...new_products])
 
-    setData([...new_products]);
   }
-  
-  
+
   const handleViews = () => {
-    // console.log(gridView)
-    if (gridView) {
-      return <List product={data} />
-    }
-    return <Grid product={data} />
+      if (gridView) {
+        return <List product={data} />
+      }
+      return <Grid product={data} />
+
   }
 
-  const asignMaxPriceToFilter = ( ) => {
-    let price = data.map( product => product.price)
-    price = Math.max(...price) 
-    // console.log(price)
+  const asignMaxPriceToFilter = (dates) => {
+    let price = dates.map( product => product.price)
+    price = Math.max(...price)
     setmaxPrice(price)
   }
 
-  useEffect(() => {   
+  useEffect(() => {
     window.scrollTo(0, 0);
     const test = async () => {
-
       try {
-        const response = await axios.get(`/api/product/${product}`) 
+        const response = await axios.get(`/api/product/${product}`)
         setData(response.data.data)
-        setOriginalData(response.data.data) 
+        setOriginalData(response.data.data)
         console.log(response.data.data)
-        
+        asignMaxPriceToFilter(response.data.data)
+
       } catch (err) {
         console.log(err)
       }
-
     }
 
     test()
 
   }, [product]);
 
-  // console.log(sortby)
-
-  useEffect(() => {
-    asignMaxPriceToFilter()
-  }, [data])
 
   useEffect(() => {
     ChangeFilter(sortby);
   }, [sortby]);
 
+  useEffect(() => {
+    ChangeFilter(sortby);
+  }, [price_between]);
 
 
 

@@ -5,12 +5,13 @@ const basketFromLocalStorage =  JSON.parse(localStorage.getItem('previous_cart' 
 
 export const initialState = {
   productSidebar: false,
-  gridView: false, 
+  gridView: false,
   basket: basketFromLocalStorage,
   quantity: 0,
   user: null,
   shippingData: {},
   sortby: "ALL",
+  price_between: 0,
   client_secret: "",
 };
 
@@ -32,9 +33,9 @@ export const getBasketTotal = (basket) =>
   basket?.reduce((amount, item) => (item.price * item.quantity)  + amount, 0);
 
 const reducer = (state, action) => {
-  
-  
-  //TO DO: find which method or function is executing 2 times reducer. 
+
+
+  //TO DO: find which method or function is executing 2 times reducer.
   console.log(action);
   switch (action.type) {
     // //action.item indicate the payload item.
@@ -44,7 +45,7 @@ const reducer = (state, action) => {
         let product = state.basket.find(
           (product) => product.id === action.item.id
         );
-        
+
 
         if (product) {
           //When the product is already in the basket we only increment the quantity counter.
@@ -52,13 +53,13 @@ const reducer = (state, action) => {
           nBasket = [...state.basket];
         } else {
           nBasket = [...state.basket, action.item];
-        } 
+        }
         localStorage.setItem('previous_cart', JSON.stringify(nBasket))
         return {
           ...state,
           basket: [...nBasket],
         };
- 
+
 
     case "REMOVE_ITEM":
       const index = state.basket.findIndex(
@@ -95,7 +96,7 @@ const reducer = (state, action) => {
         ...state,
         shippingData: action.shippingData,
       };
-    case "SET_PRODUCT_SIDEBAR": 
+    case "SET_PRODUCT_SIDEBAR":
       return {
         ...state,
         productSidebar: !state.productSidebar
@@ -105,14 +106,21 @@ const reducer = (state, action) => {
         ...state,
          gridView: !state.gridView
       }
-    case "SET_CLIENT_SECRET": 
+    case "SET_CLIENT_SECRET":
       return {
         ...state,
         client_secret: action.clientSecret
       }
-    case "SET_FILTER": 
+    case "SET_FILTER":
+      if(action.maxprice !== undefined){
+          return {
+            ...state,
+            sortby: action.filter,
+            price_between: action.maxprice
+          }
+      }
     return {
-          ...state, 
+          ...state,
           sortby: action.filter
         }
     default:

@@ -6,24 +6,27 @@ function Filters(maxPrice) {
 
     const [{ productSidebar }, dispatch] = useStateValue();
     const [categorie, setCategorie] = useState("all")
-    
+
     const minPrice = 0.99
     const [price, setPrice] = useState(maxPrice.maxPrice)
-    
+
     useEffect(() => {
         setPrice(maxPrice.maxPrice)
-    }, [maxPrice])
+    }, [maxPrice.maxPrice])
 
     const toggleSidebar = () => {
         dispatch({ type: actionTypes.SET_PRODUCT_SIDEBAR })
     }
     const handleClick = (e) => {
-        dispatch({ type: actionTypes.SET_FILTER, filter: "ALL"})
+        dispatch({ type: actionTypes.SET_FILTER, filter: "ALL", maxprice: maxPrice.maxPrice})
         setPrice(maxPrice.maxPrice)
         setCategorie('all');
 
     }
-
+    const handleChange = (e) => {
+        dispatch({ type: actionTypes.SET_FILTER, filter: "BETWEEN", maxprice: e.target.value });
+        setPrice(e.target.value);
+    }
 
     return (
         <>
@@ -55,9 +58,9 @@ function Filters(maxPrice) {
                         type="range"
                         name="price"
                         id="price"
-                        onChange={(e) => setPrice(e.target.value)}
+                        onInput={handleChange}
                         min={minPrice}
-                        max={maxPrice.maxPrice}
+                        max={maxPrice.maxPrice + 1}
                         value={price}
                         className="form-range"
                     />
