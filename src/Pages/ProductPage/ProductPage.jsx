@@ -11,12 +11,10 @@ import axios from "../../Services/axios";
 import { useStateValue } from "../../StateProvider";
 import { actionTypes } from "../../reducer";
 import html_to_react from 'html-to-react';
-
-
+import { Authentication } from "../../Services/Authentication";
 
 function ProductPage() {
 
-  const BACKEND_URL = "http://localhost:3001/images/";
   const [{ basket }, dispatch] = useStateValue();
   const { product, id } = useParams();
   const [images, setImages] = useState(im1);
@@ -28,48 +26,39 @@ function ProductPage() {
   const finalPrice = price * quantity;
   const navigate = useNavigate();
 
-
-
-
-
+  //THE PAYLOAD IS PRODUCT INFORMATION.
+  //REDUCER RECEIVE THE (ACTIONS, PAYLOAD)
   const handleAddToCart = () => {
-
-    //THE PAYLOAD IS PRODUCT INFORMATION. 
-    //REDUCER RECEIVE THE (ACTIONS, PAYLOAD) 
     data[0]["quantity"] = quantity;
     dispatch({ type: actionTypes.ADD_TO_BASKET, item: data[0] })
   }
 
-  const handleBuy = () => {
-
+  const handleBuy = async () => {
+    const user = await Authentication();
     data[0]["quantity"] = quantity;
-    dispatch({ type: actionTypes.ADD_TO_BASKET, item: data[0] })
+    const basket = [data[0]];
 
-    axios.post("/create-payment-intent", {
-      basket
-    }).then(res => {
-      const { clientSecret, id } = res.data
-      // console.log(res.data)
-      dispatch({ type: actionTypes.SET_CLIENT_SECRET, clientSecret: clientSecret })
-      navigate("/checkout/" + clientSecret + "/" + id);
-
-      // if (res.data.url) {
-      //   window.location.href = res.data.url;
-      // }
-    }).catch(err => {
-      console.log(err.message)
-    });
-
+    if (user) {
+      axios.post("/create-payment-intent", {
+        basket
+      }).then(res => {
+        const { clientSecret, id } = res.data
+        dispatch({ type: actionTypes.SET_CLIENT_SECRET, clientSecret: clientSecret })
+        navigate("/checkout/" + clientSecret + "/" + id);
+      }).catch(err => {
+        console.log(err.message)
+      });
+    }else{
+      navigate("/signin");
+    }
 
   }
 
-  const diminueQuantity = () => {
+  const Decrease_quantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   }
-
-
 
   const test = async () => {
     window.scrollTo(0, 0)
@@ -129,13 +118,13 @@ function ProductPage() {
           </div>
           <span className="xl:text-2xl sm:text-2xl font-semibold mb-10">{price.toFixed(2)} €</span>
           <div className="flex items-center xl:mb-24 sm:mb-16">
-            <button className="rounded-[8px] border-2 border-black mr-3 text-center w-[25px]" onClick={diminueQuantity}>-</button>
+            <button className="rounded-[8px] border-2 border-black mr-3 text-center w-[25px]" onClick={Decrease_quantity}>-</button>
             <span>{quantity}</span>
             <button className="ml-3 rounded-[8px] bg-black text-white text-center w-[25px]" onClick={() => setQuantity(quantity + 1)}>+</button>
           </div>
           <div className="flex items-center">
             <span className="xl:text-xl sm:text-lg mr-7 ">{finalPrice.toFixed(2)} €</span>
-            <button className="xl:text-lg sm:text-md bg-black text-white rounded-lg xl:w-[77px] sm:w-[50px] h-[46px] mr-5">Buy</button>
+            <button className="xl:text-lg sm:text-md bg-black text-white rounded-lg xl:w-[77px] sm:w-[50px] h-[46px] mr-5" onClick={handleBuy}>Buy</button>
             <div className="flex items-center px-3 xl:text-lg sm:text-md bg-black text-white rounded-lg xl:w-[206px] h-[46px] justify-center" onClick={handleAddToCart}>
               <CartIcon2 />
               Add to shop cart
@@ -148,7 +137,7 @@ function ProductPage() {
       <div className="xl:px-9 ">
         <h2 className="text-2xl font-bold mb-5">Description</h2>
         <div className="w-[100%] min-h-[500px] xl:mb-7">
-          <div dangerouslySetInnerHTML={{ __html: data[0].description }} className="description"/>
+          <div dangerouslySetInnerHTML={{ __html: data[0].description }} className="description" />
 
         </div>
         <Reviews productID={data[0].id} />
