@@ -12,6 +12,18 @@ function Orders() {
     const [order_information, setOrder_information] = useState([{}])
     const [isLoading, setIsLoading] = useState(true);
 
+    const formatDate = (dateString) => {
+        const options = {
+            weekday: 'long',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            month: 'short',
+            year: 'numeric',
+        };
+
+        return new Date(dateString).toLocaleString('en-GB', options);
+      };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,7 +46,9 @@ function Orders() {
         fetchData();
     }, [])
 
-
+    const dataParsed = (string) =>  {
+        return (new Date(string))
+    }
 
     return (
         <div className='mt-[150px] xl:mb-[150px] 2xl:mb-[300px] xl:px-24 sm:px-8'>
@@ -79,6 +93,7 @@ function Orders() {
 
                                     return (
                                         <div className='mt-5 w-full min-h-[300px] bg-[#F9FAFB] px-4 py-5 flex flex-col mb-10 shadow-lg' key={index}>
+                                            <span className='text-lg font-semibold mb-4'><span className='text-black text-bold'>{formatDate(item.order_date)} </span></span>
                                             <span className='text-lg font-semibold mb-4'>Order ID: <span className='text-[#c7a87d]'>{item.order_id} </span></span>
                                             <span className='text-lg font-semibold mb-4'>Payment by: <span className='text-[#c7a87d]'> Card</span></span>
                                             <div className='flex flex-col'>
